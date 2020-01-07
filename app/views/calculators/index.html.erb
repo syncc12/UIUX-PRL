@@ -1,0 +1,146 @@
+<div class="row">
+  <div class="col-10 offset-1">
+    <div class="space-break"></div>
+    <div class="page-title">Calculator</div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-10 offset-1">
+    <div id="calc-div">
+      <table id="calc-table">
+        <tr class="calc-table-row">
+          <td id="calc-output" colspan="4"><span id="calc-span">&nbsp;</span></td>
+        </tr>
+        <tr class="calc-table-row">
+          <td class="ct-special-button ct-button">MR</td><td class="ct-special-button ct-button">M+</td><td class="ct-special-button ct-button">M-</td><td class="ct-ac-button ct-button">AC</td>
+        </tr>
+        <tr class="calc-table-row">
+          <td class="ct-num-button ct-button">7</td><td class="ct-num-button ct-button">8</td><td class="ct-num-button ct-button">9</td><td class="ct-operator-button ct-button">/</td>
+        </tr>
+        <tr class="calc-table-row">
+          <td class="ct-num-button ct-button">4</td><td class="ct-num-button ct-button">5</td><td class="ct-num-button ct-button">6</td><td class="ct-operator-button ct-button">*</td>
+        </tr>
+        <tr class="calc-table-row">
+          <td class="ct-num-button ct-button">1</td><td class="ct-num-button ct-button">2</td><td class="ct-num-button ct-button">3</td><td class="ct-operator-button ct-button">-</td>
+        </tr>
+        <tr class="calc-table-row">
+          <td class="ct-num-button ct-button">.</td><td class="ct-num-button ct-button">0</td><td class="ct-equals-button ct-button">=</td><td class="ct-operator-button ct-button">+</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+
+  function specialDecode(inSpecial, inNumArr) {
+    if (inSpecial = 'AC') {
+      
+    } else if (inSpecial = "M+") {
+
+    } else if (inSpecial = "M-") {
+      
+    } else if (inSpecial = "MR") {
+      
+    }
+  }
+
+  function operatorDecode(inOperator,num1,num2) {
+    if (inOperator == '+') {
+      num1 = num1 + num2;
+    } else if (inOperator == "-") {
+      num1 = num1 - num2;
+    } else if (inOperator == "*") {
+      if (num1 == 0) {
+        num1=1
+      }
+      if (num2 == 0) {
+        num2=1
+      }
+      num1 = num1 * num2;
+    } else if (inOperator == "/") {
+      if (num1 == 0) {
+        num1=1
+      }
+      if (num2 == 0) {
+        num2=1
+      }
+      num1 = num1 / num2;
+    }
+    return num1;
+  }
+
+  function insertSpanHTML(inNum) {
+    $("span#calc-span").replaceWith('<span id="calc-span">'+inNum+'</span>');
+  }
+
+  $(function() {
+    var numArr = [];
+    var operator = '';
+    var special = '';
+    var num1 = 0;
+    var num2 = 0;
+    var answer='';
+    var numJoin='';
+    $(".ct-num-button").button();
+    $(".ct-num-button").click(function(event){
+      $(this).addClass('button-click');
+      $(this).removeClass('button-click',250);
+      numArr.push($(this).text());
+      insertSpanHTML(numArr.join(''));
+    });
+    
+    $(".ct-operator-button").button();
+    $(".ct-operator-button").click(function(event){
+      $(this).css("outline","1px solid black");
+      $(this).css("outline-offset", "-5px");
+      operator=$(this).text();
+      numJoin=numArr.join('')
+      if (numJoin.includes('.')) {
+        num1 = parseFloat(numJoin);
+      } else {
+        num1 = parseInt(numJoin);
+      }
+      numArr=[];
+    });
+
+    $(".ct-special-button").button();
+    $(".ct-special-button").click(function(event){
+      special=$(this).text();
+      numArr=specialDecode(special);
+    });
+
+    $(".ct-equals-button").button();
+    $(".ct-equals-button").click(function(event){
+      $(".ct-operator-button").css("outline","");
+      $(".ct-operator-button").css("outline-offset", "");
+      numJoin=numArr.join('')
+      if (numJoin.includes('.')) {
+        num2 = parseFloat(numJoin);
+      } else {
+        num2 = parseInt(numJoin);
+      }
+      numArr=[];
+      num1=operatorDecode(operator,num1,num2);
+      answer=num1;
+      insertSpanHTML(answer);
+    });
+
+    $(".ct-ac-button").button();
+    $(".ct-ac-button").click(function(event){
+      $("span#calc-span").replaceWith(insertSpanHTML('&nbsp;'));
+      $(".ct-operator-button").css("outline","");
+      $(".ct-operator-button").css("outline-offset", "");
+      NumArr=[];
+      operator='';
+      special='';
+      num1=0;
+      num2=0;
+      answer='';
+      numJoin='';
+    });
+
+  }); 
+</script>

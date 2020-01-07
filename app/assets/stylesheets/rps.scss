@@ -1,0 +1,93 @@
+// Place all the styles related to the rps controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#rps-rock {
+  content: url('green_rock.png');
+}
+
+#rps-paper {
+  content: url('green_paper.png');
+}
+
+#rps-scissors {
+  content: url('green_scissors.png');
+}
+
+#rps-opponent-rock {
+  content: url('red_rock.png');
+  transform: scaleX(-1);
+}
+
+#rps-opponent-paper {
+  content: url('red_paper.png');
+  transform: scaleX(-1);
+}
+
+#rps-opponent-scissors {
+  content: url('red_scissors.png');
+  transform: scaleX(-1);
+}
+
+.choice-gap {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.choice-div {
+  height: 150px;
+}
+
+.green-rock {
+  content: url('green_rock.png');
+}
+
+.green-paper {
+  content: url('green_paper.png');
+}
+
+.green-scissors {
+  content: url('green_scissors.png');
+}
+
+.red-rock {
+  content: url('red_rock.png');
+  transform: scaleX(-1);
+}
+
+.red-paper {
+  content: url('red_paper.png');
+  transform: scaleX(-1);
+}
+
+.red-scissors {
+  content: url('red_scissors.png');
+  transform: scaleX(-1);
+}
+
+#record-table, #record-table th {
+  border: 1px solid black;
+}
+
+#record-table td {
+  border-right: 1px solid black;
+}
+
+.hold-space {
+  height: 190px;
+}
+
+.record-table-title, .record-table-td {
+  width: 80px;
+  text-align: center;
+}
+
+.disable-select{
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}

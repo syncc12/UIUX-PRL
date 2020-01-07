@@ -1,0 +1,44 @@
+// Place all the styles related to the calculators controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+div#calc-div table, div#calc-div table tr, div#calc-div table tr th, div#calc-div table tr td {
+  border: 1px solid black;
+}
+
+#calc-table {
+  border-spacing: 15px;
+}
+
+.calc-table-row {
+
+}
+
+.ct-num-button {
+
+}
+
+.ct-special-button {
+
+}
+
+.ct-button {
+  height: 100px;
+  width: 100px;
+  text-align: center;
+}
+
+#calc-output {
+  height:100px;
+  width: 300px;
+  padding: 10px;
+}
+
+.button-click {
+  outline: 1px solid black;
+  outline-offset: -5px;
+}
+
+.ct-ac-button {
+  
+}

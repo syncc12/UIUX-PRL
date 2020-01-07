@@ -1,0 +1,201 @@
+<div class="row disable-select">
+  <div class="col-10 offset-1">
+    <div class="space-break"></div>
+    <div class="page-title">Rock, Paper, Scissors</div>
+  </div>
+</div>
+<div class="row disable-select">
+  <div class="col-1">
+    <table id="record-table">
+      <tr><th class="record-table-title">Game</th><th class="record-table-title">Winner</th></tr>
+    </table>
+  </div>
+  <div class="col-1 offset-1">
+    <div class="choice-div"><div id="rps-rock" class="choice-gap"><</div></div>
+    <div class="choice-div"><div id="rps-paper" class="choice-gap"></div></div>
+    <div class="choice-div"><div id="rps-scissors" class="choice-gap"></div></div>
+  </div>
+  <div class="col-1 offset-1">
+    <div class="hold-space">&nbsp;</div>
+    <div id="p-choice-hold" class="choice-div"><div>&nbsp;</div></div>
+  </div>
+  <div class="col-1 offset-1">
+    <div class="hold-space">&nbsp;</div>
+    <div id="victor-hold" class="choice-div"><div>&nbsp;</div></div>
+    <div id="victor-name-hold" class="choice-div"><div>&nbsp;</div></div>
+  </div>
+
+  <div class="col-1 offset-1">
+    <div class="hold-space">&nbsp;</div>
+    <div id="o-choice-hold" class="choice-div"><div>&nbsp;</div></div>
+  </div>
+  <div class="col-1 offset-1">
+    <div class="choice-div"><div id="rps-opponent-rock" class="choice-gap"></div></div>
+    <div class="choice-div"><div id="rps-opponent-paper" class="choice-gap"></div></div>
+    <div class="choice-div"><div id="rps-opponent-scissors" class="choice-gap"></div></div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  function rpsCompare(playerNum, opponentNum) {
+    // 0 -> Rock    // 1 -> Paper    // 2 -> Scissors
+
+    // 0|0 -> 0 - 0    // 0|1 -> 0 - 1    // 0|2 -> 2 - 2
+    // 1|0 -> 1 - 1    // 1|1 -> 1 - 0    // 1|2 -> 2 - 2
+    // 2|0 -> 0 - 2    // 2|1 -> 2 - 1    // 2|2 -> 2 - 0
+
+    // 0 -> Stalemate    // 1 -> Player    // 2 -> Opponent
+
+    var outVictor = 0;
+    var replaceHTML = '';
+    var replaceHTMLName = '';
+    if (playerNum == 0 && opponentNum == 0) {
+      replaceHTML = '<div class="red-rock"></div>';
+      replaceHTMLName = '<div>Stalemate</div>';
+      outVictor = 0;
+      victorHTML(0,0);
+    } else if (playerNum == 0 && opponentNum == 1) {
+      replaceHTML = '<div class="red-paper"></div>';
+      replaceHTMLName = '<div>You Win!</div>';
+      outVictor = 1;
+      victorHTML(1,0);
+    } else if (playerNum == 0 && opponentNum == 2) {
+      replaceHTML = '<div class="red-scissors"></div>';
+      replaceHTMLName = '<div>Computer Wins</div>';
+      outVictor = 2;
+      victorHTML(2,2);
+    } else if (playerNum == 1 && opponentNum == 0) {
+      replaceHTML = '<div class="red-rock"></div>';
+      replaceHTMLName = '<div>You Win!</div>';
+      outVictor = 1;
+      victorHTML(1,1);
+    } else if (playerNum == 1 && opponentNum == 1) {
+      replaceHTML = '<div class="red-paper"></div>';
+      replaceHTMLName = '<div>Stalemate</div>';
+      outVictor = 0;
+      victorHTML(0,1);
+    } else if (playerNum == 1 && opponentNum == 2) {
+      replaceHTML = '<div class="red-scissors"></div>';
+      replaceHTMLName = '<div>Computer Wins</div>';
+      outVictor = 2;
+      victorHTML(2,2);
+    } else if (playerNum == 2 && opponentNum == 0) {
+      replaceHTML = '<div class="red-rock"></div>';
+      replaceHTMLName = '<div>Computer Wins</div>';
+      outVictor = 2;
+      victorHTML(2,0);
+    } else if (playerNum == 2 && opponentNum == 1) {
+      replaceHTML = '<div class="red-paper"></div>';
+      replaceHTMLName = '<div>You Win!</div>';
+      outVictor = 1;
+      victorHTML(1,2);
+    } else if (playerNum == 2 && opponentNum == 2) {
+      replaceHTML = '<div class="red-scissors"></div>';
+      replaceHTMLName = '<div>Stalemate</div>';
+      outVictor = 0;
+      victorHTML(0,2);
+    }
+    $('#victor-name-hold div').replaceWith(replaceHTMLName);
+    $('#o-choice-hold div').replaceWith(replaceHTML);
+    return outVictor;
+  }
+
+  function victorHTML(inVictor,inVictorChoice) {
+    var replaceHTML = '';
+    if (inVictor == 0) {
+      replaceHTML = '<div>&nbsp;</div>';
+    } else if (inVictor == 1) {
+      if (inVictorChoice == 0) {
+        replaceHTML = '<div class="green-rock"></div>';
+      } else if (inVictorChoice == 1) {
+        replaceHTML = '<div class="green-paper"></div>';
+      } else if (inVictorChoice == 2) {
+        replaceHTML = '<div class="green-scissors"></div>';
+      }
+    } else if (inVictor == 2) {
+      if (inVictorChoice == 0) {
+        replaceHTML = '<div class="red-rock"></div>';
+      } else if (inVictorChoice == 1) {
+        replaceHTML = '<div class="red-paper"></div>';
+      } else if (inVictorChoice == 2) {
+        replaceHTML = '<div class="red-scissors"></div>';
+      }
+    }
+    $('#victor-hold div').replaceWith(replaceHTML);
+  }
+
+  function victorDecode(inVictor) {
+    if (inVictor == 0) {
+      return 'Stalemate';
+    } else if (inVictor == 1) {
+      return 'You';
+    } else if (inVictor == 2) {
+      return 'Computer';
+    }
+  }
+
+  function gameTally(inGameNumber,inVictor) {
+    $('#record-table').append('<tr><td class="record-table-td">'+inGameNumber+'</td><td class="record-table-td">'+inVictor+'</td></tr>')
+  }
+
+  function choiceDisplay(playerNum, opponentNum) {
+
+  }
+
+  var victor;
+  var playerChoice;
+  var pcHTML;
+  var opponentChoice;
+  var ocHTML;
+  var gameNumber = 0;
+
+  $(function() {
+
+    $('#rps-rock').click(function(event) {
+      opponentChoice = getRandomInt(3);
+      playerChoice=0;
+      pcHTML='<div class="green-rock"></div>';
+      $('#p-choice-hold div').replaceWith(pcHTML);
+      victor=victorDecode(rpsCompare(playerChoice, opponentChoice));
+      gameNumber += 1;
+      gameTally(gameNumber,victor);
+      console.log(opponentChoice);
+      console.log(playerChoice);
+      console.log(victor);
+    });
+
+    $('#rps-paper').click(function(event) {
+      opponentChoice = getRandomInt(3);
+      playerChoice=1;
+      pcHTML='<div class="green-paper"></div>'
+      $('#p-choice-hold div').replaceWith(pcHTML);
+      victor=victorDecode(rpsCompare(playerChoice, opponentChoice));
+      gameNumber += 1;
+      gameTally(gameNumber,victor);
+      console.log(opponentChoice);
+      console.log(playerChoice);
+      console.log(victor);
+    });
+
+    $('#rps-scissors').click(function(event) {
+      opponentChoice = getRandomInt(3);
+      playerChoice=2;
+      pcHTML='<div class="green-scissors"></div>'
+      $('#p-choice-hold div').replaceWith(pcHTML);
+      victor=victorDecode(rpsCompare(playerChoice, opponentChoice));
+      gameNumber += 1;
+      gameTally(gameNumber,victor);
+      console.log(opponentChoice);
+      console.log(playerChoice);
+      console.log(victor);
+    });
+  });
+
+</script>
