@@ -2,29 +2,126 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
+$arc-angle: -90deg;
+$skew-angle: 90deg - $arc-angle;
+
+$skewX-deg: $skew-angle;
+$skewX-opposite-deg: -$skewX-deg;
+
+$border-width: 1px;
+
+$top-left: -$border-width;
+$bottom-right: 50%;
+
+$circle-hw: 75px;
+
+$arc-rotate-a: 4deg;
+$arc-rotate-b: 84deg;
+
+$degree-height: 10px;
+$double-degree-height: $degree-height + $degree-height;
+
 #thermometer-draw {
+
+}
+
+.thermometer-fill {
+  background: red;
+  display: block;
+  height: $degree-height;
+  width: 50px;
+  position: relative;
+}
+
+.degree-markings {
+  background: repeating-linear-gradient(
+    0deg,
+    #000000,
+    #000000 1px,
+    transparent $degree-height,
+    transparent $double-degree-height,
+    ), 
+    repeating-linear-gradient(
+      
+    );
+}
+
+.vertical-centerline {
+  position: relative;
+  border: 1px solid black;
+  right: -50%;
+  height: 100%;
+  width: 0px;
+}
+
+.rectangle {
+  display: block;
   height: 500px;
   width: 50px;
+  position: relative;
+  border-radius: 50px 50px 0px 0px;
   border: 1px solid black;
 }
 
-.rectangle{
-  display: block;
-  height: 40px;
-  width: 150px;
+.circle {
+  position: absolute;
+  height: $circle-hw;
+  width: $circle-hw;
+  border-radius: 50px;
+  top: 450px;
+  right: -29%;
   background: red;
-  position: relative;
-  margin-top: 100px;
 }
 
-.circle{
+.arc {
   position: absolute;
-  height: 40px;
-  width: 40px;
-  border-radius: 40px;
-  border: 3px solid white;
-  left: 50%;
-  margin-left: -25px;
-  top: -20px;
-  background: red;
+  top: 0;
+  left: 0;
+  width: $circle-hw;
+  height: $circle-hw;
+  border-radius: 100%;
+  border: $border-width solid black;
+}
+
+.arc-a {
+  border-color: transparent black black black;
+  -webkit-transform: rotate($arc-rotate-a);
+  -moz-transform: rotate($arc-rotate-a);
+  -ms-transform: rotate($arc-rotate-a);
+  -o-transform: rotate($arc-rotate-a);
+  transform: rotate($arc-rotate-a);
+}
+
+.arc-b {
+  border-color: black black black transparent;
+  -webkit-transform: rotate($arc-rotate-b);
+  -moz-transform: rotate($arc-rotate-b);
+  -ms-transform: rotate($arc-rotate-b);
+  -o-transform: rotate($arc-rotate-b);
+  transform: rotate($arc-rotate-b);
+}
+
+.circle-outline {
+  overflow: hidden;
+  position: absolute;
+  top: $top-left;
+  right: $bottom-right;
+  bottom: $bottom-right;
+  left: $top-left;
+  transform-origin: 100% 100%;
+  transform: rotate(45deg) skewX($skewX-deg);
+  border: 1px solid black;
+}
+
+.circle-outline:before {
+  box-sizing: border-box;
+  display: block;
+  border: $border-width solid black;
+  width: 200%;
+  height: 200%;
+  border-radius: 50%;
+  transform: skewX($skewX-opposite-deg);
+  content: '';
 }

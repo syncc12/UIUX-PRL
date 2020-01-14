@@ -4,8 +4,210 @@
     <div class="page-title">Checkers</div>
   </div>
 </div>
-<div class="row">
+<div class="row no-gutters">
   <div class="col-10 offset-1">
-    
+
+    <table id="checker-board">
+      <tr class="coordinate-row">
+        <td id="co-blank" class="coord-col-row coord-col-row-tl coordinate">&nbsp;</td>
+        <td id="co-1" class="coord-col coordinate">1</td>
+        <td id="co-2" class="coord-col coordinate">2</td>
+        <td id="co-3" class="coord-col coordinate">3</td>
+        <td id="co-4" class="coord-col coordinate">4</td>
+        <td id="co-5" class="coord-col coordinate">5</td>
+        <td id="co-6" class="coord-col coordinate">6</td>
+        <td id="co-7" class="coord-col coordinate">7</td>
+        <td id="co-8" class="coord-col coordinate">8</td>
+        <td id="co-blank" class="coord-col-row coord-col-row-tr coordinate">&nbsp;</td>
+      </tr>
+
+      <tr class="checker-row">
+        <td id="co-A" class="coord-row coordinate">A</td><td id="sq-A-1" title="A.1" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-A-2" title="A.2" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-black"></div></td><td id="sq-A-3" title="A.3" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-A-4" title="A.4" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-black"></div></td><td id="sq-A-5" title="A.5" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-A-6" title="A.6" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-black"></div></td><td id="sq-A-7" title="A.7" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-A-8" title="A.8" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-black"></div></td><td id="co-A" class="coord-row coordinate">A</td>
+      </tr>
+       
+      <tr class="checker-row">
+        <td id="co-B" class="coord-row coordinate">B</td><td id="sq-B-1" title="B.1" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-black"></div></td><td id="sq-B-2" title="B.2" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-B-3" title="B.3" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-black"></div></td><td id="sq-B-4" title="B.4" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-B-5" title="B.5" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-black"></div></td><td id="sq-B-6" title="B.6" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-B-7" title="B.7" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-black"></div></td><td id="sq-B-8" title="B.8" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="co-B" class="coord-row coordinate">B</td>
+      </tr>
+       
+      <tr class="checker-row"> 
+        <td id="co-C" class="coord-row coordinate">C</td><td id="sq-C-1" title="C.1" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-C-2" title="C.2" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-black"></div></td><td id="sq-C-3" title="C.3" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-C-4" title="C.4" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-black"></div></td><td id="sq-C-5" title="C.5" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-C-6" title="C.6" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-black"></div></td><td id="sq-C-7" title="C.7" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-C-8" title="C.8" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-black"></div></td><td id="co-C" class="coord-row coordinate">C</td>
+      </tr>
+       
+      <tr class="checker-row"> 
+        <td id="co-D" class="coord-row coordinate">D</td><td id="sq-D-1" title="D.1" class="red-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-D-2" title="D.2" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-D-3" title="D.3" class="red-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-D-4" title="D.4" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-D-5" title="D.5" class="red-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-D-6" title="D.6" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-D-7" title="D.7" class="red-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-D-8" title="D.8" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="co-D" class="coord-row coordinate">D</td>
+      </tr>
+       
+      <tr class="checker-row"> 
+        <td id="co-E" class="coord-row coordinate">E</td><td id="sq-E-1" title="E.1" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-E-2" title="E.2" class="red-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-E-3" title="E.3" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-E-4" title="E.4" class="red-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-E-5" title="E.5" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-E-6" title="E.6" class="red-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-E-7" title="E.7" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-E-8" title="E.8" class="red-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="co-E" class="coord-row coordinate">E</td>
+      </tr>
+       
+      <tr class="checker-row"> 
+        <td id="co-F" class="coord-row coordinate">F</td><td id="sq-F-1" title="F.1" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-red"></div></td><td id="sq-F-2" title="F.2" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-F-3" title="F.3" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-red"></div></td><td id="sq-F-4" title="F.4" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-F-5" title="F.5" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-red"></div></td><td id="sq-F-6" title="F.6" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-F-7" title="F.7" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-red"></div></td><td id="sq-F-8" title="F.8" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="co-F" class="coord-row coordinate">F</td>
+      </tr>
+       
+      <tr class="checker-row"> 
+        <td id="co-G" class="coord-row coordinate">G</td><td id="sq-G-1" title="G.1" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-G-2" title="G.2" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-red"></div></td><td id="sq-G-3" title="G.3" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-G-4" title="G.4" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-red"></div></td><td id="sq-G-5" title="G.5" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-G-6" title="G.6" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-red"></div></td><td id="sq-G-7" title="G.7" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-G-8" title="G.8" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-red"></div></td><td id="co-G" class="coord-row coordinate">G</td>
+      </tr>
+       
+      <tr class="checker-row"> 
+        <td id="co-H" class="coord-row coordinate">H</td><td id="sq-H-1" title="H.1" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-red"></div></td><td id="sq-H-2" title="H.2" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-H-3" title="H.3" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-red"></div></td><td id="sq-H-4" title="H.4" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-H-5" title="H.5" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-red"></div></td><td id="sq-H-6" title="H.6" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="sq-H-7" title="H.7" class="red-square checker-square"><div class="checker-square-child checker-piece checker-piece-red"></div></td><td id="sq-H-8" title="H.8" class="white-square checker-square"><div class="checker-square-child">&nbsp;</div></td><td id="co-H" class="coord-row coordinate">H</td>
+      </tr>
+
+      <tr class="coordinate-row">
+        <td id="co-blank" class="coord-col-row coord-col-row-bl coordinate">&nbsp;</td>
+        <td id="co-1" class="coord-col coordinate">1</td>
+        <td id="co-2" class="coord-col coordinate">2</td>
+        <td id="co-3" class="coord-col coordinate">3</td>
+        <td id="co-4" class="coord-col coordinate">4</td>
+        <td id="co-5" class="coord-col coordinate">5</td>
+        <td id="co-6" class="coord-col coordinate">6</td>
+        <td id="co-7" class="coord-col coordinate">7</td>
+        <td id="co-8" class="coord-col coordinate">8</td>
+        <td id="co-blank" class="coord-col-row coord-col-row-br coordinate">&nbsp;</td>
+      </tr>
+    </table>   
+
+    <!-- <div class="checker-square-child checker-piece checker-piece-red"></div> -->
+    <!-- <div class="checker-square-child checker-piece checker-piece-black"></div> -->
+
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+
+  var redPiece = '<div class="checker-square-child checker-piece checker-piece-red"></div>';
+  var blackPiece = '<div class="checker-square-child checker-piece checker-piece-black"></div>'
+
+  function startSetup() {
+    $('#sq-A-2 div').replaceWith(blackPiece);
+    $('#sq-A-4 div').replaceWith(blackPiece);
+    $('#sq-A-6 div').replaceWith(blackPiece);
+    $('#sq-A-8 div').replaceWith(blackPiece);
+    $('#sq-B-1 div').replaceWith(blackPiece);
+    $('#sq-B-3 div').replaceWith(blackPiece);
+    $('#sq-B-5 div').replaceWith(blackPiece);
+    $('#sq-B-7 div').replaceWith(blackPiece);
+    $('#sq-C-2 div').replaceWith(blackPiece);
+    $('#sq-C-4 div').replaceWith(blackPiece);
+    $('#sq-C-6 div').replaceWith(blackPiece);
+    $('#sq-C-8 div').replaceWith(blackPiece);
+    $('#sq-F-1 div').replaceWith(redPiece);
+    $('#sq-F-3 div').replaceWith(redPiece);
+    $('#sq-F-5 div').replaceWith(redPiece);
+    $('#sq-F-7 div').replaceWith(redPiece);
+    $('#sq-G-2 div').replaceWith(redPiece);
+    $('#sq-G-4 div').replaceWith(redPiece);
+    $('#sq-G-6 div').replaceWith(redPiece);
+    $('#sq-G-8 div').replaceWith(redPiece);
+    $('#sq-H-1 div').replaceWith(redPiece);
+    $('#sq-H-3 div').replaceWith(redPiece);
+    $('#sq-H-5 div').replaceWith(redPiece);
+    $('#sq-H-7 div').replaceWith(redPiece);
+  }
+
+  function showTheNumbers() {
+    $('#sq-A-1 div').replaceWith('<div>A.1</div>');
+    $('#sq-A-2 div').replaceWith('<div>A.2</div>');
+    $('#sq-A-3 div').replaceWith('<div>A.3</div>');
+    $('#sq-A-4 div').replaceWith('<div>A.4</div>');
+    $('#sq-A-5 div').replaceWith('<div>A.5</div>');
+    $('#sq-A-6 div').replaceWith('<div>A.6</div>');
+    $('#sq-A-7 div').replaceWith('<div>A.7</div>');
+    $('#sq-A-8 div').replaceWith('<div>A.8</div>');
+    $('#sq-B-1 div').replaceWith('<div>B.1</div>');
+    $('#sq-B-2 div').replaceWith('<div>B.2</div>');
+    $('#sq-B-3 div').replaceWith('<div>B.3</div>');
+    $('#sq-B-4 div').replaceWith('<div>B.4</div>');
+    $('#sq-B-5 div').replaceWith('<div>B.5</div>');
+    $('#sq-B-6 div').replaceWith('<div>B.6</div>');
+    $('#sq-B-7 div').replaceWith('<div>B.7</div>');
+    $('#sq-B-8 div').replaceWith('<div>B.8</div>');
+    $('#sq-C-1 div').replaceWith('<div>C.1</div>');
+    $('#sq-C-2 div').replaceWith('<div>C.2</div>');
+    $('#sq-C-3 div').replaceWith('<div>C.3</div>');
+    $('#sq-C-4 div').replaceWith('<div>C.4</div>');
+    $('#sq-C-5 div').replaceWith('<div>C.5</div>');
+    $('#sq-C-6 div').replaceWith('<div>C.6</div>');
+    $('#sq-C-7 div').replaceWith('<div>C.7</div>');
+    $('#sq-C-8 div').replaceWith('<div>C.8</div>');
+    $('#sq-D-1 div').replaceWith('<div>D.1</div>');
+    $('#sq-D-2 div').replaceWith('<div>D.2</div>');
+    $('#sq-D-3 div').replaceWith('<div>D.3</div>');
+    $('#sq-D-4 div').replaceWith('<div>D.4</div>');
+    $('#sq-D-5 div').replaceWith('<div>D.5</div>');
+    $('#sq-D-6 div').replaceWith('<div>D.6</div>');
+    $('#sq-D-7 div').replaceWith('<div>D.7</div>');
+    $('#sq-D-8 div').replaceWith('<div>D.8</div>');
+    $('#sq-E-1 div').replaceWith('<div>E.1</div>');
+    $('#sq-E-2 div').replaceWith('<div>E.2</div>');
+    $('#sq-E-3 div').replaceWith('<div>E.3</div>');
+    $('#sq-E-4 div').replaceWith('<div>E.4</div>');
+    $('#sq-E-5 div').replaceWith('<div>E.5</div>');
+    $('#sq-E-6 div').replaceWith('<div>E.6</div>');
+    $('#sq-E-7 div').replaceWith('<div>E.7</div>');
+    $('#sq-E-8 div').replaceWith('<div>E.8</div>');
+    $('#sq-F-1 div').replaceWith('<div>F.1</div>');
+    $('#sq-F-2 div').replaceWith('<div>F.2</div>');
+    $('#sq-F-3 div').replaceWith('<div>F.3</div>');
+    $('#sq-F-4 div').replaceWith('<div>F.4</div>');
+    $('#sq-F-5 div').replaceWith('<div>F.5</div>');
+    $('#sq-F-6 div').replaceWith('<div>F.6</div>');
+    $('#sq-F-7 div').replaceWith('<div>F.7</div>');
+    $('#sq-F-8 div').replaceWith('<div>F.8</div>');
+    $('#sq-G-1 div').replaceWith('<div>G.1</div>');
+    $('#sq-G-2 div').replaceWith('<div>G.2</div>');
+    $('#sq-G-3 div').replaceWith('<div>G.3</div>');
+    $('#sq-G-4 div').replaceWith('<div>G.4</div>');
+    $('#sq-G-5 div').replaceWith('<div>G.5</div>');
+    $('#sq-G-6 div').replaceWith('<div>G.6</div>');
+    $('#sq-G-7 div').replaceWith('<div>G.7</div>');
+    $('#sq-G-8 div').replaceWith('<div>G.8</div>');
+    $('#sq-H-1 div').replaceWith('<div>H.1</div>');
+    $('#sq-H-2 div').replaceWith('<div>H.2</div>');
+    $('#sq-H-3 div').replaceWith('<div>H.3</div>');
+    $('#sq-H-4 div').replaceWith('<div>H.4</div>');
+    $('#sq-H-5 div').replaceWith('<div>H.5</div>');
+    $('#sq-H-6 div').replaceWith('<div>H.6</div>');
+    $('#sq-H-7 div').replaceWith('<div>H.7</div>');
+    $('#sq-H-8 div').replaceWith('<div>H.8</div>');
+  }
+
+  $(function() {
+
+    // showTheNumbers();
+    // startSetup();
+
+    var dragPiece;
+    $('.checker-piece').draggable({
+      revert: "invalid",
+      start: function(event, ui) {
+        dragPiece = $(this).parent().attr('id');
+      }
+    });
+    $('.red-square').droppable({
+      accept: '.checker-piece',
+      drop: function(event, ui) {
+        var destSquare = $(this).attr('id');
+        console.log(ui);
+        console.log("destSquare: "+destSquare);
+        console.log("dragPiece: "+dragPiece);
+        $('#'+dragPiece).position({
+          my: "center center",
+          at: "center center"
+          // of: '#'+destSquare,
+          // collision: "fit"
+        });
+      }
+    });
+
+  });
+
+  $(function() {
+
+    
+
+  });
+
+</script>

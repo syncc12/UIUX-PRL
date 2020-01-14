@@ -1,0 +1,126 @@
+// Place all the styles related to the flip_coins controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$coin-flip-animation-duration: 3s;
+
+#coin-animation {
+  overflow: hidden;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0px;
+  height: 600px;
+}
+
+.svg-text {
+  font-size: 300px;
+  fill: black;
+}
+
+.svg-line {
+  stroke: rgb(0,0,0);
+  stroke-width: 2;
+}
+
+$coin-hw: 400px;
+$coin-center: 278px;
+$coin-offset-shadow: 10px;
+$coin-offset-blur: $coin-offset-shadow * 2;
+$coin-offset-spread: 0px;
+$coin-font-size: 300px;
+$coin-line-height: $coin-hw;
+.coin {
+  display: block;
+  position: relative;
+  border: 2px solid black;
+  height: $coin-hw;
+  width: $coin-hw;
+  -webkit-border-radius: $coin-hw;
+  -moz-border-radius: $coin-hw;
+  -ms-border-radius: $coin-hw;
+  -o-border-radius: $coin-hw;
+  border-radius: $coin-hw;
+  left: $coin-center;
+  box-shadow: $coin-offset-shadow $coin-offset-shadow $coin-offset-blur $coin-offset-spread black;
+  
+
+  animation-duration: $coin-flip-animation-duration;
+  animation-name: coinflip;
+}
+
+.coin-text {
+  font-size: $coin-font-size;
+  text-align: center;
+  line-height: $coin-line-height;
+
+  animation-duration: $coin-flip-animation-duration;
+  animation-name: coinfliptext;
+}
+
+.coin-front {
+  
+}
+
+.coin-back {
+  
+}
+
+@keyframes coinflip {
+  from {
+    height: $coin-hw;
+    -webkit-border-radius: $coin-hw;
+    -moz-border-radius: $coin-hw;
+    -ms-border-radius: $coin-hw;
+    -o-border-radius: $coin-hw;
+    border-radius: $coin-hw;
+    box-shadow: $coin-offset-shadow $coin-offset-shadow $coin-offset-blur $coin-offset-spread black;
+    top: 0px;
+  }
+
+  50% {
+    height: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+    box-shadow: -$coin-offset-shadow -$coin-offset-shadow $coin-offset-blur $coin-offset-spread black;
+    top: 200px;
+  }
+
+  to {
+    height: $coin-hw;
+    -webkit-border-radius: $coin-hw;
+    -moz-border-radius: $coin-hw;
+    -ms-border-radius: $coin-hw;
+    -o-border-radius: $coin-hw;
+    border-radius: $coin-hw;
+    box-shadow: $coin-offset-shadow $coin-offset-shadow $coin-offset-blur $coin-offset-spread black;
+    top: 0px;
+  }
+}
+
+@keyframes coinfliptext {
+  from {
+    -webkit-perspective: 0px;
+    perspective: 0px;
+    // font-size: 300px;
+    line-height: $coin-line-height;
+  }
+
+  50% {
+    -webkit-perspective: 800px;
+    perspective: 800px;
+    // font-size: 0px;
+    line-height: 0;
+  }
+
+  to {
+    -webkit-perspective: 0px;
+    perspective: 0px;
+    // font-size: 300px;
+    line-height: $coin-line-height;
+  }
+}

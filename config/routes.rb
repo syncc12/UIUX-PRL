@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   resources :pianos, only: [:index]
   resources :thermometers, only: [:index]
   resources :checkers, only: [:index]
+  resources :flip_coins, only: [:index]
+  resources :two_ups, only: [:index]
+  resources :wheels, only: [:index]
+  resources :character_counters, only: [:index]
 end

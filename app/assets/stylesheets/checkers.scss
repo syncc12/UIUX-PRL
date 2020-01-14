@@ -1,3 +1,108 @@
 // Place all the styles related to the checkers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+label {
+  display: inline-block;
+}
+
+$checker-border-thickness: 2px;
+$checker-square-hw: 100px;
+$checker-board-hw: ($checker-square-hw * 10) + ($checker-border-thickness * 2);
+$checker-piece-hw: $checker-square-hw - 10;
+$checker-piece-margin: (($checker-square-hw - $checker-piece-hw) / 2) - $checker-border-thickness;
+$checker-square-child-hw: $checker-square-hw - ($checker-border-thickness * 2);
+
+#checker-board{
+  border: $checker-border-thickness solid black;
+  height: $checker-board-hw;
+  width: $checker-board-hw;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  border-collapse: collapse;
+}
+
+.coordinate {
+  border-color: darkgray;
+  background-color: lightgray;
+  text-align: center;
+  line-height: $checker-square-child-hw;
+}
+
+.coord-row {
+  border-color: darkgray black;
+}
+
+.coord-col {
+  border-color: black darkgray;
+}
+
+.coord-col-row-tl {
+  border-color: black darkgray darkgray black;
+}
+
+.coord-col-row-tr {
+  border-color: black black darkgray darkgray;
+}
+
+.coord-col-row-bl {
+  border-color: darkgray darkgray black black;
+}
+
+.coord-col-row-br {
+  border-color: darkgray black black darkgray;
+}
+
+.checker-square {
+  border-color: black;
+}
+
+.checker-square, .coordinate {
+  border-width: $checker-border-thickness;
+  border-style: solid;
+  width: $checker-square-hw;
+  height: $checker-square-hw;
+  display: inline-table;
+  margin: 0px;
+  padding: 0px;
+}
+
+.white-square {
+  background-color: white;
+  margin: 0px;
+  padding: 0px;
+}
+
+.red-square {
+  background-color: red;
+  margin: 0px;
+  padding: 0px;
+}
+
+.checker-row, .coordinate-row {
+  height: $checker-square-hw;
+  width: $checker-board-hw;
+  margin: 0px;
+  padding: 0px;
+}
+
+.checker-piece {
+  position: relative;
+  border: $checker-border-thickness solid #454545;
+  height: $checker-piece-hw;
+  width: $checker-piece-hw;
+  border-radius: $checker-piece-hw;
+  margin: $checker-piece-margin;
+  padding: 0px;
+  box-shadow: 2px 2px 2px #353535;
+}
+
+.checker-piece-red {
+  background-color: red;
+}
+
+.checker-piece-black {
+  background-color: black;
+}
