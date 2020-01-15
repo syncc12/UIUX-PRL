@@ -186,7 +186,7 @@
   }
 
   function possibleMoves(inCoordinate) {
-    
+
   }
 
   $(function() {
@@ -199,7 +199,7 @@
     $('.checker-piece').draggable({
       revert: "invalid",
       start: function(event, ui) {
-        dragPiece = $(this)[0];
+        dragPiece = $(this)[0].attr();
         console.log(dragPiece);
         startSquare = $(this).parent().attr('id');
         console.log($(ui['helper'][0]).parent().attr('id'));
