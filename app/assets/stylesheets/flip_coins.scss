@@ -4,26 +4,6 @@
 
 $coin-flip-animation-duration: 3s;
 
-#coin-animation {
-  overflow: hidden;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  padding-left: 0px;
-  padding-right: 0px;
-  margin: 0px;
-  height: 600px;
-}
-
-.svg-text {
-  font-size: 300px;
-  fill: black;
-}
-
-.svg-line {
-  stroke: rgb(0,0,0);
-  stroke-width: 2;
-}
-
 $coin-hw: 400px;
 $coin-center: 278px;
 $coin-offset-shadow: 10px;
@@ -31,9 +11,9 @@ $coin-offset-blur: $coin-offset-shadow * 2;
 $coin-offset-spread: 0px;
 $coin-font-size: 300px;
 $coin-line-height: $coin-hw;
+$coin-perspective: 1400px;
+$coin-rotate: 45deg;
 .coin {
-  display: block;
-  position: relative;
   border: 2px solid black;
   height: $coin-hw;
   width: $coin-hw;
@@ -43,84 +23,100 @@ $coin-line-height: $coin-hw;
   -o-border-radius: $coin-hw;
   border-radius: $coin-hw;
   left: $coin-center;
-  box-shadow: $coin-offset-shadow $coin-offset-shadow $coin-offset-blur $coin-offset-spread black;
+  // box-shadow: $coin-offset-shadow $coin-offset-shadow $coin-offset-blur $coin-offset-spread black;
   
+  // -webkit-perspective: $coin-perspective;
+  // perspective: $coin-perspective;
+
+  // animation-duration: $coin-flip-animation-duration;
+  // animation-name: coinflip;
+}
+
+#coin-flip {
+  position: absolute;
+  overflow: hidden;
+  visibility: visible;
+  display: block;
+  // top: 50%;
+  // left: $coin-center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0px;
+  // height: 600px;
+  -webkit-perspective: $coin-perspective;
+  perspective: $coin-perspective;
+  height: 600px;
+  width: 600px;
+}
+
+#coin-self {
+  position: relative;
+  -webkit-transform-style: preserve-3d; /* Safari 3-8  */  
+  transform-style: preserve-3d;
+  height: 400px;
+  width: 400px;
+  left: -25%;
 
   animation-duration: $coin-flip-animation-duration;
   animation-name: coinflip;
+}
+
+#coin-front {
+  -webkit-transform: translateZ(1px);
+  transform: translateZ(1px);
+  -webkit-transform-origin: center center 0;
+  transform-origin: center center 0;
+  position: absolute;
+  // top: 50%;
+  // left: $coin-center;
+  visibility: visible;
+  
+  // animation-duration: $coin-flip-animation-duration;
+  // animation-name: coinflipfront;
+}
+
+#coin-back {
+  -webkit-transform: translateZ(-1px) rotateX(180deg);
+  transform: translateZ(-1px) rotateX(180deg);
+  -webkit-transform-origin: center center 0;
+  transform-origin: center center 0;
+  position: absolute;
+  // top: 50%;
+  // left: $coin-center;
+  visibility: hidden;
+
+  // animation-duration: $coin-flip-animation-duration;
+  // animation-name: coinflipback;
 }
 
 .coin-text {
   font-size: $coin-font-size;
   text-align: center;
   line-height: $coin-line-height;
+  margin: 0px;
+  padding: 0px;
 
-  animation-duration: $coin-flip-animation-duration;
-  animation-name: coinfliptext;
-}
+  // -webkit-perspective: $coin-perspective;
+  // perspective: $coin-perspective;
 
-.coin-front {
-  
-}
-
-.coin-back {
-  
+  // animation-duration: $coin-flip-animation-duration;
+  // animation-name: coinfliptext;
 }
 
 @keyframes coinflip {
   from {
-    height: $coin-hw;
-    -webkit-border-radius: $coin-hw;
-    -moz-border-radius: $coin-hw;
-    -ms-border-radius: $coin-hw;
-    -o-border-radius: $coin-hw;
-    border-radius: $coin-hw;
-    box-shadow: $coin-offset-shadow $coin-offset-shadow $coin-offset-blur $coin-offset-spread black;
-    top: 0px;
-  }
-
-  50% {
-    height: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
-    border-radius: 0px;
-    box-shadow: -$coin-offset-shadow -$coin-offset-shadow $coin-offset-blur $coin-offset-spread black;
-    top: 200px;
+    -webkit-transform: rotateX(0deg); /* Safari 3-8  */
+    transform: rotateX(0deg);
+    -webkit-transform-origin: center center 0;
+    transform-origin: center center 0;
   }
 
   to {
-    height: $coin-hw;
-    -webkit-border-radius: $coin-hw;
-    -moz-border-radius: $coin-hw;
-    -ms-border-radius: $coin-hw;
-    -o-border-radius: $coin-hw;
-    border-radius: $coin-hw;
-    box-shadow: $coin-offset-shadow $coin-offset-shadow $coin-offset-blur $coin-offset-spread black;
-    top: 0px;
-  }
-}
-
-@keyframes coinfliptext {
-  from {
-    -webkit-perspective: 0px;
-    perspective: 0px;
-    // font-size: 300px;
-    line-height: $coin-line-height;
-  }
-
-  50% {
-    -webkit-perspective: 800px;
-    perspective: 800px;
-    // font-size: 0px;
-    line-height: 0;
-  }
-
-  to {
-    -webkit-perspective: 0px;
-    perspective: 0px;
-    // font-size: 300px;
-    line-height: $coin-line-height;
+    -webkit-transform: rotateX(180deg); /* Safari 3-8  */
+    transform: rotateX(180deg);
+    -webkit-transform-origin: center center 0;
+    transform-origin: center center 0;
   }
 }

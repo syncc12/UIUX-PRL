@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :two_ups, only: [:index]
   resources :wheels, only: [:index]
   resources :character_counters, only: [:index]
+  resources :dc_metros, only: [:index]
 end

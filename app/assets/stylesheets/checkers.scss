@@ -9,10 +9,13 @@ label {
 
 $checker-border-thickness: 2px;
 $checker-square-hw: 100px;
-$checker-board-hw: ($checker-square-hw * 10) + ($checker-border-thickness * 2);
+$checker-board-hw: ($checker-square-hw * 8) + (($checker-square-hw / 2) * 2) + ($checker-border-thickness * 2);
 $checker-piece-hw: $checker-square-hw - 10;
 $checker-piece-margin: (($checker-square-hw - $checker-piece-hw) / 2) - $checker-border-thickness;
 $checker-square-child-hw: $checker-square-hw - ($checker-border-thickness * 2);
+$coordinate-hw: $checker-square-hw / 2;
+$coordinate-line-height-c: $checker-square-child-hw / 2;
+$coordinate-line-height-r: $checker-square-child-hw;
 
 #checker-board{
   border: $checker-border-thickness solid black;
@@ -24,19 +27,39 @@ $checker-square-child-hw: $checker-square-hw - ($checker-border-thickness * 2);
   border-collapse: collapse;
 }
 
+.coordinate-row {
+  margin: 0px;
+  padding: 0px;
+  height: $coordinate-hw;
+  width: $checker-board-hw;
+}
+
 .coordinate {
   border-color: darkgray;
   background-color: lightgray;
   text-align: center;
-  line-height: $checker-square-child-hw;
 }
 
 .coord-row {
   border-color: darkgray black;
+  margin: 0px;
+  padding: 0px;
+  line-height: $coordinate-line-height-r;
+  height: $checker-square-hw;
+  width: $coordinate-hw;
 }
 
 .coord-col {
   border-color: black darkgray;
+  line-height: $coordinate-line-height-c;
+  height: $coordinate-hw;
+  width: $checker-square-hw;
+}
+
+.coord-col-row {
+  line-height: $coordinate-line-height-c;
+  height: $coordinate-hw;
+  width: $coordinate-hw;
 }
 
 .coord-col-row-tl {
@@ -57,13 +80,13 @@ $checker-square-child-hw: $checker-square-hw - ($checker-border-thickness * 2);
 
 .checker-square {
   border-color: black;
+  width: $checker-square-hw;
+  height: $checker-square-hw;
 }
 
 .checker-square, .coordinate {
   border-width: $checker-border-thickness;
   border-style: solid;
-  width: $checker-square-hw;
-  height: $checker-square-hw;
   display: inline-table;
   margin: 0px;
   padding: 0px;
@@ -81,7 +104,7 @@ $checker-square-child-hw: $checker-square-hw - ($checker-border-thickness * 2);
   padding: 0px;
 }
 
-.checker-row, .coordinate-row {
+.checker-row {
   height: $checker-square-hw;
   width: $checker-board-hw;
   margin: 0px;
@@ -97,6 +120,8 @@ $checker-square-child-hw: $checker-square-hw - ($checker-border-thickness * 2);
   margin: $checker-piece-margin;
   padding: 0px;
   box-shadow: 2px 2px 2px #353535;
+  left: -1px;
+  top: -1px;
 }
 
 .checker-piece-red {
