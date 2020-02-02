@@ -1,0 +1,146 @@
+// Place all the styles related to the chesses controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+label {
+  display: inline-block;
+}
+
+$chess-border-thickness: 2px;
+$chess-square-hw: 100px;
+$chess-board-hw: ($chess-square-hw * 8) + (($chess-square-hw / 2) * 2) + ($chess-border-thickness * 2);
+$chess-piece-hw: $chess-square-hw - 10;
+$chess-piece-margin: (($chess-square-hw - $chess-piece-hw) / 2) - $chess-border-thickness;
+$chess-square-child-hw: $chess-square-hw - ($chess-border-thickness * 2);
+$coordinate-hw: $chess-square-hw / 2;
+$coordinate-line-height-c: $chess-square-child-hw / 2;
+$coordinate-line-height-r: $chess-square-child-hw;
+$text-border-black: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+$text-border-white: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+
+#chess-board{
+  border: $chess-border-thickness solid black;
+  height: $chess-board-hw;
+  width: $chess-board-hw;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+  border-collapse: collapse;
+}
+
+.coordinate-row {
+  margin: 0px;
+  padding: 0px;
+  height: $coordinate-hw;
+  width: $chess-board-hw;
+}
+
+.coordinate {
+  border-color: darkgray;
+  background-color: lightgray;
+  text-align: center;
+}
+
+.coord-row {
+  border-color: darkgray black;
+  margin: 0px;
+  padding: 0px;
+  line-height: $coordinate-line-height-r;
+  height: $chess-square-hw;
+  width: $coordinate-hw;
+}
+
+.coord-col {
+  border-color: black darkgray;
+  line-height: $coordinate-line-height-c;
+  height: $coordinate-hw;
+  width: $chess-square-hw;
+}
+
+.coord-col-row {
+  line-height: $coordinate-line-height-c;
+  height: $coordinate-hw;
+  width: $coordinate-hw;
+}
+
+.coord-col-row-tl {
+  border-color: black darkgray darkgray black;
+}
+
+.coord-col-row-tr {
+  border-color: black black darkgray darkgray;
+}
+
+.coord-col-row-bl {
+  border-color: darkgray darkgray black black;
+}
+
+.coord-col-row-br {
+  border-color: darkgray black black darkgray;
+}
+
+.chess-square {
+  border-color: black;
+  width: $chess-square-hw;
+  height: $chess-square-hw;
+}
+
+.chess-square, .coordinate {
+  border-width: $chess-border-thickness;
+  border-style: solid;
+  display: inline-table;
+  margin: 0px;
+  padding: 0px;
+}
+
+.white-square {
+  background-color: white;
+  margin: 0px;
+  padding: 0px;
+}
+
+.black-square {
+  background-color: black;
+  margin: 0px;
+  padding: 0px;
+}
+
+.chess-row {
+  height: $chess-square-hw;
+  width: $chess-board-hw;
+  margin: 0px;
+  padding: 0px;
+}
+
+.chess-piece {
+  position: relative;
+  // border: $chess-border-thickness solid #454545;
+  height: $chess-piece-hw;
+  width: $chess-piece-hw;
+  margin: $chess-piece-margin;
+  padding: 0px;
+  // box-shadow: 2px 2px 2px #353535;
+  left: -1px;
+  top: -1px;
+}
+
+.chess-piece-text {
+  font-size: 18px;
+  text-align: center;
+  line-height: $chess-piece-hw;
+  margin: 0px;
+  padding: 0px;
+}
+
+.chess-piece-white {
+  // background-color: white;
+  color: white;
+  text-shadow: $text-border-black;
+
+}
+
+.chess-piece-black {
+  // background-color: black;
+  color: black;
+  text-shadow: $text-border-white;
+}

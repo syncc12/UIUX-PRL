@@ -131,3 +131,12 @@ $coordinate-line-height-r: $checker-square-child-hw;
 .checker-piece-black {
   background-color: black;
 }
+
+.kingme {
+  font-size: 25px;
+  text-align: center;
+  color: white;
+  line-height: $checker-piece-hw;
+  margin: 0px;
+  padding: 0px;
+}
