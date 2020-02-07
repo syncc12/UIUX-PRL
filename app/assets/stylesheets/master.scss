@@ -127,3 +127,18 @@ h2 {
 .space-break {
   height: 5px;
 }
+
+
+$bottom-wm: calc(50% - 124px);
+$right-wm: calc(50% - 124px);
+$font-size-wm: 500%;
+.wip-watermark {
+  position: fixed;
+  bottom: $bottom-wm;
+  right: $right-wm;
+  transform: rotate(30deg);
+  font-size: $font-size-wm;
+  opacity: 0.5;
+  z-index: 99;
+  color: red;
+}

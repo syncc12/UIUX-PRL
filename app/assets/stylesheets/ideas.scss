@@ -1,3 +1,70 @@
 // Place all the styles related to the ideas controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#ideas-table {
+  border-collapse: collapse;
+  position: relative;
+}
+
+#ideas-table, .ideas-tr, .ideas-th, .ideas-td {
+  border: 1px solid black;
+}
+
+.ideas-th, .ideas-td {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin: 0px;
+}
+
+.ideas-th {
+
+}
+
+.ideas-number-th {
+
+}
+
+.ideas-thought-th {
+
+}
+
+.ideas-notes-th {
+
+}
+
+.ideas-tr {
+
+}
+
+.ideas-td {
+  word-wrap: break-word;
+  vertical-align: top;
+}
+
+.ideas-number-td {
+
+}
+
+.ideas-thought-td {
+
+}
+
+.ideas-notes-td {
+
+}
+
+.ideas-number {
+ min-width: 25px;
+ max-width: 75px;
+}
+
+.ideas-thought {
+  max-width: 150px;
+}
+
+.ideas-notes {
+  max-width: 300px;
+}

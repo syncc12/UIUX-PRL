@@ -1,0 +1,158 @@
+// Place all the styles related to the minesweepers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#ms-board {
+  border: 1px solid black;
+}
+
+#ms-board-menu {
+  border: 1px solid black;
+}
+
+#ms-board-menu-row {
+  border: 1px solid black;
+}
+
+$ms-square-hw: 20px;
+.ms-square {
+  height: $ms-square-hw;
+  width: $ms-square-hw;
+  border: 1px solid black;
+}
+
+$ms-square-h-count--beginner-1: 8;
+$ms-square-w-count--beginner-1: 8;
+$ms-board-beginner-1-menu-h: 50px;
+$ms-board-beginner-1-h: ($ms-square-hw * $ms-square-h-count--beginner-1) + $ms-board-beginner-1-menu-h;
+$ms-board-beginner-1-w: $ms-square-hw * $ms-square-w-count--beginner-1;
+$ms-board-beginner-1-menu-w: $ms-board-beginner-1-w;
+
+.ms-board-beginner-1 {
+  height: $ms-board-beginner-1-h;
+  width: $ms-board-beginner-1-w
+}
+
+.ms-board-beginner-1-menu {
+  height: $ms-board-beginner-1-menu-h;
+  width: $ms-board-beginner-1-menu-w
+}
+
+$ms-square-h-count--beginner-2: 9;
+$ms-square-w-count--beginner-2: 9;
+$ms-board-beginner-2-menu-h: 50px;
+$ms-board-beginner-2-h: ($ms-square-hw * $ms-square-h-count--beginner-2) + $ms-board-beginner-2-menu-h;
+$ms-board-beginner-2-w: $ms-square-hw * $ms-square-w-count--beginner-2;
+$ms-board-beginner-2-menu-w: $ms-board-beginner-2-w;
+
+.ms-board-beginner-2 {
+  height: $ms-board-beginner-2-h;
+  width: $ms-board-beginner-2-w
+}
+
+.ms-board-beginner-2-menu {
+  height: $ms-board-beginner-2-menu-h;
+  width: $ms-board-beginner-2-menu-w
+}
+
+$ms-square-h-count--beginner-3: 10;
+$ms-square-w-count--beginner-3: 10;
+$ms-board-beginner-3-menu-h: 50px;
+$ms-board-beginner-3-h: ($ms-square-hw * $ms-square-h-count--beginner-3) + $ms-board-beginner-3-menu-h;
+$ms-board-beginner-3-w: $ms-square-hw * $ms-square-w-count--beginner-3;
+$ms-board-beginner-3-menu-w: $ms-board-beginner-3-w;
+
+.ms-board-beginner-3 {
+  height: $ms-board-beginner-3-h;
+  width: $ms-board-beginner-3-w
+}
+
+.ms-board-beginner-3-menu {
+  height: $ms-board-beginner-3-menu-h;
+  width: $ms-board-beginner-3-menu-w
+}
+
+$ms-square-h-count--intermediate-1: 13;
+$ms-square-w-count--intermediate-1: 15;
+$ms-board-intermediate-1-menu-h: 50px;
+$ms-board-intermediate-1-h: ($ms-square-hw * $ms-square-h-count--intermediate-1) + $ms-board-intermediate-1-menu-h;
+$ms-board-intermediate-1-w: $ms-square-hw * $ms-square-w-count--intermediate-1;
+$ms-board-intermediate-1-menu-w: $ms-board-intermediate-1-w;
+
+.ms-board-intermediate-1 {
+  height: $ms-board-intermediate-1-h;
+  width: $ms-board-intermediate-1-w
+}
+
+.ms-board-intermediate-1-menu {
+  height: $ms-board-intermediate-1-menu-h;
+  width: $ms-board-intermediate-1-menu-w
+}
+
+$ms-square-h-count--intermediate-2: 15;
+$ms-square-w-count--intermediate-2: 13;
+$ms-board-intermediate-2-menu-h: 50px;
+$ms-board-intermediate-2-h: ($ms-square-hw * $ms-square-h-count--intermediate-2) + $ms-board-intermediate-2-menu-h;
+$ms-board-intermediate-2-w: $ms-square-hw * $ms-square-w-count--intermediate-2;
+$ms-board-intermediate-2-menu-w: $ms-board-intermediate-2-w;
+
+.ms-board-intermediate-2 {
+  height: $ms-board-intermediate-2-h;
+  width: $ms-board-intermediate-2-w
+}
+
+.ms-board-intermediate-2-menu {
+  height: $ms-board-intermediate-2-menu-h;
+  width: $ms-board-intermediate-2-menu-w
+}
+
+$ms-square-h-count--intermediate-3: 16;
+$ms-square-w-count--intermediate-3: 16;
+$ms-board-intermediate-3-menu-h: 50px;
+$ms-board-intermediate-3-h: ($ms-square-hw * $ms-square-h-count--intermediate-3) + $ms-board-intermediate-3-menu-h;
+$ms-board-intermediate-3-w: $ms-square-hw * $ms-square-w-count--intermediate-3;
+$ms-board-intermediate-3-menu-w: $ms-board-intermediate-3-w;
+
+.ms-board-intermediate-3 {
+  height: $ms-board-intermediate-3-h;
+  width: $ms-board-intermediate-3-w
+}
+
+.ms-board-intermediate-3-menu {
+  height: $ms-board-intermediate-3-menu-h;
+  width: $ms-board-intermediate-3-menu-w
+}
+
+$ms-square-h-count--expert-1: 16;
+$ms-square-w-count--expert-1: 30;
+$ms-board-expert-1-menu-h: 50px;
+$ms-board-expert-1-h: ($ms-square-hw * $ms-square-h-count--expert-1) + $ms-board-expert-1-menu-h;
+$ms-board-expert-1-w: $ms-square-hw * $ms-square-w-count--expert-1;
+$ms-board-expert-1-menu-w: $ms-board-expert-1-w;
+
+.ms-board-expert-1 {
+  height: $ms-board-expert-1-h;
+  width: $ms-board-expert-1-w
+}
+
+.ms-board-expert-1-menu {
+  height: $ms-board-expert-1-menu-h;
+  width: $ms-board-expert-1-menu-w
+}
+
+$ms-square-h-count--expert-2: 30;
+$ms-square-w-count--expert-2: 16;
+$ms-board-expert-2-menu-h: 50px;
+$ms-board-expert-2-h: ($ms-square-hw * $ms-square-h-count--expert-2) + $ms-board-expert-2-menu-h;
+$ms-board-expert-2-w: $ms-square-hw * $ms-square-w-count--expert-2;
+$ms-board-expert-2-menu-w: $ms-board-expert-2-w;
+
+.ms-board-expert-2 {
+  height: $ms-board-expert-2-h;
+  width: $ms-board-expert-2-w
+}
+
+.ms-board-expert-2-menu {
+  height: $ms-board-expert-2-menu-h;
+  width: $ms-board-expert-2-menu-w
+}

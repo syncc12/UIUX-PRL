@@ -3,6 +3,7 @@ class CreateIdeas < ActiveRecord::Migration[5.2]
     create_table :ideas do |t|
       t.string :thought
       t.string :notes
+      t.boolean :status
       t.timestamps
     end
   end

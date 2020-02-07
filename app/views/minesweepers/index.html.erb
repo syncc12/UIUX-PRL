@@ -1,0 +1,139 @@
+<div class="row">
+  <div class="col-10 offset-1">
+    <div class="space-break"></div>
+    <div class="page-title">Minesweeper</div>
+  </div>
+</div>
+
+<br><br>
+
+<div id="page-yield">
+  <!-- <div class="wip-watermark">Work In Progress</div> -->
+  <div class="row no-gutters">
+    <div class="col-10 offset-1">
+
+      <!-- Difficulty   | Board Size      | Mine Count -->
+      <!-- -------------|-----------------|----------- -->
+      <!-- Beginner     | 8x8, 9x9, 10x10 | 10         -->
+      <!-- Intermediate | 13x15, 16x16    | 40         -->
+      <!-- Expert       | 16x30, 30x16    | 99         -->
+      <formset>
+        <select id="ms-difficulty-select">
+          <option class="ms-difficulty-select-option" value="beginner">Beginner</option>
+          <option class="ms-difficulty-select-option" value="intermediate">Intermediate</option>
+          <option class="ms-difficulty-select-option" value="expert">Expert</option>
+        </select>
+        <select id="ms-board-size-select">
+          <option class="ms-board-size-select-option" value="0">8x8</option>
+          <option class="ms-board-size-select-option" value="1">9x9</option>
+          <option class="ms-board-size-select-option" value="2">10x10</option>
+        </select>
+      </formset>
+      <br><br><br><br><br><br>
+
+      <h3 class="ms-difficulty"></h3>
+      <h4 class="ms-board-size"></h4>
+      <br>
+      
+      <table id="ms-board">
+      <tr id="ms-board-menu-row"><th id="ms-board-menu">Menu</th></tr>
+        <!-- <td class="ms-square"></td> -->
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+  
+  var msBoardJSON = {
+    'beginner':{
+      'size':[[8,8],[9,9],[10,10]],
+      'mines':10
+    },
+    'intermediate':{
+      'size':[[13,15],[15,13]],
+      'mines':40
+    },
+    'expert':{
+      'size':[[15,30],[30,16]],
+      'mines':99
+    }
+
+  } 
+
+  function boardSetup(gameDifficulty,boardSize) {
+    var sRepeatH = msBoardJSON[gameDifficulty]['size'][boardSize][0];
+    var sRepeatW = msBoardJSON[gameDifficulty]['size'][boardSize][1];
+    var msSquareHTML = '<td class="ms-square"></td>';
+    var msRowRepeat = msSquareHTML.repeat(sRepeatW);
+
+    var difficultyTitle = gameDifficulty.substring(0,1).toUpperCase()+gameDifficulty.substring(1,gameDifficulty.length).toLowerCase();
+    var boardSizeTitle = sRepeatH.toString()+'x'+sRepeatW.toString();
+    $('h3.ms-difficulty').empty().append(difficultyTitle);
+    $('h4.ms-board-size').empty().append(boardSizeTitle);
+
+
+    $('table#ms-board').addClass('ms-board-'+gameDifficulty+'-'+(parseInt(boardSize)+1).toString());
+    $('th#ms-board-menu').addClass('ms-board-menu'+gameDifficulty+'-'+(parseInt(boardSize)+1).toString());
+    $('table#ms-board').empty().append('<tr id="ms-board-menu-row"><th id="ms-board-menu">Menu</th></tr>');
+    $('th#ms-board-menu').attr('colspan',sRepeatW);
+    for (i = 0; i < sRepeatH; i++) {
+      $('table#ms-board').append('<tr class="ms-square-row">'+msRowRepeat+'</tr>');
+    }
+  }
+
+
+  var selectedDifficulty = 'beginner';
+  var selectedBoardSize = 0;
+
+  $(function() {
+
+    boardSetup(selectedDifficulty, selectedBoardSize);
+
+    $('#ms-difficulty-select').on('change', function() {
+      $( '#ms-difficulty-select option:selected' ).each(function() {
+        selectedDifficulty = $(this).attr('value');
+        $('#ms-board-size-select').empty();
+        for (i = 0; i < msBoardJSON[selectedDifficulty]['size'].length; i++) {
+          $('#ms-board-size-select').append('<option class="ms-board-size-select-option" value="'+i+'">'+msBoardJSON[selectedDifficulty]['size'][i][0].toString()+'x'+msBoardJSON[selectedDifficulty]['size'][i][1].toString()+'</option>');
+        }
+      });
+    });
+    $('#ms-board-size-select').on('change', function() {
+      $( '#ms-board-size-select option:selected' ).each(function() {
+        selectedBoardSize = $(this).attr('value');
+        console.log(selectedBoardSize);
+        boardSetup(selectedDifficulty, selectedBoardSize);
+      });
+    });
+
+    // $('#ms-difficulty-select').selectmenu().selectmenu({
+    //   select: function(event, ui) {
+    //     selectedDifficulty = ui['item']['value'];
+    //     $('#ms-board-size-select').empty();
+    //     for (i in msBoardJSON[selectedDifficulty]['size']) {
+    //       $('#ms-board-size-select').append('<option class="ms-board-size-select-option" value="'+i+'">'+msBoardJSON[selectedDifficulty]['size'][i][0].toString()+'x'+msBoardJSON[selectedDifficulty]['size'][i][1].toString()+'</option>');
+    //         }
+    //       $('#ms-board-size-select').selectmenu().selectmenu({
+    //         select: function(event, ui) {
+    //           selectedBoardSize = ui['item']['value'];
+    //           console.log(selectedDifficulty, selectedBoardSize);
+
+    //           boardSetup(selectedDifficulty, selectedBoardSize);
+  
+    //       }
+    //     });
+    //   }
+    // });
+
+    
+
+    
+
+
+  });
+
+</script>

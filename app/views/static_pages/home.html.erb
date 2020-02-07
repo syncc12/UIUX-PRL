@@ -1,6 +1,92 @@
-home
 <div class="row">
   <div class="col-10 offset-1">
-    
+    home
   </div>
 </div>
+
+<br><br>
+
+<div class="row no-gutters">
+  <div class="col-8 offset-2">
+    <h3 id="home-page-projects-h3">Projects</h3>
+  </div>
+</div>
+
+<br>
+
+<div class="row no-gutters">
+  <div class="col-8 offset-1">
+    <div class="project-home-all">
+      <div class="row no-gutters">
+        <% Project.all.each do |project| %>
+          <div class="col-2 offset-2">
+            <div id="project-home-<%= project.id %>" class="project-home" data-route="<%= project.route %>"><div id="project-home-ajax-<%= project.id %>" class="project-home-ajax"></div><%= project.name %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script> -->
+<!-- /Users/patricklyden/Desktop/coding-environment/src/UIUX/node_modules/dom-to-image/spec/dom-to-image.spec.js -->
+<!-- /Users/patricklyden/Desktop/coding-environment/src/UIUX/node_modules/dom-to-image/src/dom-to-image.js -->
+<!-- <script>  -->
+
+<!--   var windowWidth;
+  var windowHeight;
+  var projectDivWidth;
+  var projectDivHeight;
+  var projectRoute;
+  var htmlContent;
+  var htmlData;
+
+  var percentResize = 0.2;
+
+  $(function() {
+
+    windowWidth = $(window).width();
+    windowHeight= $(window).height();
+
+    projectDivWidth = windowWidth * percentResize;
+    projectDivHeight = windowHeight * percentResize;
+
+    $('.project-home').css('width', projectDivWidth);
+    $('.project-home').css('height', projectDivHeight);
+    
+    $('.project-home').each(function(index, element) {
+      projectRoute = '/'+$(this).data('route');
+      // console.log(projectRoute);
+      $.get(projectRoute, function(data) {
+        var htmlArray = $.parseHTML($.trim(data));
+        var htmlNodes = $(htmlArray[htmlArray.length-1]);
+        var htmlID = '#'+$(htmlArray[htmlArray.length-1]).attr('id');
+        htmlContent = $(htmlNodes).children('#page-yield')[0];
+        htmlData = $(document.createElement('body')).append(htmlContent)[0];
+
+        // console.log($.trim(data));
+        // console.log(document.body);
+        // console.log(htmlContent);
+        // console.log(htmlData);
+
+        console.log($(data).find('#page-yield'));
+        
+        // $('#project-home-ajax-'+index).append(htmlContent);
+        // console.log(index, htmlContent);
+      }).done(function(data) {
+        html2canvas($(data).find('#page-yield')[0]).then(canvas => {
+          document.body.appendChild(canvas)
+        });
+      });
+
+      $('#project-home-1').load(projectRoute+' #page-yield', function(data) {
+        // console.log(data);
+      });
+
+    });
+
+  }); -->
+
+<!-- </script> -->

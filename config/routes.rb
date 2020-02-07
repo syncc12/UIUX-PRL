@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :character_counters, only: [:index]
   resources :dc_metros, only: [:index]
   resources :ideas, only: [:index, :create]
+  resources :minesweepers, only: [:index]
 end
