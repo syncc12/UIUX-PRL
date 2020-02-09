@@ -1,0 +1,2 @@
+module HexapawnsHelper
+end

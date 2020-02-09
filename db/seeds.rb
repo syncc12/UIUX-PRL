@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 project_list = [
+  [ 'Ideas', 'ideas', '', '', 'Done' ],
   [ 'Calculator', 'calculators', '', '', 'Done' ],
   [ 'RPS', 'rps', '', '', 'Done' ],
   [ 'Piano', 'pianos', '', '', 'WIP' ],
@@ -18,7 +19,11 @@ project_list = [
   [ 'Wheel', 'wheels', '', '', 'WIP' ],
   [ 'Character Counter', 'character_counters', '', '', 'WIP' ],
   [ 'DC Metro', 'dc_metros', '', '', 'WIP' ],
-  [ 'Minesweeper', 'minesweepers', '', '', 'WIP' ]
+  [ 'Minesweeper', 'minesweepers', '', '', 'WIP' ],
+  [ 'Hexapawn', 'hexapawns', '', '', 'WIP' ],
+  [ 'Clock', 'clocks', '', '', 'WIP' ],
+  [ 'Timer', 'timers', '', '', 'WIP' ],
+  [ 'Paint', 'paints', '', '', 'WIP' ]
 ]
 
 project_list.each do |pName, pRoute, pScreenshotPath, pDescription, pStatus|

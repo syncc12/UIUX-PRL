@@ -58,52 +58,53 @@
 
     var outVictor = 0;
     var replaceHTML = '';
-    var replaceHTMLName = '';
+    var replaceHTMLName = ''
+
     if (playerNum == 0 && opponentNum == 0) {
       replaceHTML = '<div class="red-rock"></div>';
       replaceHTMLName = '<div>Stalemate</div>';
       outVictor = 0;
-      victorHTML(0,0);
+      victorHTML(outVictor,0);
     } else if (playerNum == 0 && opponentNum == 1) {
       replaceHTML = '<div class="red-paper"></div>';
-      replaceHTMLName = '<div>You Win!</div>';
-      outVictor = 1;
-      victorHTML(1,0);
-    } else if (playerNum == 0 && opponentNum == 2) {
-      replaceHTML = '<div class="red-scissors"></div>';
       replaceHTMLName = '<div>Computer Wins</div>';
       outVictor = 2;
-      victorHTML(2,2);
+      victorHTML(outVictor,1);
+    } else if (playerNum == 0 && opponentNum == 2) {
+      replaceHTML = '<div class="red-scissors"></div>';
+      replaceHTMLName = '<div>You Win!</div>';
+      outVictor = 1;
+      victorHTML(outVictor,0);
     } else if (playerNum == 1 && opponentNum == 0) {
       replaceHTML = '<div class="red-rock"></div>';
       replaceHTMLName = '<div>You Win!</div>';
       outVictor = 1;
-      victorHTML(1,1);
+      victorHTML(outVictor,1);
     } else if (playerNum == 1 && opponentNum == 1) {
       replaceHTML = '<div class="red-paper"></div>';
       replaceHTMLName = '<div>Stalemate</div>';
       outVictor = 0;
-      victorHTML(0,1);
+      victorHTML(outVictor,1);
     } else if (playerNum == 1 && opponentNum == 2) {
       replaceHTML = '<div class="red-scissors"></div>';
       replaceHTMLName = '<div>Computer Wins</div>';
       outVictor = 2;
-      victorHTML(2,2);
+      victorHTML(outVictor,2);
     } else if (playerNum == 2 && opponentNum == 0) {
       replaceHTML = '<div class="red-rock"></div>';
       replaceHTMLName = '<div>Computer Wins</div>';
       outVictor = 2;
-      victorHTML(2,0);
+      victorHTML(outVictor,0);
     } else if (playerNum == 2 && opponentNum == 1) {
       replaceHTML = '<div class="red-paper"></div>';
       replaceHTMLName = '<div>You Win!</div>';
       outVictor = 1;
-      victorHTML(1,2);
+      victorHTML(outVictor,2);
     } else if (playerNum == 2 && opponentNum == 2) {
       replaceHTML = '<div class="red-scissors"></div>';
       replaceHTMLName = '<div>Stalemate</div>';
       outVictor = 0;
-      victorHTML(0,2);
+      victorHTML(outVictor,2);
     }
     $('#victor-name-hold div').replaceWith(replaceHTMLName);
     $('#o-choice-hold div').replaceWith(replaceHTML);
@@ -144,11 +145,136 @@
     }
   }
 
+
+  function victorDecide(inPlayerChoice, inComputerChoice) {
+    if (inPlayerChoice == 0) {
+      if (inComputerChoice == 0) {
+        return 0;
+      } else if (inComputerChoice == 1) {
+        return 2;
+      } else if (inComputerChoice == 2) {
+        return 1;
+      }
+    } else if (inPlayerChoice == 1) {
+      if (inComputerChoice == 0) {
+        return 1;
+      } else if (inComputerChoice == 1) {
+        return 0;
+      } else if (inComputerChoice == 2) {
+        return 2;
+      } 
+    } else if (inPlayerChoice == 2) {
+      if (inComputerChoice == 0) {
+        return 2;
+      } else if (inComputerChoice == 1) {
+        return 1;
+      } else if (inComputerChoice == 2) {
+        return 0;
+      }
+    }
+  }
+
   function gameTally(inGameNumber,inVictor) {
-    $('#record-table').append('<tr><td class="record-table-td">'+inGameNumber+'</td><td class="record-table-td">'+inVictor+'</td></tr>')
+    $('#record-table').append('<tr><td class="record-table-td">'+inGameNumber+'</td><td class="record-table-td">'+inVictor+'</td></tr>');
   }
 
   function choiceDisplay(playerNum, opponentNum) {
+
+  }
+
+  function number2choiceL(inNumber) {
+    if (typeof inNumber == 'number') {
+      return ['rock','paper','scissors'][inNumber];
+    } else if (typeof inNumber == 'string') {
+      return inNumber;
+    }
+  }
+
+  function choice2number(inChoice) {
+    if (typeof inChoice == 'string') {
+      return {'rock':0,'Rock':0,'paper':1,'Paper':1,'scissors':2,'Scissors':2}[inChoice];
+    } else if (typeof inChoice == 'number') {
+      return inChoice;
+    }
+  }
+
+  function victor2number(inVictor) {
+    if (typeof inVictor == 'string') {
+      return {'satlemate':0,'Stalemate':0,'you':1,'You':1,'player':1,'Player':1,'computer':2,'Computer':2,'ai':2,'AI':2}[inVictor];
+    } else if (typeof inVictor == 'number') {
+      return inVictor;
+    }
+  }
+
+  function choice22number(inChoiceOrNumber) {
+    if (typeof inChoiceOrNumber == 'string') {
+      return {'rock':0,'Rock':0,'paper':1,'Paper':1,'scissors':2,'Scissors':2}[inChoiceOrNumber];
+    } else if (typeof inChoiceOrNumber == 'number') {
+      return ['Rock', 'Paper', 'Scissors'][inChoiceOrNumber];
+    }
+  }
+
+  function victor22number(inVictorOrNumber) {
+    if (typeof inVictorOrNumber == 'string') {
+      return {'satlemate':0,'Stalemate':0,'you':1,'You':1,'player':1,'Player':1,'computer':2,'Computer':2,'ai':2,'AI':2}[inVictorOrNumber];
+    } else if (typeof inVictorOrNumber == 'number') {
+      return ['Stalemate', 'You', 'Computer'][inVictorOrNumber];
+    }
+  }
+
+  function beats(inChoice) {
+    if (inChoice == 0) {
+      return 2;
+    } else if (inChoice == 1) {
+      return 0;
+    } else if (inChoice == 2) {
+      return 1;
+    }
+  }
+
+  function beatBy(inChoice) {
+    if (inChoice == 0) {
+      return 1;
+    } else if (inChoice == 1) {
+      return 2;
+    } else if (inChoice == 2) {
+      return 0;
+    }
+  }
+
+  function rpsAi(inPlayerChoice, inComputerChoice, inChoicePool) {
+    var aiVictor = victorDecide(choice2number(inPlayerChoice), choice2number(inComputerChoice));
+    var outChoicePool = inChoicePool;
+
+    if (aiVictor == 1) {
+      outChoicePool.push(beats(inComputerChoice));
+    } else if (aiVictor == 2) {
+      outChoicePool.push(inComputerChoice);
+    }
+    console.log(inPlayerChoice, inComputerChoice, arrayTally(outChoicePool));
+    return outChoicePool;
+  }
+
+  function rpsAiChoice(inChoicePool) {
+    var outChoicePool = inChoicePool;
+    // if (outChoicePool.length == 0) {
+    //   outChoicePool = [0,1,2];
+    // }
+    return outChoicePool[Math.floor(Math.random() * outChoicePool.length)];
+  }
+
+  function arrayTally(inArray) {
+    var checkedArray = [];
+    var outTally = {};
+    for (i = 0; i < inArray.length; i++) {
+      if (checkedArray.includes(inArray[i])) {
+        outTally[inArray[i].toString()]=outTally[inArray[i].toString()]+1
+      } else {
+        outTally[inArray[i].toString()]=1;
+        checkedArray.push(inArray[i]);
+      }
+    }
+    return outTally;
 
   }
 
@@ -158,46 +284,53 @@
   var opponentChoice;
   var ocHTML;
   var gameNumber = 0;
+  var choicePool = [0,1,2];
 
   $(function() {
 
     $('#rps-rock').click(function(event) {
-      opponentChoice = getRandomInt(3);
+      // opponentChoice = getRandomInt(3);
+      opponentChoice = rpsAiChoice(choicePool);
       playerChoice=0;
+      choicePool = rpsAi(playerChoice,opponentChoice,choicePool);
       pcHTML='<div class="green-rock"></div>';
       $('#p-choice-hold div').replaceWith(pcHTML);
       victor=victorDecode(rpsCompare(playerChoice, opponentChoice));
       gameNumber += 1;
       gameTally(gameNumber,victor);
-      console.log(opponentChoice);
-      console.log(playerChoice);
-      console.log(victor);
+      // console.log(opponentChoice);
+      // console.log(playerChoice);
+      // console.log(victor);
     });
 
     $('#rps-paper').click(function(event) {
-      opponentChoice = getRandomInt(3);
+      // opponentChoice = getRandomInt(3);
+      opponentChoice = rpsAiChoice(choicePool);
       playerChoice=1;
-      pcHTML='<div class="green-paper"></div>'
+      choicePool = rpsAi(playerChoice,opponentChoice,choicePool);
+      pcHTML='<div class="green-paper"></div>';
       $('#p-choice-hold div').replaceWith(pcHTML);
       victor=victorDecode(rpsCompare(playerChoice, opponentChoice));
       gameNumber += 1;
       gameTally(gameNumber,victor);
-      console.log(opponentChoice);
-      console.log(playerChoice);
-      console.log(victor);
+      // console.log(opponentChoice);
+      // console.log(playerChoice);
+      // console.log(victor);
     });
 
     $('#rps-scissors').click(function(event) {
-      opponentChoice = getRandomInt(3);
+      // opponentChoice = getRandomInt(3);
+      opponentChoice = rpsAiChoice(choicePool);
       playerChoice=2;
-      pcHTML='<div class="green-scissors"></div>'
+      choicePool = rpsAi(playerChoice,opponentChoice,choicePool);
+      pcHTML='<div class="green-scissors"></div>';
       $('#p-choice-hold div').replaceWith(pcHTML);
       victor=victorDecode(rpsCompare(playerChoice, opponentChoice));
       gameNumber += 1;
       gameTally(gameNumber,victor);
-      console.log(opponentChoice);
-      console.log(playerChoice);
-      console.log(victor);
+      // console.log(opponentChoice);
+      // console.log(playerChoice);
+      // console.log(victor);
     });
   });
 

@@ -1,0 +1,145 @@
+<div class="row disable-select">
+  <div class="col-10 offset-1">
+    <div class="space-break"></div>
+    <div class="page-title">Hexapawn</div>
+  </div>
+</div>
+
+<br><br>
+
+<div id="page-yield">
+  <div class="row no-gutters">
+    <div class="col-8 offset-2">
+      <!-- <div class="wip-watermark">Work In Progress</div> -->
+
+      <table id="hexapawn-board">
+        <tr class="hexapawn-board-row" data-rownumber="3">
+          <td id="hexapawn-board-square-a3" class="hexapawn-board-square hexapawn-board-square-white" data-columnnumber="a" data-squarecoordinate="a3"><div id="hexapawn-pawn-b3" class="hexapawn-pawn hexapawn-pawn-black" data-pawncolor="black" data-pawnsn="b3">&nbsp;</div></td>
+          <td id="hexapawn-board-square-b3" class="hexapawn-board-square hexapawn-board-square-black" data-columnnumber="b" data-squarecoordinate="b3"><div id="hexapawn-pawn-b2" class="hexapawn-pawn hexapawn-pawn-black" data-pawncolor="black" data-pawnsn="b2">&nbsp;</div></td>
+          <td id="hexapawn-board-square-c3" class="hexapawn-board-square hexapawn-board-square-white" data-columnnumber="c" data-squarecoordinate="c3"><div id="hexapawn-pawn-b1" class="hexapawn-pawn hexapawn-pawn-black" data-pawncolor="black" data-pawnsn="b1">&nbsp;</div></td>
+        </tr>
+        <tr class="hexapawn-board-row" data-rownumber="2">
+          <td id="hexapawn-board-square-a2" class="hexapawn-board-square hexapawn-board-square-black" data-columnnumber="a" data-squarecoordinate="a2"><div id="hexapawn-pawn-e3" class="hexapawn-pawn-empty" data-pawncolor="empty" data-pawnsn="e3">&nbsp;</div></td>
+          <td id="hexapawn-board-square-b2" class="hexapawn-board-square hexapawn-board-square-white" data-columnnumber="b" data-squarecoordinate="b2"><div id="hexapawn-pawn-e2" class="hexapawn-pawn-empty" data-pawncolor="empty" data-pawnsn="e2">&nbsp;</div></td>
+          <td id="hexapawn-board-square-c2" class="hexapawn-board-square hexapawn-board-square-black" data-columnnumber="c" data-squarecoordinate="c2"><div id="hexapawn-pawn-e1" class="hexapawn-pawn-empty" data-pawncolor="empty" data-pawnsn="e1">&nbsp;</div></td>
+        </tr>
+        <tr class="hexapawn-board-row" data-rownumber="1">
+          <td id="hexapawn-board-square-a1" class="hexapawn-board-square hexapawn-board-square-white" data-columnnumber="a" data-squarecoordinate="a1"><div id="hexapawn-pawn-w3" class="hexapawn-pawn hexapawn-pawn-white" data-pawncolor="white" data-pawnsn="w3">&nbsp;</div></td>
+          <td id="hexapawn-board-square-b1" class="hexapawn-board-square hexapawn-board-square-black" data-columnnumber="b" data-squarecoordinate="b1"><div id="hexapawn-pawn-w2" class="hexapawn-pawn hexapawn-pawn-white" data-pawncolor="white" data-pawnsn="w2">&nbsp;</div></td>
+          <td id="hexapawn-board-square-c1" class="hexapawn-board-square hexapawn-board-square-white" data-columnnumber="c" data-squarecoordinate="c1"><div id="hexapawn-pawn-w1" class="hexapawn-pawn hexapawn-pawn-white" data-pawncolor="white" data-pawnsn="w1">&nbsp;</div></td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  
+  var movesJSON = {
+    // 'b1':[],
+    // 'b2':[],
+    // 'b3':[],
+    // 'w1':[],
+    // 'w2':[],
+    // 'w3':[],
+    // 'e1':[],
+    // 'e2':[],
+    // 'e3':[]
+  };
+
+  var statusJSON = {
+    'a3':'',
+    'b3':'',
+    'c3':'',
+    'a2':'',
+    'b2':'',
+    'c2':'',
+    'a1':'',
+    'b1':'',
+    'c1':''
+  }
+
+
+
+  function tableMove(startCoordinate, verticalDirection, horizontalDirection) {
+    var let2num = {'nan':0,'a':1,'b':2,'c':3};
+    var num2let = {'0':'nan','1':'a','2':'b','3':'c','4':'nan'};
+    var c1 = startCoordinate.substr(0,1);
+    var c2 = startCoordinate.substr(1,1);
+    var o1 = num2let[(let2num[c1]+parseInt(horizontalDirection)).toString()];
+    var o2 = (parseInt(c2)+parseInt(verticalDirection)).toString();
+
+    if (o1=='nan'||o2=='nan'||o1=='0'||o2=='0'||o1==0||o2==0) {
+      return '';
+    } else {
+      return o1+o2;
+    }
+    
+
+
+  }
+
+  $(function() {
+    $('.hexapawn-pawn').on('mouseover', function() {
+      $('#hexapawn-board td').each(function(index, element) {
+        // console.log(element);
+        var thisCoord = $(element).data('squarecoordinate');
+        // console.log(thisCoord);
+        statusJSON[thisCoord] = $('#hexapawn-board-square-'+thisCoord+' div').data('pawnsn');
+      });
+      // console.log(statusJSON);
+      
+      ['a3','b3','c3','a2','b2','c2','a1','b1','c1',].forEach(function(i, index) {
+        // console.log(i, statusJSON[i]);
+        
+        var pushArr = [];
+        if ($('#hexapawn-pawn-'+i).data('pawncolor') == 'white') {
+          if (tableMove(i,1,0) != '') {
+            if ($('#hexapawn-board-square-'+tableMove(i,1,0)+' div').data('pawncolor') == 'empty') {
+              pushArr.push(tableMove(i,1,0));
+            }
+          }
+
+          if (tableMove(i,1,-1) != '') {
+            if ($('#hexapawn-board-square-'+tableMove(i,1,-1)+' div').data('pawncolor') == 'black') {
+              pushArr.push(tableMove(i,1,-1));
+            }
+          }
+
+          if (tableMove(i,1,1) != '') {
+            if ($('#hexapawn-board-square-'+tableMove(i,1,1)+' div').data('pawncolor') == 'black') {
+              pushArr.push(tableMove(i,1,1));
+            }
+          }
+        } else if ($('#hexapawn-pawn-'+i).data('pawncolor') == 'black') {
+          if (tableMove(i,-1,0) != '') {
+            if ($('#hexapawn-board-square-'+tableMove(i,-1,0)+' div').data('pawncolor') == 'empty') {
+              pushArr.push(tableMove(i,-1,0));
+            }
+          }
+
+          if (tableMove(i,-1,-1) != '') {
+            if ($('#hexapawn-board-square-'+tableMove(i,-1,-1)+' div').data('pawncolor') == 'white') {
+              pushArr.push(tableMove(i,-1,-1));
+            }
+          }
+
+          if (tableMove(i,-1,1) != '') {
+            if ($('#hexapawn-board-square-'+tableMove(i,-1,1)+' div').data('pawncolor') == 'white') {
+              pushArr.push(tableMove(i,-1,1));
+            }
+          }
+        }
+        // console.log(pushArr);
+        movesJSON[statusJSON[i]] = pushArr;
+      });
+      
+      console.log(movesJSON);
+      
+    });
+  });
+
+</script>
