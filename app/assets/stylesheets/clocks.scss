@@ -1,3 +1,11 @@
 // Place all the styles related to the clocks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$clock-frame-hw: 400px;
+#clock-frame {
+  height: $clock-frame-hw;
+  width: $clock-frame-hw;
+  border-radius: $clock-frame-hw;
+  border: 2px solid black;
+}

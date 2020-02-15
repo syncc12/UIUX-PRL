@@ -14,18 +14,27 @@
 
 <br>
 
+
+
 <div class="row no-gutters">
   <div class="col-8 offset-1">
     <div class="project-home-all">
       <div class="row no-gutters">
         <% Project.all.each do |project| %>
           <div class="col-2 offset-2">
-            <a href="<%= project.route %>">
-              <div id="project-home-<%= project.id %>" class="project-home" data-route="<%= project.route %>">
-                <div id="project-home-ajax-<%= project.id %>" class="project-home-ajax"></div>
-                <p><%= project.name %></p>
+            <div class="row no-gutters">
+              <div class="col-12">
+                <a href="<%= project.route %>">
+                  <div id="project-home-<%= project.id %>" class="project-home" data-route="<%= project.route %>">
+                    <div id="project-home-ajax-<%= (project.name).gsub(' ', '-') %>" class="project-home-ajax">
+                      &nbsp;
+                      <!-- <canvas id="ajax-canvas-<%= project.id %>" class="ajax-canvas"></canvas> -->
+                    </div>
+                    <p><%= project.name %></p>
+                  </div>
+                </a>
               </div>
-            </a>
+            </div>
           </div>
         <% end %>
       </div>
@@ -33,9 +42,12 @@
   </div>
 </div>
 
+<div id="ajax-hold">&nbsp;</div>
+<canvas id="canvas-hold"></canvas>
+
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script> -->
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <!-- /Users/patricklyden/Desktop/coding-environment/src/UIUX/node_modules/dom-to-image/spec/dom-to-image.spec.js -->
 <!-- /Users/patricklyden/Desktop/coding-environment/src/UIUX/node_modules/dom-to-image/src/dom-to-image.js -->
 <script> 
@@ -47,6 +59,12 @@
   var projectRoute;
   var htmlContent;
   var htmlData;
+  var htmlID;
+  var boxID;
+  var aspectRatio;
+  var indexID;
+  var ajaxProjectName;
+  var canvasImg;
 
   var percentResize = 0.2;
 
@@ -58,39 +76,54 @@
     projectDivWidth = windowWidth * percentResize;
     projectDivHeight = windowHeight * percentResize;
 
+    aspectRatio = projectDivWidth / windowHeight;
+
     $('.project-home').css('width', projectDivWidth);
     $('.project-home').css('height', projectDivHeight);
-    
-    // $('.project-home').each(function(index, element) {
-    //   projectRoute = '/'+$(this).data('route');
-    //   // console.log(projectRoute);
-    //   $.get(projectRoute, function(data) {
-    //     var htmlArray = $.parseHTML($.trim(data));
-    //     var htmlNodes = $(htmlArray[htmlArray.length-1]);
-    //     var htmlID = '#'+$(htmlArray[htmlArray.length-1]).attr('id');
-    //     htmlContent = $(htmlNodes).children('#page-yield')[0];
-    //     htmlData = $(document.createElement('body')).append(htmlContent)[0];
 
-    //     // console.log($.trim(data));
-    //     // console.log(document.body);
-    //     // console.log(htmlContent);
-    //     // console.log(htmlData);
-
-    //     console.log($(data).find('#page-yield'));
+    $('.project-home').each(function(index, element) {
+      projectRoute = '/'+$(this).data('route');
+      $.get(projectRoute, function(data) {
+        var htmlArray = $.parseHTML($.trim(data));
+        var htmlNodes = $(htmlArray[htmlArray.length-1]);
+        htmlID = '#'+$(htmlArray[htmlArray.length-1]).attr('id');
+        htmlContent = $(htmlNodes).children('#page-yield')[0];
+        htmlData = $(document.createElement('body')).append(htmlContent)[0];
+        boxID = '#project-home-ajax-'+(parseInt(index)+1).toString();
+        indexID = (parseInt(index)+1).toString();
         
-    //     // $('#project-home-ajax-'+index).append(htmlContent);
-    //     // console.log(index, htmlContent);
-    //   }).done(function(data) {
-    //     html2canvas($(data).find('#page-yield')[0]).then(canvas => {
-    //       document.body.appendChild(canvas)
-    //     });
-    //   });
+        $('#ajax-hold').empty();
+        $('#ajax-hold').append(htmlData);
 
-    //   $('#project-home-1').load(projectRoute+' #page-yield', function(data) {
-    //     // console.log(data);
-    //   });
+        canvasImg = $(document.createElement('img'));
+        ajaxProjectName = $('#ajax-hold').find('#page-yield').data('pagename');
+        canvasImg.attr('data-projectname',ajaxProjectName);
+        // console.log('Pre Done',$('#ajax-hold').find('#page-yield').data('pagename'));
 
-    // });
+      }).done(function(data) {
+        
+        html2canvas($('#ajax-hold')[0], {
+          logging: false,
+          width: windowWidth,
+          height: windowHeight,
+          scale: aspectRatio
+          }).then(function(canvas) {
+            
+            // console.log('Post Done',ajaxProjectName);
+            $('#ajax-hold').empty();
+            var canvasHold = document.createElement('canvas');
+            canvasHold.setAttribute('width',projectDivWidth);
+            canvasHold.setAttribute('height',projectDivHeight);
+            var ctx = canvasHold.getContext("2d");
+            ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,projectDivWidth,projectDivHeight);
+            
+            canvasImg.attr('src',canvasHold.toDataURL());
+            $('#project-home-ajax-'+ajaxProjectName).empty();
+            $('#project-home-ajax-'+ajaxProjectName).append(canvasImg);
+        });
+      });
+      $('#ajax-hold').empty();
+    });
 
   });
 

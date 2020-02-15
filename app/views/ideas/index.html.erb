@@ -5,31 +5,33 @@
   </div>
 </div>
 
-<div class="row no-gutters">
-  <div class="col-3 offset-1">
-    <%= simple_form_for Idea.new, url: ideas_path do |f| %>
-      <%= f.input_field :thought, placeholder: 'Idea' %>
-      <%= f.input_field :notes, placeholder: 'Notes' %>
-      <%= f.submit "Add" %>
-    <% end %>
-  </div>
-</div>
-
-<br>
-
-<div class="row no-gutters">
-  <div class="col-4 offset-1">
-    <table id="ideas-table">
-      <th class="ideas-th ideas-number-th ideas-number">&nbsp;</th><th class="ideas-th ideas-thought-th ideas-thought">Idea</th><th class="ideas-th ideas-notes-th ideas-notes">Notes</th><th class="ideas-th ideas-status-th ideas-status">Status</th>
-      <% Idea.all.each do |ideaEach| %>
-        <tr id="ideas-tr-<%= ideaEach.id %>" class="ideas-tr">
-          <td id="ideas-number-td-<%= ideaEach.id %>" class="ideas-td ideas-number-td ideas-number"><div id="ideas-number-div-<%= ideaEach.id %>" class="ideas-div ideas-number-div ideas-number"><%= ideaEach.id %></div></td>
-          <td id="ideas-thought-td-<%= ideaEach.id %>" class="ideas-td ideas-thought-td ideas-thought"><div id="ideas-thought-div-<%= ideaEach.id %>" class="ideas-div ideas-thought-div ideas-thought"><%= ideaEach.thought %></div></td>
-          <td id="ideas-notes-td-<%= ideaEach.id %>" class="ideas-td ideas-notes-td ideas-notes"><div id="ideas-notes-div-<%= ideaEach.id %>" class="ideas-div ideas-notes-div ideas-notes"><%= ideaEach.notes %></div></td>
-          <td id="ideas-status-td-<%= ideaEach.id %>" class="ideas-td ideas-status-td ideas-status"><div id="ideas-status-div-<%= ideaEach.id %>" class="ideas-div ideas-status-div ideas-status"><input id="status-input-<%= ideaEach.id %>" class="status-input" type="checkbox" name="status-boolean" data-id="<%= ideaEach.id %>"></div></td>
-        </tr>
+<div id="page-yield" data-pagename="Ideas">
+  <div class="row no-gutters">
+    <div class="col-3 offset-1">
+      <%= simple_form_for Idea.new, url: ideas_path do |f| %>
+        <%= f.input_field :thought, placeholder: 'Idea' %>
+        <%= f.input_field :notes, placeholder: 'Notes' %>
+        <%= f.submit "Add" %>
       <% end %>
-    </table>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row no-gutters">
+    <div class="col-4 offset-1">
+      <table id="ideas-table">
+        <th class="ideas-th ideas-number-th ideas-number">&nbsp;</th><th class="ideas-th ideas-thought-th ideas-thought">Idea</th><th class="ideas-th ideas-notes-th ideas-notes">Notes</th><th class="ideas-th ideas-status-th ideas-status">Status</th>
+        <% Idea.all.each do |ideaEach| %>
+          <tr id="ideas-tr-<%= ideaEach.id %>" class="ideas-tr">
+            <td id="ideas-number-td-<%= ideaEach.id %>" class="ideas-td ideas-number-td ideas-number"><div id="ideas-number-div-<%= ideaEach.id %>" class="ideas-div ideas-number-div ideas-number"><%= ideaEach.id %></div></td>
+            <td id="ideas-thought-td-<%= ideaEach.id %>" class="ideas-td ideas-thought-td ideas-thought"><div id="ideas-thought-div-<%= ideaEach.id %>" class="ideas-div ideas-thought-div ideas-thought"><%= ideaEach.thought %></div></td>
+            <td id="ideas-notes-td-<%= ideaEach.id %>" class="ideas-td ideas-notes-td ideas-notes"><div id="ideas-notes-div-<%= ideaEach.id %>" class="ideas-div ideas-notes-div ideas-notes"><%= ideaEach.notes %></div></td>
+            <td id="ideas-status-td-<%= ideaEach.id %>" class="ideas-td ideas-status-td ideas-status"><div id="ideas-status-div-<%= ideaEach.id %>" class="ideas-div ideas-status-div ideas-status"><input id="status-input-<%= ideaEach.id %>" class="status-input" type="checkbox" name="status-boolean" data-id="<%= ideaEach.id %>"></div></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>
 

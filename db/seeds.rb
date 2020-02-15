@@ -6,6 +6,24 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# def dbCreateOrUpdate(inName, inRoute, inScreenshotPath, inDescription, inStatus)
+#   eName = Project.exists?(name: inName)
+#   eRoute = Project.exists?(route: inRoute)
+#   eScreenshotPath = Project.exists?(screenshot_path: inScreenshotPath)
+#   eDescription = Project.exists?(description: inDescription)
+#   eStatus = Project.exists?(status: inStatus)
+#   eAll = Project.exists?(name: inName, route: inRoute, screenshot_path: inScreenshotPath, description: inDescription, status: inStatus)
+
+#   if eAll == false
+#     if eName == false && eRoute == false && eScreenshotPath == false && eDescription == false && eStatus == false
+#       Project.create( name: inName, route: inRoute, screenshot_path: inScreenshotPath, description: inDescription, status: inStatus )
+#     else
+#       Project.update( name: inName, route: inRoute, screenshot_path: inScreenshotPath, description: inDescription, status: inStatus )
+#     end
+#   end
+# end
+
+
 project_list = [
   [ 'Ideas', 'ideas', '', '', 'Done' ],
   [ 'Calculator', 'calculators', '', '', 'Done' ],
@@ -28,4 +46,5 @@ project_list = [
 
 project_list.each do |pName, pRoute, pScreenshotPath, pDescription, pStatus|
   Project.create( name: pName, route: pRoute, screenshot_path: pScreenshotPath, description: pDescription, status: pStatus )
+  # dbCreateOrUpdate(pName,pRoute,pScreenshotPath,pDescription,pStatus)
 end

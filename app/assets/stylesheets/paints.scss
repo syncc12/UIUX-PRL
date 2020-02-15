@@ -1,3 +1,145 @@
 // Place all the styles related to the paints controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+$paint-area-w: 1600px;
+$paint-area-h: 1000px;
+$border-thickness: 2px;
+$draw-area-h: $paint-area-h - (2 * $border-thickness);
+$draw-area-w: 80%;
+$pen-color-area-h: $paint-area-h - (2 * $border-thickness);
+$pen-color-area-w: 20%;
+
+#paint-area {
+  height: $paint-area-h;
+  width: $paint-area-w;
+  border: $border-thickness solid black;
+}
+
+#paint-draw-area {
+  float: left;
+  height: $draw-area-h;
+  width: $draw-area-w;
+  border: 1px solid black;
+}
+
+#paint-pen-color-area {
+  float: left;
+  height: $pen-color-area-h;
+  width: $pen-color-area-w;
+  border: 1px solid black;
+}
+
+
+$pen-color-margin: 5px;
+$pen-area-h: ($pen-color-area-h / 2) - ($pen-color-margin * 2);
+$pen-area-w: auto;
+$color-area-h: ($pen-color-area-h / 2) - ($pen-color-margin * 2);
+$color-area-w: auto;
+$color-square-hw: 15px;
+$color-row-margins: 3px;
+
+#pen-area {
+  float: top;
+  height: $pen-area-h;
+  width: $pen-area-w;
+  border: 1px solid black;
+  margin: $pen-color-margin;
+}
+
+#color-area {
+  float: bottom;
+  height: $color-area-h;
+  width: $color-area-w;
+  border: 1px solid black;
+  margin: $pen-color-margin;
+}
+
+#color-select-area {
+  height: ($color-square-hw * 10) + $color-row-margins;
+  width: ($color-square-hw * 20) + $color-row-margins;
+}
+
+.color-square {
+  height: $color-square-hw;
+  width: $color-square-hw;
+  border: 1px solid black;
+}
+
+.color-row {
+  margin-left: $color-row-margins;
+}
+
+#color-row-0 {
+  margin-top: $color-row-margins;
+}
+
+
+$selected-color-hw: 51px;
+$selected-color-margins-lr: (((307px - 1) / 2) + 1) - (($selected-color-hw - 1) / 2);
+$selected-color-margins-t: 50px;
+
+#selected-color {
+  height: $selected-color-hw;
+  width: $selected-color-hw;
+  margin: $selected-color-margins-t $selected-color-margins-lr 0px $selected-color-margins-lr;
+  background-color: #000000;
+  border: 1px solid black;
+  position: relative;
+}
+
+
+$pen-size-select-h: 10%;
+$pen-size-select-w: 100%;
+$pen-size-select-padding: 3px;
+$pen-size-selector-h: 25%;
+$pen-size-selector-w: 80%;
+$pen-size-display-h: 100%;
+$pen-size-display-w: 20%;
+$pen-select-h: 90%;
+$pen-select-w: 100%;
+
+#pen-select {
+ float: top;
+ height: $pen-select-h;
+ width: $pen-select-w;
+}
+
+#pen-size-select {
+  height: $pen-size-select-h;
+  width: $pen-size-select-w;
+  padding: $pen-size-select-padding;
+  float: top;
+}
+
+#pen-size-select::after {
+  clear: both;
+}
+
+#pen-size-selector {
+  float: left;
+  height: $pen-size-selector-h;
+  width: $pen-size-selector-w;
+}
+
+#pen-size-display {
+  float: left;
+  height: $pen-size-display-h;
+  width: $pen-size-display-w;
+}
+
+$pen-shape-hw: 30px;
+.pen-shape {
+  height: $pen-shape-hw;
+  width: $pen-shape-hw;
+  outline: 1px solid black;
+  margin: 3px;
+}
+
+#pen-shape-line, #pen-shape-square, #pen-shape-rectangle, #pen-shape-circle, #pen-shape-arc, #pen-shape-polygon { float: left; }
+
+.pen-shape-canvas {
+  height: $pen-shape-hw;
+  width: $pen-shape-hw;
+}
