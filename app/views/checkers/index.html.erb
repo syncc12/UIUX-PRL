@@ -437,6 +437,7 @@
         movesJSON = possibleMoves(pullCoordinate($(this).parent().attr('id')));
         // console.log(movesJSON);
         var droppableSquares = acceptableMoves(movesJSON);
+        // console.log(droppableSquares);
 
         $('.checker-piece').draggable({
           revert: "invalid",

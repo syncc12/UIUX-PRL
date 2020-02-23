@@ -21,8 +21,9 @@
           <%= link_to 'UIUX', root_path, class: 'navbar-brand' %>
         <% end %>
         <div class="collapse navbar-collapse" id="navbar-content">
-          <div class="nav-link-custom-div">
-            <%= link_to 'Home', root_path, class: 'nav-link-custom' %>
+
+          <!-- <div class="nav-link-custom-div">
+            <%= link_to 'Home', root_path, class: 'nav-link-custom dropdown-item' %>
           </div>
           <div class="nav-divider"></div>
           <div class="nav-link-custom-div">
@@ -92,8 +93,42 @@
           <div class="nav-link-custom-div">
             <%= link_to 'Paint', paints_path, class: 'nav-link-custom' %>
           </div>
+          <div class="nav-divider"></div>
+          <div class="nav-link-custom-div">
+            <%= link_to 'Korean Syllable Game', korean_syllable_games_path, class: 'nav-link-custom' %>
+          </div> -->
+
+          <div class="nav-link-custom-div">
+            <%= link_to 'Home', root_path, class: 'nav-link-custom' %>
+          </div>
+          <div class="nav-divider"></div>
+          <div class="nav-link-custom-div">
+            <%= link_to 'Ideas', ideas_path, class: 'nav-link-custom' %>
+          </div>
+          <div class="nav-divider"></div>
+
+          
+
 
         </div>
+
+          <div id="completed-projects-dropdown" class="dropdown-menu-custom">
+            <button id="completed-projects-dropdown-button" class="dropdown-button-custom">Completed</button>
+            <div id="completed-projects-dropdown-content" class="dropdown-content-custom">
+              <% Project.where(status: 'Done').each do |project| %>
+                <a href="<%= project.route %>" class="nav-link-custom"><%= project.name %></a>
+              <% end %>
+            </div>
+          </div>
+          <div class="nav-divider"></div>
+          <div id="work-in-progress-projects-dropdown" class="dropdown-menu-custom">
+            <button id="work-in-progress-projects-dropdown-button" class="dropdown-button-custom">Work In Progress</button>
+            <div id="work-in-progress-projects-dropdown-content" class="dropdown-content-custom">
+              <% Project.where(status: 'WIP').each do |project| %>
+                <a href="<%= project.route %>" class="nav-link-custom"><%= project.name %></a>
+              <% end %>
+            </div>
+          </div>
 
       </nav>
     
@@ -101,3 +136,15 @@
       <%= yield %>
   </body>
 </html>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+  
+  $(function() {
+
+
+  });
+
+</script>

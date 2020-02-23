@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   resources :clocks, only: [:index]
   resources :timers, only: [:index]
   resources :paints, only: [:index]
+  resources :korean_syllable_games, only: [:index]
 end

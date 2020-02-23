@@ -41,7 +41,8 @@ project_list = [
   [ 'Hexapawn', 'hexapawns', '', '', 'WIP' ],
   [ 'Clock', 'clocks', '', '', 'WIP' ],
   [ 'Timer', 'timers', '', '', 'WIP' ],
-  [ 'Paint', 'paints', '', '', 'WIP' ]
+  [ 'Paint', 'paints', '', '', 'WIP' ],
+  [ 'Korean Syllable Game', 'korean_syllable_games', '', '', 'WIP' ]
 ]
 
 project_list.each do |pName, pRoute, pScreenshotPath, pDescription, pStatus|

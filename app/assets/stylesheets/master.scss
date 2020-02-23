@@ -77,6 +77,45 @@ h2 {
   border: none;
 }
 
+.dropdown-button-custom {
+  border: none;
+}
+
+.dropdown-menu-custom {
+  width: 200px;
+  height: 100%;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content-custom {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content-custom a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content-custom a:hover {
+  background-color: #ddd;
+}
+
+.dropdown-menu-custom:hover .dropdown-content-custom {
+  display: block;
+}
+
+.dropdown-menu-custom:hover .dropdown-button-custom {
+  background-color: #3e8e41;
+}
+
 .nav-divider {
   position: relative;
   top: 10%;
