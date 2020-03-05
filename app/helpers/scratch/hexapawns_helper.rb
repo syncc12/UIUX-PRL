@@ -1,0 +1,2 @@
+module Scratch::HexapawnsHelper
+end

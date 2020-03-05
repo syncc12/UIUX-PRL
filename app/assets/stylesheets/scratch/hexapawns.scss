@@ -1,0 +1,62 @@
+// Place all the styles related to the scratch/hexapawns controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$board-square-hw: 150px;
+.hexapawn-board-square {
+  height: $board-square-hw;
+  width: $board-square-hw;
+  border: 2px solid black;
+}
+
+$board-hw: $board-square-hw * 3;
+#hexapawn-board {
+  height: $board-hw;
+  width: $board-hw;
+  border: 2px solid black;
+}
+
+.hexapawn-board-square-black {
+  background-color: black;
+}
+
+.hexapawn-board-square-white {
+  background-color: white;
+}
+
+$pawn-hw: $board-square-hw - 5;
+.hexapawn-pawn {
+  position: relative;
+  height: $pawn-hw;
+  width: $pawn-hw;
+  border-radius: $pawn-hw;
+}
+
+.hexapawn-pawn-empty {
+  position: relative;
+  height: $pawn-hw;
+  width: $pawn-hw;
+  border-radius: $pawn-hw;
+}
+
+.hexapawn-pawn-black {
+  background-color: black;
+  border: 2px solid white;
+}
+
+.hexapawn-pawn-white {
+  background-color: white;
+  border: 2px solid black;
+}
+
+#debug-table, #debug-table tbody, #debug-table tbody tr, #debug-table tbody tr th, #debug-table tbody tr td {
+  border: 1px solid black;
+}
+
+#winner-table, #winner-table tr, #winner-table tr th, #winner-table tr td {
+  border: 1px solid black;
+}
+
+#winner-counter, #winner-counter tr, #winner-counter tr th, #winner-counter tr td {
+  border: 1px solid black;
+}

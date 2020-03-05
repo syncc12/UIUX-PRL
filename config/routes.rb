@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get 'hello_world', to: 'hello_world#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'static_pages#home'
+  namespace :scratch do
+    resources :hexapawns, only: [:index]
+  end
   resources :ideas, only: [:index, :create]
   resources :calculators, only: [:index]
   resources :rps, only: [:index]
@@ -20,4 +22,7 @@ Rails.application.routes.draw do
   resources :timers, only: [:index]
   resources :paints, only: [:index]
   resources :korean_syllable_games, only: [:index]
+  resources :react_practices, only: [:index]
+  resources :cyphers, only: [:index]
+  resources :tic_tac_toes, only: [:index]
 end

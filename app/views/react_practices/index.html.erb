@@ -1,0 +1,72 @@
+
+
+<div class="row">
+  <div class="col-10 offset-1">
+    <div class="space-break"></div>
+    <div class="page-title">React Practice</div>
+  </div>
+</div>
+
+<div id="page-yield" data-pagename="React Practice" data-pagestatus="wip">
+  <div class="row no-gutters">
+    <div class="col-10 offset-1">
+    
+      <div id="app"></div>
+
+    </div>
+  </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/babel">
+
+  var cardData = { 
+    front: {
+      question: 'You may know that React was created at _________.',
+      hint: 'This company\'s site is known for being written in PHP.'
+    }
+  };
+
+  var App = function() {
+    
+    console.log($('#app'));
+    
+    return (
+      <div className='App'>
+        <h1 className='title'>
+          Flashback
+        </h1>
+        <p className='sub-title'>
+          An interactive flashcard app.
+        </p>
+        <div className="card-list">
+          {Card(cardData)}
+        </div>
+      </div>
+    );
+
+
+  };
+
+  var Card = function(props) {
+    return (
+      <div className='Card -front'>
+        <div className="front">
+          <h3 className='question'>
+            {props.front.question}
+          </h3>
+          <p className='hint'>
+            <span>Hint:</span>
+            {props.front.hint}
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  ReactDOM.render(App(), document.getElementById('app'));
+
+</script>

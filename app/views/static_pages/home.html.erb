@@ -81,49 +81,49 @@
     $('.project-home').css('width', projectDivWidth);
     $('.project-home').css('height', projectDivHeight);
 
-    $('.project-home').each(function(index, element) {
-      projectRoute = '/'+$(this).data('route');
-      $.get(projectRoute, function(data) {
-        var htmlArray = $.parseHTML($.trim(data));
-        var htmlNodes = $(htmlArray[htmlArray.length-1]);
-        htmlID = '#'+$(htmlArray[htmlArray.length-1]).attr('id');
-        htmlContent = $(htmlNodes).children('#page-yield')[0];
-        htmlData = $(document.createElement('body')).append(htmlContent)[0];
-        boxID = '#project-home-ajax-'+(parseInt(index)+1).toString();
-        indexID = (parseInt(index)+1).toString();
+    // $('.project-home').each(function(index, element) {
+    //   projectRoute = '/'+$(this).data('route');
+    //   $.get(projectRoute, function(data) {
+    //     var htmlArray = $.parseHTML($.trim(data));
+    //     var htmlNodes = $(htmlArray[htmlArray.length-1]);
+    //     htmlID = '#'+$(htmlArray[htmlArray.length-1]).attr('id');
+    //     htmlContent = $(htmlNodes).children('#page-yield')[0];
+    //     htmlData = $(document.createElement('body')).append(htmlContent)[0];
+    //     boxID = '#project-home-ajax-'+(parseInt(index)+1).toString();
+    //     indexID = (parseInt(index)+1).toString();
         
-        $('#ajax-hold').empty();
-        $('#ajax-hold').append(htmlData);
+    //     $('#ajax-hold').empty();
+    //     $('#ajax-hold').append(htmlData);
 
-        canvasImg = $(document.createElement('img'));
-        ajaxProjectName = $('#ajax-hold').find('#page-yield').data('pagename');
-        canvasImg.attr('data-projectname',ajaxProjectName);
-        // console.log('Pre Done',$('#ajax-hold').find('#page-yield').data('pagename'));
+    //     canvasImg = $(document.createElement('img'));
+    //     ajaxProjectName = $('#ajax-hold').find('#page-yield').data('pagename');
+    //     canvasImg.attr('data-projectname',ajaxProjectName);
+    //     // console.log('Pre Done',$('#ajax-hold').find('#page-yield').data('pagename'));
 
-      }).done(function(data) {
+    //   }).done(function(data) {
         
-        html2canvas($('#ajax-hold')[0], {
-          logging: false,
-          width: windowWidth,
-          height: windowHeight,
-          scale: aspectRatio
-          }).then(function(canvas) {
+    //     html2canvas($('#ajax-hold')[0], {
+    //       logging: false,
+    //       width: windowWidth,
+    //       height: windowHeight,
+    //       scale: aspectRatio
+    //       }).then(function(canvas) {
             
-            // console.log('Post Done',ajaxProjectName);
-            $('#ajax-hold').empty();
-            var canvasHold = document.createElement('canvas');
-            canvasHold.setAttribute('width',projectDivWidth);
-            canvasHold.setAttribute('height',projectDivHeight);
-            var ctx = canvasHold.getContext("2d");
-            ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,projectDivWidth,projectDivHeight);
+    //         // console.log('Post Done',ajaxProjectName);
+    //         $('#ajax-hold').empty();
+    //         var canvasHold = document.createElement('canvas');
+    //         canvasHold.setAttribute('width',projectDivWidth);
+    //         canvasHold.setAttribute('height',projectDivHeight);
+    //         var ctx = canvasHold.getContext("2d");
+    //         ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,projectDivWidth,projectDivHeight);
             
-            canvasImg.attr('src',canvasHold.toDataURL());
-            $('#project-home-ajax-'+ajaxProjectName).empty();
-            $('#project-home-ajax-'+ajaxProjectName).append(canvasImg);
-        });
-      });
-      $('#ajax-hold').empty();
-    });
+    //         canvasImg.attr('src',canvasHold.toDataURL());
+    //         $('#project-home-ajax-'+ajaxProjectName).empty();
+    //         $('#project-home-ajax-'+ajaxProjectName).append(canvasImg);
+    //     });
+    //   });
+    //   $('#ajax-hold').empty();
+    // });
 
   });
 

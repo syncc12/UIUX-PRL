@@ -2,11 +2,16 @@
 <html>
   <head>
     <title>UIUX</title>
+    <script src="https://unpkg.com/@babel/standalone@7.2.5/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.development.js"></script>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta charset="UTF-8" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   </head>
 
@@ -126,6 +131,20 @@
             <div id="work-in-progress-projects-dropdown-content" class="dropdown-content-custom">
               <% Project.where(status: 'WIP').each do |project| %>
                 <a href="<%= project.route %>" class="nav-link-custom"><%= project.name %></a>
+              <% end %>
+            </div>
+          </div>
+          <div class="nav-divider"></div>
+          <div id="scratch-projects-dropdown" class="dropdown-menu-custom">
+            <button id="scratch-projects-dropdown-button" class="dropdown-button-custom">Scratch</button>
+            <div id="scratch-projects-dropdown-content" class="dropdown-content-custom">
+              <% Rails.application.eager_load! %>
+              <% ApplicationController.descendants.each do |descendant| %>
+                <% thisDescendant = descendant.to_s.gsub("Controller","").gsub(/([a-zA-Z])([A-Z])/,'\1'+"_"+'\2').gsub("/","_").downcase %>
+                <% if thisDescendant =~ /scratch::/ %>
+                <% descendantPath = thisDescendant.gsub("::","/") %>
+                  <a href="<%= descendantPath %>" class="nav-link-custom"><%= thisDescendant.gsub("scratch::","") %></a>
+                <% end %>
               <% end %>
             </div>
           </div>
