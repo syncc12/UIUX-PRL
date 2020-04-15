@@ -1,16 +1,16 @@
-class AI {
-//     constructor(tagID) {
-//       this._currentID = tagID;
-//     }
-//     get currentID() {
-//       return this._currentID;
-//     }
-//     set currentID(inCurrentID) {
-//       this._currentID = inCurrentID;
-//     }
+// class AI {
+// //     constructor(tagID) {
+// //       this._currentID = tagID;
+// //     }
+// //     get currentID() {
+// //       return this._currentID;
+// //     }
+// //     set currentID(inCurrentID) {
+// //       this._currentID = inCurrentID;
+// //     }
 
     
-  }
+//   }
 
 // class GameAI extends AI {
 //   gameStatus() {
