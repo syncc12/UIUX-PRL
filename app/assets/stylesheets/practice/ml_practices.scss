@@ -1,0 +1,10 @@
+// Place all the styles related to the practice/ml_practices controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$maze-hw: 400px;
+#maze {
+  height: $maze-hw;
+  width: $maze-hw;
+  border: 1px solid black;
+}

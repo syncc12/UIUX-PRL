@@ -1,3 +1,11 @@
 // Place all the styles related to the dc_metros controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#dc-metro-map {
+  position: relative;
+  border: 1px solid black;
+  height: 1000px;
+  width: 1000px;
+  content: url('dc_metro_map_just_lines.jpeg');
+}

@@ -2,105 +2,206 @@
   <div class="col-10 offset-1">
     <div class="space-break"></div>
     <div class="page-title">Hexapawn</div>
-      <!-- <div class="wip-watermark">Work In Progress</div> -->
   </div>
 </div>
 
 <br><br>
 
-<div id="page-yield" data-pagename="Hexapawn" data-pagestatus="wip">
+<div id="page-yield" data-pagename="Hexapawn" data-pagestatus="complete">
   <div class="row no-gutters">
-    <div class="col-8 offset-2">
+    <div class="col-2 offset-1">
+      <table id="winner-counter">
+        <tr><th id="black-player-name" class="player-name">Black</th><td id="black-win-count" class="win-count">0</td></tr>
+        <tr><th id="white-player-name" class="player-name">White</th><td id="white-win-count" class="win-count">0</td></tr>
+      </table>
+      <br>
+      <table id="winner-table">
+        <tr><th>Game Number</th><th>Winner</th></tr>
+      </table>
+    </div>
+    <div class="col-8 offset-1">
 
       <table id="hexapawn-board">
         <tr id="hexapawn-board-col-label-row-top" class="hexapawn-board-col-label-row hexapawn-board-label-row">
-          <td id="hexapawn-board-col-label-empty-top-left" class="hexapawn-board-col-label hexapawn-board-col-label-empty">&nbsp;</td>
-          <td id="hexapawn-board-col-label-a" class="hexapawn-board-col-label">A</td>
-          <td id="hexapawn-board-col-label-b" class="hexapawn-board-col-label">B</td>
-          <td id="hexapawn-board-col-label-c" class="hexapawn-board-col-label">C</td>
-          <td id="hexapawn-board-col-label-empty-top-right" class="hexapawn-board-col-label hexapawn-board-col-label-empty">&nbsp;</td>
+          <th id="hexapawn-board-col-label-empty-top-left" class="hexapawn-board-col-label hexapawn-board-col-label-empty">&nbsp;</th>
+          <th id="hexapawn-board-col-label-a" class="hexapawn-board-col-label">A</th>
+          <th id="hexapawn-board-col-label-b" class="hexapawn-board-col-label">B</th>
+          <th id="hexapawn-board-col-label-c" class="hexapawn-board-col-label">C</th>
+          <th id="hexapawn-board-col-label-empty-top-right" class="hexapawn-board-col-label hexapawn-board-col-label-empty">&nbsp;</th>
         </tr>
         <tr id="hexapawn-board-row-3" class="hexapawn-board-row" data-rownumber="3">
-          <td id="hexapawn-board-row-label-left-3" class="hexapawn-board-row-label">3</td>
-          <td id="hexapawn-board-square-a3" class="hexapawn-board-square hexapawn-board-square-white" data-columnnumber="a" data-squarecoordinate="a3"><div id="hexapawn-pawn-b1" class="hexapawn-pawn hexapawn-pawn-black" data-pawncolor="black" data-pawnsn="b1">b1</div></td>
-          <td id="hexapawn-board-square-b3" class="hexapawn-board-square hexapawn-board-square-black" data-columnnumber="b" data-squarecoordinate="b3"><div id="hexapawn-pawn-b2" class="hexapawn-pawn hexapawn-pawn-black" data-pawncolor="black" data-pawnsn="b2">b2</div></td>
-          <td id="hexapawn-board-square-c3" class="hexapawn-board-square hexapawn-board-square-white" data-columnnumber="c" data-squarecoordinate="c3"><div id="hexapawn-pawn-b3" class="hexapawn-pawn hexapawn-pawn-black" data-pawncolor="black" data-pawnsn="b3">b3</div></td>
-          <td id="hexapawn-board-row-label-right-3" class="hexapawn-board-row-label">3</td>
+          <th id="hexapawn-board-row-label-left-3" class="hexapawn-board-row-label">3</th>
+          <td id="hexapawn-board-square-a3" class="hexapawn-board-square hexapawn-board-square-white" data-colnum="a" data-rownum="3" data-squarecoordinate="a3"></td>
+          <td id="hexapawn-board-square-b3" class="hexapawn-board-square hexapawn-board-square-black" data-colnum="b" data-rownum="3" data-squarecoordinate="b3"></td>
+          <td id="hexapawn-board-square-c3" class="hexapawn-board-square hexapawn-board-square-white" data-colnum="c" data-rownum="3" data-squarecoordinate="c3"></td>
+          <th id="hexapawn-board-row-label-right-3" class="hexapawn-board-row-label">3</th>
         </tr>
         <tr id="hexapawn-board-row-2" class="hexapawn-board-row" data-rownumber="2">
-          <td id="hexapawn-board-row-label-left-2" class="hexapawn-board-row-label">2</td>
-          <td id="hexapawn-board-square-a2" class="hexapawn-board-square hexapawn-board-square-black" data-columnnumber="a" data-squarecoordinate="a2"><div class="hexapawn-pawn-empty" data-pawncolor="empty" data-pawnsn="e">&nbsp;</div></td>
-          <td id="hexapawn-board-square-b2" class="hexapawn-board-square hexapawn-board-square-white" data-columnnumber="b" data-squarecoordinate="b2"><div class="hexapawn-pawn-empty" data-pawncolor="empty" data-pawnsn="e">&nbsp;</div></td>
-          <td id="hexapawn-board-square-c2" class="hexapawn-board-square hexapawn-board-square-black" data-columnnumber="c" data-squarecoordinate="c2"><div class="hexapawn-pawn-empty" data-pawncolor="empty" data-pawnsn="e">&nbsp;</div></td>
-          <td id="hexapawn-board-row-label-right-2" class="hexapawn-board-row-label">2</td>
+          <th id="hexapawn-board-row-label-left-2" class="hexapawn-board-row-label">2</th>
+          <td id="hexapawn-board-square-a2" class="hexapawn-board-square hexapawn-board-square-black" data-colnum="a" data-rownum="2" data-squarecoordinate="a2"></td>
+          <td id="hexapawn-board-square-b2" class="hexapawn-board-square hexapawn-board-square-white" data-colnum="b" data-rownum="2" data-squarecoordinate="b2"></td>
+          <td id="hexapawn-board-square-c2" class="hexapawn-board-square hexapawn-board-square-black" data-colnum="c" data-rownum="2" data-squarecoordinate="c2"></td>
+          <th id="hexapawn-board-row-label-right-2" class="hexapawn-board-row-label">2</th>
         </tr>
         <tr id="hexapawn-board-row-1" class="hexapawn-board-row" data-rownumber="1">
-          <td id="hexapawn-board-row-label-left-1" class="hexapawn-board-row-label">1</td>
-          <td id="hexapawn-board-square-a1" class="hexapawn-board-square hexapawn-board-square-white" data-columnnumber="a" data-squarecoordinate="a1"><div id="hexapawn-pawn-w1" class="hexapawn-pawn hexapawn-pawn-white" data-pawncolor="white" data-pawnsn="w1">w1</div></td>
-          <td id="hexapawn-board-square-b1" class="hexapawn-board-square hexapawn-board-square-black" data-columnnumber="b" data-squarecoordinate="b1"><div id="hexapawn-pawn-w2" class="hexapawn-pawn hexapawn-pawn-white" data-pawncolor="white" data-pawnsn="w2">w2</div></td>
-          <td id="hexapawn-board-square-c1" class="hexapawn-board-square hexapawn-board-square-white" data-columnnumber="c" data-squarecoordinate="c1"><div id="hexapawn-pawn-w3" class="hexapawn-pawn hexapawn-pawn-white" data-pawncolor="white" data-pawnsn="w3">w3</div></td>
-          <td id="hexapawn-board-row-label-right-1" class="hexapawn-board-row-label">1</td>
+          <th id="hexapawn-board-row-label-left-1" class="hexapawn-board-row-label">1</th>
+          <td id="hexapawn-board-square-a1" class="hexapawn-board-square hexapawn-board-square-white" data-colnum="a" data-rownum="1" data-squarecoordinate="a1"></td>
+          <td id="hexapawn-board-square-b1" class="hexapawn-board-square hexapawn-board-square-black" data-colnum="b" data-rownum="1" data-squarecoordinate="b1"></td>
+          <td id="hexapawn-board-square-c1" class="hexapawn-board-square hexapawn-board-square-white" data-colnum="c" data-rownum="1" data-squarecoordinate="c1"></td>
+          <th id="hexapawn-board-row-label-right-1" class="hexapawn-board-row-label">1</th>
         </tr>
         <tr id="hexapawn-board-col-label-row-bottom" class="hexapawn-board-col-label-row hexapawn-board-label-row">
-          <td id="hexapawn-board-col-label-empty-bottom-left" class="hexapawn-board-col-label hexapawn-board-col-label-empty">&nbsp;</td>
-          <td id="hexapawn-board-col-label-a" class="hexapawn-board-col-label">A</td>
-          <td id="hexapawn-board-col-label-b" class="hexapawn-board-col-label">B</td>
-          <td id="hexapawn-board-col-label-c" class="hexapawn-board-col-label">C</td>
-          <td id="hexapawn-board-col-label-empty-bottom-right" class="hexapawn-board-col-label hexapawn-board-col-label-empty">&nbsp;</td>
+          <th id="hexapawn-board-col-label-empty-bottom-left" class="hexapawn-board-col-label hexapawn-board-col-label-empty">&nbsp;</th>
+          <th id="hexapawn-board-col-label-a" class="hexapawn-board-col-label">A</th>
+          <th id="hexapawn-board-col-label-b" class="hexapawn-board-col-label">B</th>
+          <th id="hexapawn-board-col-label-c" class="hexapawn-board-col-label">C</th>
+          <th id="hexapawn-board-col-label-empty-bottom-right" class="hexapawn-board-col-label hexapawn-board-col-label-empty">&nbsp;</th>
         </tr>
       </table>
 
     </div>
   </div>
 
-  <div id="react-inject"></div>
-
 </div>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script>
+<script type="text/babel">
+
+  var whitePiece = function(inPawnSN) {
+    return (
+      <div id={"hexapawn-pawn-w"+inPawnSN} className="hexapawn-pawn hexapawn-pawn-white" data-pawncolor="white" data-pawnsn={'w'+inPawnSN}>
+        {"w"+inPawnSN}
+      </div>
+    );
+  }
+
+  var blackPiece = function(inPawnSN) {
+    return (
+      <div id={"hexapawn-pawn-b"+inPawnSN} className="hexapawn-pawn hexapawn-pawn-black" data-pawncolor="black" data-pawnsn={'b'+inPawnSN}>
+        {"b"+inPawnSN}
+      </div>
+    );
+  }
+
+  var pieceGenerate = function(inPawnSN='') {
+    if (inPawnSN == '') {
+      return (
+        <div className="hexapawn-pawn-empty" data-pawncolor="empty" data-pawnsn="e">&nbsp;</div>
+      );
+    } else {
+      var pieceColor;
+      if (inPawnSN[0] == 'w') {
+        pieceColor = 'white';
+      } else if (inPawnSN[0] == 'b') {
+        pieceColor = 'black';
+      }
+
+      return (
+        <div id={"hexapawn-pawn-"+inPawnSN} className={"hexapawn-pawn hexapawn-pawn-"+pieceColor} data-pawncolor={pieceColor} data-pawnsn={inPawnSN}>&nbsp;</div>
+      );
+    }
+    
+  }
+
+  var blankSquare = function() {
+    return (
+      <div className="hexapawn-pawn-empty" data-pawncolor="empty" data-pawnsn="e">&nbsp;</div>
+    );
+  }
+
+  var gameNumber = 1;
+  var gameStatus = true;
+  var moveDelay = 500;
+
+  var n2lDict = {'0':'x','1':'a','2':'b','3':'c','4':'d'};
+  var l2nDict = {'x':'0','a':'1','b':'2','c':'3','4':'d'};
+
+  function num2let(inNum) {return n2lDict[inNum.toString()];}
+
+  function let2num(inLet) {return l2nDict[inLet.toString()];}
+
+  function movementDistance(startSquare, endSquare) {
+    var sHeight = parseInt($('.hexapawn-board-square').css('height'));
+    var sWidth = parseInt($('.hexapawn-board-square').css('width'));
+    var x0 = parseInt(let2num(startSquare[0]));
+    var y0 = parseInt(startSquare[1]);
+
+    var x1 = parseInt(let2num(endSquare[0]));
+    var y1 = parseInt(endSquare[1]);
+
+    return [(x1-x0)*sWidth, (y1-y0)*sHeight];
+  }
+
+  function boardMovement(startSquare, endSquare) {
+    var sHeight = parseInt($('.hexapawn-board-square').css('height'));
+    var sWidth = parseInt($('.hexapawn-board-square').css('width'));
+
+    var movePawnSN = $('#hexapawn-board-square-'+startSquare).children().data('pawnsn');
+    var movePawn = $('#hexapawn-board-square-'+startSquare).children()[0];
+
+    var seDifference = movementDistance(startSquare, endSquare);
+    $(movePawn).animate({
+      bottom: '+='+seDifference[1]+'px',
+      left: '+='+seDifference[0]+'px'
+    }, moveDelay, 'linear', function() {
+    });
+
+    setTimeout(function(){
+      ReactDOM.unmountComponentAtNode($('#hexapawn-board-square-'+startSquare)[0]);
+      ReactDOM.unmountComponentAtNode($('#hexapawn-board-square-'+endSquare)[0]);
+
+      ReactDOM.render(pieceGenerate(), $('#hexapawn-board-square-'+startSquare)[0]);
+      ReactDOM.render(pieceGenerate(movePawnSN), $('#hexapawn-board-square-'+endSquare)[0]);
+    },moveDelay);
+  }
+
+  function boardReset() {
+    ReactDOM.unmountComponentAtNode($('#hexapawn-board-square-a3')[0]);
+    ReactDOM.unmountComponentAtNode($('#hexapawn-board-square-b3')[0]);
+    ReactDOM.unmountComponentAtNode($('#hexapawn-board-square-c3')[0]);
+    ReactDOM.unmountComponentAtNode($('#hexapawn-board-square-a2')[0]);
+    ReactDOM.unmountComponentAtNode($('#hexapawn-board-square-b2')[0]);
+    ReactDOM.unmountComponentAtNode($('#hexapawn-board-square-c2')[0]);
+    ReactDOM.unmountComponentAtNode($('#hexapawn-board-square-a1')[0]);
+    ReactDOM.unmountComponentAtNode($('#hexapawn-board-square-b1')[0]);
+    ReactDOM.unmountComponentAtNode($('#hexapawn-board-square-c1')[0]);
+
+    ReactDOM.render(pieceGenerate('b1'), $('#hexapawn-board-square-a3')[0]);
+    ReactDOM.render(pieceGenerate('b2'), $('#hexapawn-board-square-b3')[0]);
+    ReactDOM.render(pieceGenerate('b3'), $('#hexapawn-board-square-c3')[0]);
+    ReactDOM.render(pieceGenerate(), $('#hexapawn-board-square-a2')[0]);
+    ReactDOM.render(pieceGenerate(), $('#hexapawn-board-square-b2')[0]);
+    ReactDOM.render(pieceGenerate(), $('#hexapawn-board-square-c2')[0]);
+    ReactDOM.render(pieceGenerate('w1'), $('#hexapawn-board-square-a1')[0]);
+    ReactDOM.render(pieceGenerate('w2'), $('#hexapawn-board-square-b1')[0]);
+    ReactDOM.render(pieceGenerate('w3'), $('#hexapawn-board-square-c1')[0]);
+
+    gameNumber += 1;
+    gameStatus = true;
+  }
+
+
   
-  var emptyHTML = '<div class="hexapawn-pawn-empty" data-pawncolor="empty" data-pawnsn="e">&nbsp;</div>';
 
+
+  var moveNumber = 1;
+  var whiteWins = 0;
+  var blackWins = 0;
+  
   var movesJSON = {};
-  var mapJSON = {
-    'a3':'',
-    'b3':'',
-    'c3':'',
-    'a2':'',
-    'b2':'',
-    'c2':'',
-    'a1':'',
-    'b1':'',
-    'c1':''
+  var mapJSON = {'a3':'','b3':'','c3':'','a2':'','b2':'','c2':'','a1':'','b1':'','c1':''};
+  var statusJSON = {'a3':'','a2':'','a1':'','b3':'','b2':'','b1':'','c3':'','c2':'','c1':''};
+  var boardJSON = {'a3':'','a2':'','a1':'','b3':'','b2':'','b1':'','c3':'','c2':'','c1':''};
+  var possibleMovesJSON = {
+    'b3':{'move':[],'take':[],'all':[]},
+    'b2':{'move':[],'take':[],'all':[]},
+    'b1':{'move':[],'take':[],'all':[]},
+    'w3':{'move':[],'take':[],'all':[]},
+    'w2':{'move':[],'take':[],'all':[]},
+    'w1':{'move':[],'take':[],'all':[]}
   };
-
-  var statusJSON = {
-    'a3':'',
-    'a2':'',
-    'a1':'',
-    'b3':'',
-    'b2':'',
-    'b1':'',
-    'c3':'',
-    'c2':'',
-    'c1':''
-  }
-
-  var boardJSON = {
-    'a3':'',
-    'a2':'',
-    'a1':'',
-    'b3':'',
-    'b2':'',
-    'b1':'',
-    'c3':'',
-    'c2':'',
-    'c1':''
-  }
-
   var winnerReport = 'none';
 
   function boardStatus() {
@@ -126,24 +227,14 @@
     
   }
 
-  // \(boardJSON\['([abc][123])'\]\[0\] == '([wb])'\) {movesJSON\[boardJSON\['([abc][123])'\]\].push\('([abc][123])'\);}
-  // (boardJSON['\1'][0] == '\2') {movesJSON[boardJSON['\3']].push('\4'); console.log(boardJSON['\3'], movesJSON[boardJSON['\3']], '\1');}
-  function getNewSquare(inOffset) {
-    var hbsHeight = parseInt($('.hexapawn-board-square').css('height'));
-    var hbsWidth = parseInt($('.hexapawn-board-square').css('width'));
-    
-    return [Math.round(inOffset['top'] / hbsWidth), Math.round(inOffset['left'] / hbsHeight)];
-  }
-
   function possibleMoves() {
     possibleMovesJSON = {
-      'b3':{'move':[],'take':[]},
-      'b2':{'move':[],'take':[]},
-      'b1':{'move':[],'take':[]},
-      'w3':{'move':[],'take':[]},
-      'w2':{'move':[],'take':[]},
-      'w1':{'move':[],'take':[]}
-
+      'b3':{'move':[],'take':[],'all':[]},
+      'b2':{'move':[],'take':[],'all':[]},
+      'b1':{'move':[],'take':[],'all':[]},
+      'w3':{'move':[],'take':[],'all':[]},
+      'w2':{'move':[],'take':[],'all':[]},
+      'w1':{'move':[],'take':[],'all':[]}
     };
 
     boardStatus();
@@ -151,153 +242,107 @@
     if (boardJSON['a3'][0] == 'w') {
       winnerReport = 'white';
     } else if (boardJSON['a3'][0] == 'b') {
-      if (boardJSON['a2'][0] == 'e') {possibleMovesJSON[boardJSON['a3']]['move'].push('a2');}
-      if (boardJSON['b2'][0] == 'w') {possibleMovesJSON[boardJSON['a3']]['take'].push('b2');}
+      if (boardJSON['a2'][0] == 'e') {possibleMovesJSON[boardJSON['a3']]['move'].push('a2'); possibleMovesJSON[boardJSON['a3']]['all'].push('a2');}
+      if (boardJSON['b2'][0] == 'w') {possibleMovesJSON[boardJSON['a3']]['take'].push('b2'); possibleMovesJSON[boardJSON['a3']]['all'].push('b2');}
     }
 
     if (boardJSON['a2'][0] == 'w') {
-      if (boardJSON['a3'][0] == 'e') {possibleMovesJSON[boardJSON['a2']]['move'].push('a3');}
-      if (boardJSON['b3'][0] == 'b') {possibleMovesJSON[boardJSON['a2']]['take'].push('b3');}
+      if (boardJSON['a3'][0] == 'e') {possibleMovesJSON[boardJSON['a2']]['move'].push('a3'); possibleMovesJSON[boardJSON['a2']]['all'].push('a3');}
+      if (boardJSON['b3'][0] == 'b') {possibleMovesJSON[boardJSON['a2']]['take'].push('b3'); possibleMovesJSON[boardJSON['a2']]['all'].push('b3');}
     } else if (boardJSON['a2'][0] == 'b') {
-      if (boardJSON['a1'][0] == 'e') {possibleMovesJSON[boardJSON['a2']]['move'].push('a1');}
+      if (boardJSON['a1'][0] == 'e') {possibleMovesJSON[boardJSON['a2']]['move'].push('a1'); possibleMovesJSON[boardJSON['a2']]['all'].push('a1');}
       if (boardJSON['b1'][0] == 'w') {possibleMovesJSON[boardJSON['a2']]['take'].push('b1');}
     }
 
     if (boardJSON['a1'][0] == 'w') {
-      if (boardJSON['a2'][0] == 'e') {possibleMovesJSON[boardJSON['a1']]['move'].push('a2');}
-      if (boardJSON['b2'][0] == 'b') {possibleMovesJSON[boardJSON['a1']]['take'].push('b2');}
+      if (boardJSON['a2'][0] == 'e') {possibleMovesJSON[boardJSON['a1']]['move'].push('a2'); possibleMovesJSON[boardJSON['a1']]['all'].push('a2');}
+      if (boardJSON['b2'][0] == 'b') {possibleMovesJSON[boardJSON['a1']]['take'].push('b2'); possibleMovesJSON[boardJSON['a1']]['all'].push('b2');}
     } else if (boardJSON['a1'][0] == 'b') {
-      winnerReport = 'black';
+
     }
 
     ////
 
     if (boardJSON['b3'][0] == 'w') {
-      winnerReport = 'white';
+
     } else if (boardJSON['b3'][0] == 'b') {
-      if (boardJSON['a2'][0] == 'w') {possibleMovesJSON[boardJSON['b3']]['take'].push('a2');}
-      if (boardJSON['b2'][0] == 'e') {possibleMovesJSON[boardJSON['b3']]['move'].push('b2');}
-      if (boardJSON['c2'][0] == 'w') {possibleMovesJSON[boardJSON['b3']]['take'].push('c2');}
+      if (boardJSON['a2'][0] == 'w') {possibleMovesJSON[boardJSON['b3']]['take'].push('a2'); possibleMovesJSON[boardJSON['b3']]['all'].push('a2');}
+      if (boardJSON['b2'][0] == 'e') {possibleMovesJSON[boardJSON['b3']]['move'].push('b2'); possibleMovesJSON[boardJSON['b3']]['all'].push('b2');}
+      if (boardJSON['c2'][0] == 'w') {possibleMovesJSON[boardJSON['b3']]['take'].push('c2'); possibleMovesJSON[boardJSON['b3']]['all'].push('c2');}
     }
 
     if (boardJSON['b2'][0] == 'w') {
-      if (boardJSON['a3'][0] == 'b') {possibleMovesJSON[boardJSON['b2']]['take'].push('a3');}
-      if (boardJSON['b3'][0] == 'e') {possibleMovesJSON[boardJSON['b2']]['move'].push('b3');}
-      if (boardJSON['c3'][0] == 'b') {possibleMovesJSON[boardJSON['b2']]['take'].push('c3');}
+      if (boardJSON['a3'][0] == 'b') {possibleMovesJSON[boardJSON['b2']]['take'].push('a3'); possibleMovesJSON[boardJSON['b2']]['all'].push('a3');}
+      if (boardJSON['b3'][0] == 'e') {possibleMovesJSON[boardJSON['b2']]['move'].push('b3'); possibleMovesJSON[boardJSON['b2']]['all'].push('b3');}
+      if (boardJSON['c3'][0] == 'b') {possibleMovesJSON[boardJSON['b2']]['take'].push('c3'); possibleMovesJSON[boardJSON['b2']]['all'].push('c3');}
     } else if (boardJSON['b2'][0] == 'b') {
-      if (boardJSON['a1'][0] == 'w') {possibleMovesJSON[boardJSON['b2']]['take'].push('a1');}
-      if (boardJSON['b1'][0] == 'e') {possibleMovesJSON[boardJSON['b2']]['move'].push('b1');}
-      if (boardJSON['c1'][0] == 'w') {possibleMovesJSON[boardJSON['b2']]['take'].push('c1');}
+      if (boardJSON['a1'][0] == 'w') {possibleMovesJSON[boardJSON['b2']]['take'].push('a1'); possibleMovesJSON[boardJSON['b2']]['all'].push('a1');}
+      if (boardJSON['b1'][0] == 'e') {possibleMovesJSON[boardJSON['b2']]['move'].push('b1'); possibleMovesJSON[boardJSON['b2']]['all'].push('b1');}
+      if (boardJSON['c1'][0] == 'w') {possibleMovesJSON[boardJSON['b2']]['take'].push('c1'); possibleMovesJSON[boardJSON['b2']]['all'].push('c1');}
     }
 
     if (boardJSON['b1'][0] == 'w') {
-      if (boardJSON['a2'][0] == 'b') {possibleMovesJSON[boardJSON['b1']]['take'].push('a2');}
-      if (boardJSON['b2'][0] == 'e') {possibleMovesJSON[boardJSON['b1']]['move'].push('b2');}
-      if (boardJSON['c2'][0] == 'b') {possibleMovesJSON[boardJSON['b1']]['take'].push('c2');}
+      if (boardJSON['a2'][0] == 'b') {possibleMovesJSON[boardJSON['b1']]['take'].push('a2'); possibleMovesJSON[boardJSON['b1']]['all'].push('a2');}
+      if (boardJSON['b2'][0] == 'e') {possibleMovesJSON[boardJSON['b1']]['move'].push('b2'); possibleMovesJSON[boardJSON['b1']]['all'].push('b2');}
+      if (boardJSON['c2'][0] == 'b') {possibleMovesJSON[boardJSON['b1']]['take'].push('c2'); possibleMovesJSON[boardJSON['b1']]['all'].push('c2');}
     } else if (boardJSON['b1'][0] == 'b') {
-      winnerReport = 'black';
+
     }
 
     ////
 
     if (boardJSON['c3'][0] == 'w') {
-      winnerReport = 'white';
+
     } else if (boardJSON['c3'][0] == 'b') {
-      if (boardJSON['c2'][0] == 'e') {possibleMovesJSON[boardJSON['c3']]['move'].push('c2');}
-      if (boardJSON['b2'][0] == 'b') {possibleMovesJSON[boardJSON['c3']]['take'].push('b2');}
+      if (boardJSON['c2'][0] == 'e') {possibleMovesJSON[boardJSON['c3']]['move'].push('c2'); possibleMovesJSON[boardJSON['c3']]['all'].push('c2');}
+      if (boardJSON['b2'][0] == 'b') {possibleMovesJSON[boardJSON['c3']]['take'].push('b2'); possibleMovesJSON[boardJSON['c3']]['all'].push('b2');}
     }
 
     if (boardJSON['c2'][0] == 'w') {
-      if (boardJSON['c3'][0] == 'e') {possibleMovesJSON[boardJSON['c2']]['move'].push('c3');}
-      if (boardJSON['b3'][0] == 'b') {possibleMovesJSON[boardJSON['c2']]['take'].push('b3');}
+      if (boardJSON['c3'][0] == 'e') {possibleMovesJSON[boardJSON['c2']]['move'].push('c3'); possibleMovesJSON[boardJSON['c2']]['all'].push('c3');}
+      if (boardJSON['b3'][0] == 'b') {possibleMovesJSON[boardJSON['c2']]['take'].push('b3'); possibleMovesJSON[boardJSON['c2']]['all'].push('b3');}
     } else if (boardJSON['c2'][0] == 'b') {
-      if (boardJSON['c1'][0] == 'e') {possibleMovesJSON[boardJSON['c2']]['move'].push('c1');}
-      if (boardJSON['b1'][0] == 'w') {possibleMovesJSON[boardJSON['c2']]['take'].push('b1');}
+      if (boardJSON['c1'][0] == 'e') {possibleMovesJSON[boardJSON['c2']]['move'].push('c1'); possibleMovesJSON[boardJSON['c2']]['all'].push('c1');}
+      if (boardJSON['b1'][0] == 'w') {possibleMovesJSON[boardJSON['c2']]['take'].push('b1'); possibleMovesJSON[boardJSON['c2']]['all'].push('b1');}
     }
 
     if (boardJSON['c1'][0] == 'w') {
-      if (boardJSON['c2'][0] == 'e') {possibleMovesJSON[boardJSON['c1']]['move'].push('c2');}
-      if (boardJSON['b2'][0] == 'b') {possibleMovesJSON[boardJSON['c1']]['take'].push('b2');}
+      if (boardJSON['c2'][0] == 'e') {possibleMovesJSON[boardJSON['c1']]['move'].push('c2'); possibleMovesJSON[boardJSON['c1']]['all'].push('c2');}
+      if (boardJSON['b2'][0] == 'b') {possibleMovesJSON[boardJSON['c1']]['take'].push('b2'); possibleMovesJSON[boardJSON['c1']]['all'].push('b2');}
     } else if (boardJSON['c1'][0] == 'b') {
-      winnerReport = 'black';
+
     }
 
     return possibleMovesJSON;
   }
-
-
-  function tableMove(startCoordinate, verticalDirection, horizontalDirection) {
-    var let2num = {'nan':0,'a':1,'b':2,'c':3};
-    var num2let = {'0':'nan','1':'a','2':'b','3':'c','4':'nan'};
-    var c1 = startCoordinate.substr(0,1);
-    var c2 = startCoordinate.substr(1,1);
-    var o1 = num2let[(let2num[c1]+parseInt(horizontalDirection)).toString()];
-    var o2 = (parseInt(c2)+parseInt(verticalDirection)).toString();
-
-    if (o1=='nan'||o2=='nan'||o1=='0'||o2=='0'||o1==0||o2==0) {return '';} else {return o1+o2;}
-  }
-
-  function checkWinner() {
-    if (winnerReport == 'white') {
-
-    } else if (winnerReport == 'black') {
-
-    } else if (winnerReport == 'none') {
-
-    }
-  }
-
-  function acceptableMoves(currentSquareCOORD) {
-    var acceptableMovesArr = [];
-    var currentPiece = $('#hexapawn-board-square-'+currentSquareCOORD+' div');
-    var currentColor = $('#hexapawn-board-square-'+currentSquareCOORD+' div').data('pawncolor');
-    var potentialJSON = {
-      'white':[
-        {'direction':1,'offset':-1,'check':'black'},
-        {'direction':1,'offset':0,'check':'empty'},
-        {'direction':1,'offset':1,'check':'black'}
-      ],
-      'black':[
-        {'direction':-1,'offset':-1,'check':'white'},
-        {'direction':-1,'offset':0,'check':'empty'},
-        {'direction':-1,'offset':1,'check':'white'}
-      ]
-      
-    };
-
-    for (i in potentialJSON[currentColor]) {
-      var snShift = tableMove(currentSquareCOORD,potentialJSON[currentColor][i]['direction'],potentialJSON[currentColor][i]['offset']);
-      if ($('#hexapawn-board-square-'+snShift+' div').data('pawncolor') == potentialJSON[currentColor][i]['check']) {
-        acceptableMovesArr.push('#hexapawn-board-square-'+snShift);
-      }
-    }
-    if (acceptableMovesArr.length == 0) {
-      return '#hexapawn-board-square-'+currentSquareCOORD;
-    } else {
-      return acceptableMovesArr.join();
-    }
-    
-  }
-
+  
   function acceptabelMoves2(currentPawnSN, currentSquareCOORD, inMovesJSON) {
     var acceptableMovesArr = [];
-    console.log(acceptableMovesArr.length);
-
-    for (i in inMovesJSON[currentPawnSN]['move']) {
-      acceptableMovesArr.push('#hexapawn-board-square-'+inMovesJSON[currentPawnSN]['move'][i])
+    var acceptableMovesArrMove = [];
+    var acceptableMovesArrTake = [];
+    
+    var i;
+    if (inMovesJSON[currentPawnSN]['move'].length > 0) {
+      for (i in inMovesJSON[currentPawnSN]['move']) {
+        acceptableMovesArr.push('#hexapawn-board-square-'+inMovesJSON[currentPawnSN]['move'][i]);
+        acceptableMovesArrMove.push('#hexapawn-board-square-'+inMovesJSON[currentPawnSN]['move'][i]);
+      }  
     }
-    for (i in inMovesJSON[currentPawnSN]['take']) {
-      acceptableMovesArr.push('#hexapawn-board-square-'+inMovesJSON[currentPawnSN]['take'][i])
+    
+    if (inMovesJSON[currentPawnSN]['take'].length > 0) {
+      for (i in inMovesJSON[currentPawnSN]['take']) {
+        acceptableMovesArr.push('#hexapawn-board-square-'+inMovesJSON[currentPawnSN]['take'][i]);
+        acceptableMovesArrTake.push('#hexapawn-board-square-'+inMovesJSON[currentPawnSN]['take'][i]);
+      }
     }
+    
 
     if (acceptableMovesArr.length == 0) {
       return '#hexapawn-board-square-'+currentSquareCOORD;
     } else {
-      return acceptableMovesArr.join();
+      return {'string':acceptableMovesArr.join(),'move':acceptableMovesArrMove,'take':acceptableMovesArrTake};
     }
   }
-
-  
 
   function currentMap(inMapJSON) {
     $.each($('.hexapawn-board-square'), function(key,value) {
@@ -306,72 +351,314 @@
     return inMapJSON;
   }
 
-  function gridVisualizer(inCoordinatesJSON) {
-    var gva3 = inCoordinatesJSON['a3'];
-    var gvb3 = inCoordinatesJSON['b3'];
-    var gvc3 = inCoordinatesJSON['c3'];
-    var gva2 = inCoordinatesJSON['a2'];
-    var gvb2 = inCoordinatesJSON['b2'];
-    var gvc2 = inCoordinatesJSON['c2'];
-    var gva1 = inCoordinatesJSON['a1'];
-    var gvb1 = inCoordinatesJSON['b1'];
-    var gvc1 = inCoordinatesJSON['c1'];
-
-    var outVisualizer = '\n---------------\n|\t'+gva3+'\t|\t'+gvb3+'\t|\t'+gvc3+'\t|\n---------------\n|\t'+gva2+'\t|\t'+gvb2+'\t|\t'+gvc2+'\t|\n---------------\n|\t'+gva1+'\t|\t'+gvb1+'\t|\t'+gvc1+'\t|\n---------------';
-
-    return outVisualizer;
+  function checkBoardJSON(inCheckValue) {
+    if ((boardJSON['a3'] == inCheckValue) || (boardJSON['b3'] == inCheckValue) || (boardJSON['c3'] == inCheckValue) || (boardJSON['a2'] == inCheckValue) || (boardJSON['b2'] == inCheckValue) || (boardJSON['c2'] == inCheckValue) || (boardJSON['a1'] == inCheckValue) || (boardJSON['b1'] == inCheckValue) || (boardJSON['c1'] == inCheckValue)) {
+      return true;
+    } else {
+      return false;
+    }
   }
- 
-  var droppableSquares;
+
+  
+  function checkWinner(lastToMove) {
+    boardStatus();
+    possibleMoves();
+    var outWinner = 'none';
+    if ((boardJSON['a3'][0] == 'w') || (boardJSON['b3'][0] == 'w') || (boardJSON['c3'][0] == 'w')) {
+      outWinner = 'white';
+    } else if ((boardJSON['a1'][0] == 'b') || (boardJSON['b1'][0] == 'b') || (boardJSON['c1'][0] == 'b')) {
+      outWinner = 'black';
+    } else if (!checkBoardJSON('w1') && !checkBoardJSON('w2') && !checkBoardJSON('w3')) {
+      outWinner = 'black';
+    } else if (!checkBoardJSON('b1') && !checkBoardJSON('b2') && !checkBoardJSON('b3')) {
+      outWinner = 'white';
+    } else if ((lastToMove == 'black') && (possibleMovesJSON['w1']['all'].length == 0) && (possibleMovesJSON['w2']['all'].length == 0) && (possibleMovesJSON['w3']['all'].length == 0)) {
+      outWinner = 'black';
+    } else if ((lastToMove == 'white') && (possibleMovesJSON['b1']['all'].length == 0) && (possibleMovesJSON['b2']['all'].length == 0) && (possibleMovesJSON['b3']['all'].length == 0)) {
+      outWinner = 'white';
+    } else {
+      outWinner = 'none';
+    }
+
+    if (gameStatus == true) {
+      if (outWinner == 'white') {
+        gameStatus = false;
+        whiteWins += 1;
+        $('#white-win-count').empty();
+        $('#white-win-count').append(whiteWins);
+        $('#winner-table').append('<tr><td>'+gameNumber+'</td><td>White</td></tr>');
+      } else if (outWinner == 'black') {
+        gameStatus = false;
+        blackWins += 1;
+        $('#black-win-count').empty();
+        $('#black-win-count').append(blackWins);
+        $('#winner-table').append('<tr><td>'+gameNumber+'</td><td>Black</td></tr>');
+      }
+    } 
+
+    return outWinner;
+  }
+
+
+
+
+  
   var startSquareCOORD;
   var endSquareCOORD;
   var dragHTML;
+  var dragSN;
+
+  var sPawnSN;
+  var acceptableSquares;
+  var originalBackgroundColor = '';
+  var thisu1;
+  var selectedPawn = '';
+  var startSquareID;
+  var endSquareID;
+
+  var readabilityJSON = {};
+
+
+  function jsonStringifyArray(inJSONArray) {
+    var outArray = new Array(inJSONArray.length);
+    var i;
+    for (i in inJSONArray) {
+      outArray[i] = JSON.stringify(inJSONArray[i]);
+    }
+    return outArray;
+  }
+
+  function readCo(inBoardStatusKey) {
+    if (inBoardStatusKey in readabilityJSON) {
+      return readabilityJSON[inBoardStatusKey];
+    } else {
+      readabilityJSON[inBoardStatusKey] = (Object.keys(readabilityJSON).length + 1).toString();
+      return (Object.keys(readabilityJSON).length + 1).toString();
+    }
+  }
+
+
+
+  function coordinateMath(inCoordinate, xAdjust, yAdjust) {
+    var x0 = parseInt(let2num(inCoordinate[0]));
+    var y0 = parseInt(inCoordinate[1]);
+
+    var x1 = num2let((x0 + parseInt(xAdjust)).toString());
+    var y1 = (y0 + parseInt(yAdjust)).toString();
+
+    return (x1+y1);
+  }
+
+  function squarePieceSN(inSquareCoordinate) {
+    return $('#hexapawn-board-square-'+inSquareCoordinate).children().data('pawnsn');
+  }
+
+  function validSquare(inSquareCoordinate) {
+    var invalidSquares = ['x4','a4','b4','c4','d4','x3','d3','x2','d2','x1','d1','x0','a0','b0','c0','d0'];
+    if (invalidSquares.includes(inSquareCoordinate)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function movementGoverner(inStartSquare) {
+    var squarePiece = squarePieceSN(inStartSquare);
+    var outDests = [];
+    if (squarePiece[0] == 'b') {
+
+      if (validSquare(coordinateMath(inStartSquare, -1, -1))) {
+        if (squarePieceSN(coordinateMath(inStartSquare, -1, -1))[0] == 'w') {
+          outDests.push(coordinateMath(inStartSquare, -1, -1));
+        }
+      }
+
+      if (validSquare(coordinateMath(inStartSquare, 0, -1))) {
+        if (squarePieceSN(coordinateMath(inStartSquare, 0, -1))[0] == 'e') {
+          outDests.push(coordinateMath(inStartSquare, 0, -1));
+        }
+      }
+
+      if (validSquare(coordinateMath(inStartSquare, 1, -1))) {
+        if (squarePieceSN(coordinateMath(inStartSquare, 1, -1))[0] == 'w') {
+          outDests.push(coordinateMath(inStartSquare, 1, -1));
+        }
+      }
+      
+    } else if (squarePiece[0] == 'w') {
+
+      if (validSquare(coordinateMath(inStartSquare, -1, -1))) {
+        if (squarePieceSN(coordinateMath(inStartSquare, -1, -1))[0] == 'b') {
+          outDests.push(coordinateMath(inStartSquare, -1, -1));
+        }
+      }
+
+      if (validSquare(coordinateMath(inStartSquare, 0, -1))) {
+        if (squarePieceSN(coordinateMath(inStartSquare, 0, -1))[0] == 'e') {
+          outDests.push(coordinateMath(inStartSquare, 0, -1));
+        }
+      }
+
+      if (validSquare(coordinateMath(inStartSquare, 1, -1))) {
+        if (squarePieceSN(coordinateMath(inStartSquare, 1, -1))[0] == 'b') {
+          outDests.push(coordinateMath(inStartSquare, 1, -1));
+        }
+      }
+
+    }
+
+    return outDests;
+  }
+
+  var chosenMoves = [];
+  var eliminatedMovesJSON = {};
+  var finalMove;
+
+  class onTheFlyAI {
+    constructor(boardID){
+      this._currentID = boardID;
+    }
+    get currentID() {
+      return this._currentID;
+    }
+
+    set currentID(inCurrentID) {
+      this._currentID = inCurrentID;
+    }
+
+    otfMovement() {
+      boardStatus();
+      var determinedPotentialMoves = [];
+      var currentBoardString = JSON.stringify(boardJSON);
+      if (!(readCo(currentBoardString) in eliminatedMovesJSON)) {
+        eliminatedMovesJSON[readCo(currentBoardString)] = [];
+      }
+      for (const [key, value] of Object.entries(boardJSON)) {
+        if (value[0] == 'b') {
+          var mgArr = movementGoverner(key);
+          for (const i in mgArr) {
+            if (!(4[readCo(currentBoardString)].includes(([key, mgArr[i]]).toString()))) {
+              determinedPotentialMoves.push(([key, mgArr[i]]).toString());
+            } else {
+              console.log('Removed Move:', ([key, mgArr[i]]).toString());
+            }
+          }
+        }
+      }
+
+      var chosenMove = '';
+      do {
+        chosenMove = determinedPotentialMoves[Math.round((Math.random() * determinedPotentialMoves.length)-1)];
+      }
+      while ((chosenMove == undefined) && (determinedPotentialMoves.length > 0));
+      console.log('chosenMove:', chosenMove);
+
+      if (chosenMove != undefined) {
+        chosenMove = chosenMove.split(',');
+        boardMovement(chosenMove[0],chosenMove[1]);
+        finalMove = [currentBoardString, chosenMove.toString()];
+        chosenMoves.push([currentBoardString, chosenMove.toString()]);
+      }
+      
+    }
+
+    otfOutcome(lastToMove) {
+      var determinedWinner = checkWinner(lastToMove);
+      if (determinedWinner == 'white') {
+        setTimeout(function(){boardReset()},2500);
+        eliminatedMovesJSON[readCo(finalMove[0])].push(finalMove[1]);
+      } else if (determinedWinner == 'black') {
+        setTimeout(function(){boardReset()},2500);
+      }
+    }
+  }
+
+
   $(function() {
 
+    ReactDOM.render(pieceGenerate('b1'), $('#hexapawn-board-square-a3')[0]);
+    ReactDOM.render(pieceGenerate('b2'), $('#hexapawn-board-square-b3')[0]);
+    ReactDOM.render(pieceGenerate('b3'), $('#hexapawn-board-square-c3')[0]);
+    ReactDOM.render(pieceGenerate(), $('#hexapawn-board-square-a2')[0]);
+    ReactDOM.render(pieceGenerate(), $('#hexapawn-board-square-b2')[0]);
+    ReactDOM.render(pieceGenerate(), $('#hexapawn-board-square-c2')[0]);
+    ReactDOM.render(pieceGenerate('w1'), $('#hexapawn-board-square-a1')[0]);
+    ReactDOM.render(pieceGenerate('w2'), $('#hexapawn-board-square-b1')[0]);
+    ReactDOM.render(pieceGenerate('w3'), $('#hexapawn-board-square-c1')[0]);
 
-    $(document).on('mouseenter', '.hexapawn-pawn', function() {
-      mapJSON = currentMap(mapJSON);
-      // console.log($(this).parent().data('squarecoordinate'));
-      // console.log(gridVisualizer(mapJSON));
-      movesJSON = possibleMoves();
-      // droppableSquares = acceptableMoves($(this).parent().data('squarecoordinate'));
-      // console.log(droppableSquares);
-      // console.log(movesJSON);
 
-      var droppableSquares = acceptabelMoves2($(this).data('pawnsn'),$(this).parent().data('squarecoordinate'),movesJSON);
-      $('.hexapawn-pawn').draggable({
-        revert: 'invalid',
-        start: function(event, ui) {
-          startSquareCOORD = $(this).parent().data('squarecoordinate');
-          dragHTML = $(this)[0];
-          // console.log(droppableSquares);
+    //// Computer Interaction & AI
+
+    var otfAI = new onTheFlyAI('#hexapawn-board');
+
+    $(document).on('moveChange', function() {
+
+      
+      setTimeout(function(){
+        if (gameStatus == true) {
+          otfAI.otfMovement();
         }
-      });
-      console.log(droppableSquares);
-      $(droppableSquares).droppable({
-        accept: '.hexapawn-pawn',
-        drop: function(event, ui) {
-          console.log(droppableSquares);
-          
-          endSquareCOORD = $('#'+$(this).attr('id')).data('squarecoordinate');
-          // console.log(droppableSquares, endSquareCOORD);
-          
-          // $('#hexapawn-board-square-'+startSquareCOORD).empty();
-          // $('#hexapawn-board-square-'+startSquareCOORD).append(emptyHTML);
-          $('#hexapawn-board-square-'+startSquareCOORD+' div').replaceWith(emptyHTML);
-          $('#hexapawn-board-square-'+startSquareCOORD+' div').css({'top':'-1px', 'left':'-1px'});
+        setTimeout(function(){otfAI.otfOutcome('black')},moveDelay+50);
+      },moveDelay+50);
+      
+      
 
-          // $('#hexapawn-board-square-'+endSquareCOORD).empty();
-          // $('#hexapawn-board-square-'+endSquareCOORD).append(dragHTML);
-          $('#hexapawn-board-square-'+endSquareCOORD+' div').replaceWith(dragHTML);
-          $('#hexapawn-board-square-'+endSquareCOORD+' div').css({'top':'-1px', 'left':'-1px'});        
-        }
-      }).droppable("destroy");
     });
 
 
+    //// Player Interaction
+
+    $(document).on('mousedown', '.hexapawn-pawn-white', function() {
+      $('.hexapawn-pawn-white').selectable({
+        start: function(event, ui) {
+          thisu1 = $(this);
+          if (selectedPawn != '') {
+            if (thisu1 != selectedPawn) {
+              $(thisu1).css("background-color", 'white');
+            }
+          }
+          selectedPawn = thisu1;
+          $(thisu1).css("background-color", "gray");
+          sPawnSN = $(thisu1).data('pawnsn');
+          startSquareCOORD = $(thisu1).parent().data('squarecoordinate');
+          startSquareID = '#'+$(thisu1).parent().attr('id');
+          movesJSON = possibleMoves();
+          acceptableSquares = acceptabelMoves2(sPawnSN, startSquareCOORD, movesJSON);
+        },
+        stop: function(event, ui) {
+          
+
+          $('.hexapawn-board-square').selectable({
+            start: function(event, ui) {
+              endSquareCOORD = $(this).data('squarecoordinate');
+              endSquareID = '#'+$(this).attr('id');
+              
+            },
+            stop: function(event, ui) {
+
+              if (acceptableSquares['string'].includes(endSquareID)) {
+                $(thisu1).css("background-color", 'white');
+
+                boardMovement(startSquareCOORD,endSquareCOORD);
+                setTimeout(function(){otfAI.otfOutcome('white')},moveDelay+50);
+
+                if (acceptableSquares['move'].indexOf(endSquareID) > -1) {
+                } else if (acceptableSquares['take'].indexOf(endSquareID) > -1) {
+                }
+                movesJSON = possibleMoves();
+                moveNumber += 1;
+                $(document).trigger('moveChange');
+
+                $('.hexapawn-board-square').selectable("destroy");
+              }
+
+            }
+          });
+          
+        }
+      });
+    });
 
   });
-
 
 </script>

@@ -38,7 +38,7 @@ project_list = [
   [ 'Character Counter', 'character_counters', '', '', 'WIP' ],
   [ 'DC Metro', 'dc_metros', '', '', 'WIP' ],
   [ 'Minesweeper', 'minesweepers', '', '', 'WIP' ],
-  [ 'Hexapawn', 'hexapawns', '', '', 'WIP' ],
+  [ 'Hexapawn', 'hexapawns', '', '', 'Done' ],
   [ 'Clock', 'clocks', '', '', 'WIP' ],
   [ 'Timer', 'timers', '', '', 'WIP' ],
   [ 'Paint', 'paints', '', '', 'WIP' ],

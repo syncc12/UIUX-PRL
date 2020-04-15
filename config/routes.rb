@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   namespace :scratch do
     resources :hexapawns, only: [:index]
   end
+  namespace :practice do
+    resources :ml_practices, only: [:index]
+    resources :react_practices, only: [:index]
+  end
   resources :ideas, only: [:index, :create]
   resources :calculators, only: [:index]
   resources :rps, only: [:index]
@@ -22,7 +26,7 @@ Rails.application.routes.draw do
   resources :timers, only: [:index]
   resources :paints, only: [:index]
   resources :korean_syllable_games, only: [:index]
-  resources :react_practices, only: [:index]
   resources :cyphers, only: [:index]
   resources :tic_tac_toes, only: [:index]
+  resources :game2048s, only: [:index]
 end

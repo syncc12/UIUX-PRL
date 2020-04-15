@@ -2,7 +2,7 @@
   <div class="col-10 offset-1">
     <div class="space-break"></div>
     <div class="page-title">Cypher</div>
-  <div class="wip-watermark">Work In Progress</div>
+  <!-- <div class="wip-watermark">Work In Progress</div> -->
   </div>
 </div>
 
@@ -10,6 +10,50 @@
   <div class="row">
     <div class="col-10 offset-1">
       
+      <div id="cypher-div"></div>
+
     </div>
   </div>
 </div>
+
+<script type="text/babel">
+  
+  var allLettersLower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+  var allLettersUpper = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  var allNumbers = ['0','1','2','3','4','5','6','7','8','9'];
+  var allSymbols = ['!','@','#','$','%','^','&','*','(',')','-','=','_','+','`','~',',','.','/','?','>','<','[',']','\\','|','{','}',';',':','"',"'"];
+
+  var characterJSON = {
+    '0':allLettersLower,
+    '1':allLettersUpper,
+    '2':allNumbers,
+    '3':allSymbols
+  };
+  
+  function encryptionKey(keyLength) {
+    var i;
+    var outKey = '';
+    var chosenType;
+    var chosenCharacter;
+    for (i=0; i<keyLength; i++) {
+      chosenType = characterJSON[(Math.ceil(Math.random() * 4)-1).toString()];
+      chosenCharacter = chosenType[Math.ceil((Math.random() * chosenType.length)-1)];
+      
+      outKey += chosenCharacter;
+    }
+    return outKey;
+  }
+  
+  var encryptionKeyDiv = function(inEncryptionKey) {
+    
+    
+    return (
+      <div>{inEncryptionKey}</div>
+    )
+  }
+
+  console.log('encryptionKey',encryptionKey(5));
+  
+  ReactDOM.render(encryptionKeyDiv(encryptionKey(5)), $('#cypher-div')[0]);
+
+</script>

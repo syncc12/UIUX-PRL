@@ -1,0 +1,2 @@
+module Practice::ReactPracticesHelper
+end

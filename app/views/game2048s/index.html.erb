@@ -1,0 +1,556 @@
+<div class="row">
+  <div class="col-10 offset-1">
+    <div class="space-break"></div>
+    <div class="page-title">2048</div>
+  <!-- <div class="wip-watermark">Work In Progress</div> -->
+  </div>
+</div>
+
+<div id="page-yield" data-pagename="_2048" data-pagestatus="wip">
+  <div class="row">
+    <div class="col-10 offset-1">
+      
+      <br>
+      <div id="_2048-main-div"></div>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/babel">
+
+  var statusJSON = {
+    'coordinates':{
+      'a1':'0',
+      'a2':'0',
+      'a3':'0',
+      'a4':'0',
+      'b1':'0',
+      'b2':'0',
+      'b3':'0',
+      'b4':'0',
+      'c1':'0',
+      'c2':'0',
+      'c3':'0',
+      'c4':'0',
+      'd1':'0',
+      'd2':'0',
+      'd3':'0',
+      'd4':'0'
+    },
+    'blanks':{
+      'non-blank':[],
+      'blank':[]
+    }
+  };
+
+  var boardJSON = {
+    'coordinates':{
+      'a1':'0',
+      'a2':'0',
+      'a3':'0',
+      'a4':'0',
+      'b1':'0',
+      'b2':'0',
+      'b3':'0',
+      'b4':'0',
+      'c1':'0',
+      'c2':'0',
+      'c3':'0',
+      'c4':'0',
+      'd1':'0',
+      'd2':'0',
+      'd3':'0',
+      'd4':'0'
+    },
+    'blanks':{
+      'non-blank':[],
+      'blank':[]
+    }
+  };
+
+  var wasdJSON = {
+    'w':'ArrowUp',
+    'a':'ArrowLeft',
+    's':'ArrowDown',
+    'd':'ArrowRight',
+    'W':'ArrowUp',
+    'A':'ArrowLeft',
+    'S':'ArrowDown',
+    'D':'ArrowRight',
+    'ArrowUp':'ArrowUp',
+    'ArrowLeft':'ArrowLeft',
+    'ArrowDown':'ArrowDown',
+    'ArrowRight':'ArrowRight'
+  };
+
+  var numbersArr = [2,4];
+
+
+  class T48 extends React.Component {
+    constructor(pieces) {
+      super(pieces);
+      this.selfBoard = boardJSON;
+      this.selfStatus = statusJSON;
+      this.selfNumbers = [2,4];
+      this.state = {
+        'status': statusJSON,
+        'board': boardJSON,
+        'numbers': [2,4]
+      };
+    }
+    currentStatus() {
+      this.selfStatus['blanks']['blank'] = [];
+      this.selfStatus['blanks']['non-blank'] = [];
+      var this1 = this;
+      $('._2048-cell p').each(function(index, element) {
+        var thisCoord = $(this).data('coord');
+        var thisPiece = $(this).data('piece');
+        this1.selfStatus['coordinates'][thisCoord] = thisPiece;
+        if (parseInt(thisPiece) == 0) {
+          this1.selfStatus['blanks']['blank'].push(thisCoord);
+        } else {
+          this1.selfStatus['blanks']['non-blank'].push(thisCoord);
+        }
+        if (!(numbersArr.includes(thisPiece))&&(parseInt(thisPiece)!=0)) {
+          numbersArr.push(thisPiece);
+        }
+      });
+      this.selfStatus['blanks']['blank'].sort();
+      this.selfStatus['blanks']['non-blank'].sort();
+
+    }
+
+    currentBoard() {
+      var bBoard = [];
+      var nbBoard = [];
+      
+      var this1 = this;
+      $('._2048-cell p').each(function(index, element) {
+        var thisCoord = $(this).data('coord');
+        var thisPiece = $(this).data('piece');
+        // console.log('thisCoord,thisPiece',thisCoord,thisPiece);
+        this1.selfBoard['coordinates'][thisCoord] = thisPiece;
+        if (parseInt(thisPiece) == 0) {
+          bBoard.push(thisCoord);
+        } else {
+          nbBoard.push(thisCoord);
+        }
+        if (!(numbersArr.includes(thisPiece))&&(parseInt(thisPiece)!=0)) {
+          numbersArr.push(thisPiece);
+        }
+      });
+      bBoard.sort();
+      nbBoard.sort();
+      this.selfBoard['blanks']['blank'] = bBoard;
+      this.selfBoard['blanks']['non-blank'] = nbBoard;
+      
+      console.log('selfBoard - currentBoard',this.selfBoard);
+    }
+
+    arrayRemoveValue(inArray, inValue) {
+      var outArray;
+      if (inArray.includes(inValue)) {
+        outArray = inArray.filter(function(value, index, arr) {
+          return value != inValue;
+        });
+      } else {
+        outArray = inArray;
+      }
+      return outArray;
+    }
+
+    blankSwitch(inCoordinates) {
+      var this1=this;
+      var inCoordinate, i;
+      for (i=0;i<inCoordinates.length;i++) {
+        inCoordinate = inCoordinates[i];
+        if (this.selfBoard['blanks']['blank'].includes(inCoordinate.toString())) {
+          this.selfBoard['blanks']['blank'] = this.arrayRemoveValue(this.selfBoard['blanks']['blank'],inCoordinate.toString());
+          this.selfBoard['blanks']['non-blank'].push(inCoordinate.toString());
+        } else if (this.selfBoard['blanks']['non-blank'].includes(inCoordinate.toString())) {
+          this.selfBoard['blanks']['non-blank'] = this.arrayRemoveValue(this.selfBoard['blanks']['non-blank'],inCoordinate.toString());
+          this.selfBoard['blanks']['blank'].push(inCoordinate.toString());
+        }
+      }
+      this.selfBoard['blanks']['blank'].sort();
+      this.selfBoard['blanks']['non-blank'].sort();
+    }
+
+    randomPieceGenerate(pieceNumbers) {
+      // this.currentBoard();
+      var randomCell,outPieceNumber,i;
+      for (i in pieceNumbers) {
+        randomCell = this.selfBoard['blanks']['blank'][Math.floor(Math.random() * this.selfBoard['blanks']['blank'].length)];
+        if (pieceNumbers[i] != 0) {
+          outPieceNumber = pieceNumbers[i];
+        } else {
+          outPieceNumber = this.selfNumbers[Math.floor(Math.random() * this.selfNumbers.length)];
+        }
+        this.selfBoard['coordinates'][randomCell] = outPieceNumber;
+        this.selfBoard['blanks']['blank'] = this.arrayRemoveValue(this.selfBoard['blanks']['blank'],randomCell);
+        this.selfBoard['blanks']['non-blank'].push(randomCell);
+        this.selfBoard['blanks']['blank'].sort();
+        this.selfBoard['blanks']['non-blank'].sort();
+      }
+      
+      this.setState({
+        board: this.selfBoard,
+        status: this.selfStatus
+      });
+      // console.log('stateBoard',this.state.board);
+    }
+
+    validSquare(inCoordinate) {
+      var c = inCoordinate[0];
+      var r = inCoordinate[1];
+    }
+
+    pieceMerge(direction) {
+      function dtn(self,inCoordinate, inDirection) {
+        var sideCoordinate;
+        if (direction == 'ArrowUp') {
+          if (parseInt(inCoordinate[1])>1) {
+            sideCoordinate = coordinateMath(inCoordinate,0,-1);
+          } else {
+            sideCoordinate = 0;
+          }
+          console.log('inCoordinate,sideCoordinate',inCoordinate,sideCoordinate);
+        } else if (direction == 'ArrowDown') {
+          if (parseInt(inCoordinate[1])<4) {
+            sideCoordinate = coordinateMath(inCoordinate,0,1);
+          } else {
+            sideCoordinate = 0;
+          }
+          console.log('inCoordinate,sideCoordinate',inCoordinate,sideCoordinate);
+        } else if (direction == 'ArrowLeft') {
+          if (parseInt(let2num(inCoordinate[0]))>1) {
+            sideCoordinate = coordinateMath(inCoordinate,-1,0);
+          } else {
+            sideCoordinate = 0;
+          }
+          console.log('inCoordinate,sideCoordinate',inCoordinate,sideCoordinate);
+        } else if (direction == 'ArrowRight') {
+          if (parseInt(let2num(inCoordinate[0]))<4) {
+            sideCoordinate = coordinateMath(inCoordinate,1,0);
+          } else {
+            sideCoordinate = 0;
+          }
+          console.log('inCoordinate,sideCoordinate',inCoordinate,sideCoordinate);
+        }
+
+        if (sideCoordinate != 0 ) {
+          return [sideCoordinate,self.selfBoard['coordinates'][sideCoordinate]];
+        } else {
+          return [sideCoordinate,0];
+        }
+      }
+      
+      var val1,val2,i,checkPiece, newNumber;
+      for (i in this.selfBoard['coordinates']) {
+        val1 = this.selfBoard['coordinates'][i];
+        console.log({'pieceMerge':{'i':i,'val1':val1}});
+        if (val1 != 0) {
+          checkPiece = dtn(this,i,direction);
+          console.log('checkPiece',checkPiece);
+          val2 = checkPiece[1]
+          if (val2 != 0) {
+            if (val1 == val2) {
+              newNumber = (parseInt(val1) + parseInt(val2));
+              console.log('newNumber',newNumber);
+              if (!(this.selfNumbers.includes(newNumber))) {
+                this.selfNumbers.push(newNumber);
+              }
+              this.selfBoard['coordinates'][i] = 0;
+              this.selfBoard['coordinates'][checkPiece[0]] = newNumber;
+              this.blankSwitch(i);
+            }
+          }
+          
+        }
+      }
+      console.log('selfBoard - pieceMerge',this.selfBoard);
+    }
+
+    initialSetup() {
+      this.randomPieceGenerate([2,2,0]);
+    }
+
+    cellShift(shiftDirection) {
+      // this.currentBoard();
+      var i, iThis, ii, nb, iThisInt, nbcrJSON, nThis, nThisInt;
+      nb = this.selfBoard['blanks']['non-blank'];
+      nbcrJSON = {
+        'col':{
+          'up':{
+            'a':1,'b':1,'c':1,'d':1
+          },'down':{
+            'a':4,'b':4,'c':4,'d':4
+          }
+        },'row':{
+          'left':{
+            '1':1,'2':1,'3':1,'4':1
+          },'right':{
+            '1':4,'2':4,'3':4,'4':4
+          }
+        }
+      };
+      
+    
+      console.log('nb',nb, this.selfBoard);
+      var this1 = this;
+      var newCoordinate;
+      var cellShifts = [];
+      for (i=0;i<nb.length;i++) {
+        iThis = nb[i];
+        nThis = nb[(nb.length - 1) - i];
+        iThisInt = this1.selfBoard['coordinates'][iThis];
+        nThisInt = this1.selfBoard['coordinates'][nThis];
+        if (shiftDirection == 'ArrowUp') {
+          newCoordinate = coordinateChange(iThis,'',nbcrJSON['col']['up'][iThis[0]]);
+          nbcrJSON['col']['up'][iThis[0]] += 1;
+          this1.selfBoard['coordinates'][iThis] = 0;
+          cellShifts.push(iThis);
+          this1.selfBoard['coordinates'][newCoordinate] = iThisInt;
+        } else if (shiftDirection == 'ArrowDown') {
+          newCoordinate = coordinateChange(nThis,'',nbcrJSON['col']['down'][nThis[0]]);
+          nbcrJSON['col']['down'][nThis[0]] += -1;
+          this1.selfBoard['coordinates'][nThis] = 0;
+          cellShifts.push(nThis);
+          this1.selfBoard['coordinates'][newCoordinate] = nThisInt;
+        } else if (shiftDirection == 'ArrowLeft') {
+          newCoordinate = coordinateChange(iThis,num2let(nbcrJSON['row']['left'][iThis[1]]),'')
+          nbcrJSON['row']['left'][iThis[1]] += 1;
+          this1.selfBoard['coordinates'][iThis] = 0;
+          cellShifts.push(iThis);
+          this1.selfBoard['coordinates'][newCoordinate] = iThisInt;
+        } else if (shiftDirection == 'ArrowRight') {
+          newCoordinate = coordinateChange(nThis,num2let(nbcrJSON['row']['right'][nThis[1]]),'')
+          nbcrJSON['row']['right'][nThis[1]] += -1;
+          this1.selfBoard['coordinates'][nThis] = 0;
+          cellShifts.push(nThis);
+          this1.selfBoard['coordinates'][newCoordinate] = nThisInt;
+        }
+        cellShifts.push(newCoordinate);
+      }
+      this.blankSwitch(cellShifts);
+      
+      this.pieceMerge(shiftDirection);
+
+      this.randomPieceGenerate([0]);
+      
+      this.setState({
+        board: this.selfBoard,
+        status: this.selfStatus,
+        numbers: this.selfNumbers
+      });
+    }
+
+    componentDidMount() {
+      
+      this.currentBoard();
+      this.initialSetup();
+      
+      var this1 = this;
+      var shiftDirection;
+      $(document).on('keydown', function(event) {
+        if (this1.selfBoard['blanks']['blank'].length != 0) {
+          shiftDirection = wasdJSON[event['key']];
+          console.log('shiftDirection',shiftDirection);
+          this1.cellShift(shiftDirection);
+        } else {
+          this1.gameRestart();
+        }
+        
+      });
+    }
+
+    gameRestart() {
+      this.selfBoard = {
+        'coordinates':{'a1':'0','a2':'0','a3':'0','a4':'0','b1':'0','b2':'0','b3':'0','b4':'0','c1':'0','c2':'0','c3':'0','c4':'0','d1':'0','d2':'0','d3':'0','d4':'0'},
+        'blanks':{'non-blank':[],'blank':['a1','a2','a3','a4','b1','b2','b3','b4','c1','c2','c3','c4','d1','d2','d3','d4']}
+      };
+      this.selfStatus = {
+        'coordinates':{'a1':'0','a2':'0','a3':'0','a4':'0','b1':'0','b2':'0','b3':'0','b4':'0','c1':'0','c2':'0','c3':'0','c4':'0','d1':'0','d2':'0','d3':'0','d4':'0'},
+        'blanks':{'non-blank':[],'blank':['a1','a2','a3','a4','b1','b2','b3','b4','c1','c2','c3','c4','d1','d2','d3','d4']}
+      };
+      this.selfNumbers = [2,4];
+
+      this.initialSetup();
+
+      this.setState({
+        board: this.selfBoard,
+        status: this.selfStatus,
+        numbers: this.selfNumbers
+      });
+    }
+
+    // componentWillUpdate() {
+    //   this.setState({
+    //     board: boardJSON,
+    //     status: statusJSON
+    //   });
+    // }
+
+    boardDraw() {
+      var rowsArr = ['1','2','3','4'];
+      var colsArr = ['a','b','c','d'];
+      var boardArr = [];
+      var trArr = [];
+      var tdArr;
+      var j,i;
+      var boardRow = function(rowNumber, inBoardCells, inKey=0) {
+        return (<tr id={"_2048-row-tr-"+rowNumber} className="_2048-row" key={inKey}>{inBoardCells}</tr>);
+      }
+      var boardCell = function(colLetter,rowNumber,inPieceData, inKey=0) {
+        var inCoordinate = colLetter+(rowNumber).toString();
+        return (
+          <td id={"_2048-cell-"+inCoordinate} className={"_2048-cell _2048-col-"+colLetter+" _2048-row-"+rowNumber} key={inKey} data-coord={inCoordinate}>{inPieceData}</td>
+        );
+      }
+
+      var pieceDraw = function(inCoordinate, inNumber, inKey=0) {
+        return (
+          <div className={"_2048-piece _2048-piece-"+inNumber} key={inKey} data-coord={inCoordinate} data-piece={inNumber}>
+            <p className="_2048-piece-number" data-coord={inCoordinate} key={inKey} data-piece={inNumber}>{inNumber}</p>
+          </div>
+        );
+      }
+
+      var emptyPieceDraw = function(inCoordinate, inKey=0) {
+        return (
+          <div className="_2048-piece _2048-piece-0" key={inKey} data-coord={inCoordinate} data-piece="0">
+            <p className="_2048-empty-piece" key={inKey} data-coord={inCoordinate} data-piece="0">&nbsp;</p>
+          </div>
+          );
+      }
+
+      
+      for (i in rowsArr) {
+        tdArr = [];
+        for (j in colsArr) {
+          if (this.selfBoard['coordinates'][colsArr[j]+rowsArr[i]] != 0) {
+            tdArr.push(boardCell(colsArr[j],rowsArr[i],pieceDraw(colsArr[j]+rowsArr[i],this.selfBoard['coordinates'][colsArr[j]+rowsArr[i]],j),j));
+          } else {
+            tdArr.push(boardCell(colsArr[j],rowsArr[i],emptyPieceDraw(colsArr[j]+rowsArr[i],j),j));
+          }
+          
+        }
+        boardArr.push(boardRow(rowsArr[i],tdArr,i));
+      }
+      
+      return (
+        <table id="_2048-table">
+          <tbody>
+            {boardArr}
+          </tbody>
+        </table>
+      );
+      
+    }
+
+
+    render() {
+      return (
+        <div>
+          {this.boardDraw()}
+        </div>
+      );
+    }
+
+  }
+
+  function coordinateChange(inCoordinate,newColumn='',newRow='') {
+    var inCol = inCoordinate[0].toString();
+    var inRow = inCoordinate[1].toString();
+    var outCol,outRow;
+
+    if (parseInt(let2num(newColumn)) > 4) {
+      newColumn = 'd';
+    } else if (parseInt(let2num(newColumn)) < 1) {
+      newColumn = 'a';
+    }
+
+    if (parseInt(newRow) > 4) {
+      newRow = '4';
+    } else if (parseInt(newRow) < 1) {
+      newRow = '1';
+    }
+
+    if (newColumn == '') {
+      outCol = inCol;
+    } else {
+      outCol = newColumn.toString();
+    }
+    if (newRow == '') {
+      outRow = inRow;
+    } else {
+      outRow = newRow.toString();
+    }
+
+    return (outCol+outRow).toString();
+
+  }
+
+  function cellStatus(inCoordinate) {
+    return $('#_2048-cell-'+inCoordinate+' div p').data('piece').toString();
+  }
+
+  function let2num(inLetter) {
+    return parseInt({'a':1,'b':2,'c':3,'d':4}[inLetter]);
+  }
+  function num2let(inNumber) {
+   return {'1':'a','2':'b','3':'c','4':'d'}[inNumber.toString()];
+  }
+
+  function coordinateMath(inCoordinate,xAdjust,yAdjust) {
+    
+    var cx = let2num(inCoordinate[0]);
+    var cy = parseInt(inCoordinate[1]);
+
+    var ax = num2let(cx+xAdjust);
+    var ay = (cy + yAdjust).toString();
+    return ax+ay;
+  }
+  
+  $(function() {
+
+    // ReactDOM.render(_2048BoardDraw(), $('#_2048-main-div')[0]);
+    ReactDOM.render(
+      <T48 />,
+      $('#_2048-main-div')[0]
+    );
+    currentStatus();
+
+    // randomPieceGenerate(2);
+    // randomPieceGenerate(2);
+    // randomPieceGenerate();
+    
+
+    // var wasdJSON = {
+    //   'w':'ArrowUp',
+    //   'a':'ArrowLeft',
+    //   's':'ArrowDown',
+    //   'd':'ArrowRight',
+    //   'W':'ArrowUp',
+    //   'A':'ArrowLeft',
+    //   'S':'ArrowDown',
+    //   'D':'ArrowRight',
+    //   'ArrowUp':'ArrowUp',
+    //   'ArrowLeft':'ArrowLeft',
+    //   'ArrowDown':'ArrowDown',
+    //   'ArrowRight':'ArrowRight'
+    // }
+
+    // var shiftDirection;
+    // $(document).on('keydown', function(event) {
+    //   console.log(wasdJSON[event['key']]);
+    //   shiftDirection = wasdJSON[event['key']];
+    //   shiftPieces(shiftDirection);
+    // });
+
+
+
+  });
+  
+</script>

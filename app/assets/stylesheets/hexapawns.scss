@@ -26,6 +26,14 @@ $board-hw: $board-square-hw * 3;
 
 $pawn-hw: $board-square-hw - 5;
 .hexapawn-pawn {
+  position: relative;
+  height: $pawn-hw;
+  width: $pawn-hw;
+  border-radius: $pawn-hw;
+}
+
+.hexapawn-pawn-empty {
+  position: relative;
   height: $pawn-hw;
   width: $pawn-hw;
   border-radius: $pawn-hw;
@@ -39,4 +47,16 @@ $pawn-hw: $board-square-hw - 5;
 .hexapawn-pawn-white {
   background-color: white;
   border: 2px solid black;
+}
+
+#winner-table, #winner-table tr, #winner-table tr th, #winner-table tr td {
+  border: 1px solid black;
+}
+
+#winner-counter, #winner-counter tr, #winner-counter tr th, #winner-counter tr td {
+  border: 1px solid black;
+}
+
+.hexapawn-board-col-label {
+  text-align: center;
 }

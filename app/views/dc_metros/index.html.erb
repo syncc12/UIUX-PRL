@@ -10,17 +10,16 @@
   <div class="row">
     <div class="col-10 offset-1">
       
-      <div id="dc-metro-map">
+      <br>
+      
+      <div id="dc-metro-map"></div>
 
-      </div>
-
+      <ol id="dc-metro-list"></ol>
     </div>
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script>
+<script type="text/babel">
   
   $(function() {
     var params = {
@@ -28,22 +27,45 @@
       // Request parameters
     };
 
-    var stationCode = "A02";
+    var stationCode = "All";
 
     $.ajax({
       url: "https://api.wmata.com/StationPrediction.svc/json/GetPrediction/" + stationCode + "?" + $.param(params),
       dataType: 'JSONP',
-      type: "GET",
-      success: function(data) {
-        console.log("Success");
-        console.log(data);
-      }
+      type: "GET"
     }).done(function(data) {
-      console.log("Success");
+      console.log("Station Prediction: Success");
       console.log(data);
     });
-    
-    
-  });
 
+    
+    $.getJSON({
+      url: "/JSONs/metro.json"
+    }).done(function(data) {
+      var metroJSON = data;
+      console.log("Success");
+      console.log(metroJSON);
+    });
+
+    var lineCode = "";
+
+    $.ajax({
+      url: "https://api.wmata.com/Rail.svc/json/jStations?"+lineCode+$.param(params),
+      dataType: 'JSONP',
+      type: "GET"
+    }).done(function(data) {
+      console.log("Station List: Success");
+      console.log(data);
+    });
+
+    $.ajax({
+      url: "https://api.wmata.com/TrainPositions/TrainPositions?contentType={contentType}&"+$.param(params),
+      dataType: 'JSONP',
+      type: "GET"
+    }).done(function(data) {
+      console.log("Train Positions: Success");
+      console.log(data);
+    });
+
+  });
 </script>

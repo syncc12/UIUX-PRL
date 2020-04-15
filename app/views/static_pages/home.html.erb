@@ -20,23 +20,7 @@
   <div class="col-8 offset-1">
     <div class="project-home-all">
       <div class="row no-gutters">
-        <% Project.all.each do |project| %>
-          <div class="col-2 offset-2">
-            <div class="row no-gutters">
-              <div class="col-12">
-                <a href="<%= project.route %>">
-                  <div id="project-home-<%= project.id %>" class="project-home" data-route="<%= project.route %>">
-                    <div id="project-home-ajax-<%= (project.name).gsub(' ', '-') %>" class="project-home-ajax">
-                      &nbsp;
-                      <!-- <canvas id="ajax-canvas-<%= project.id %>" class="ajax-canvas"></canvas> -->
-                    </div>
-                    <p><%= project.name %></p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        <% end %>
+       
       </div>
     </div>
   </div>
@@ -45,12 +29,31 @@
 <div id="ajax-hold">&nbsp;</div>
 <canvas id="canvas-hold"></canvas>
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <!-- /Users/patricklyden/Desktop/coding-environment/src/UIUX/node_modules/dom-to-image/spec/dom-to-image.spec.js -->
 <!-- /Users/patricklyden/Desktop/coding-environment/src/UIUX/node_modules/dom-to-image/src/dom-to-image.js -->
-<script> 
+<script type="text/babel"> 
+
+  var projectBox = function(projectName, projectID, projectRoute) {
+    var projectName2 = projectName.replace(/ /g, '-');
+    return(
+        <div className="col-2 offset-2">
+          <div className="row no-gutters">
+            <div className="col-12">
+              <a href={projectRoute}>
+                <div id={"project-home-"+projectID} className="project-home" data-route={projectRoute}>
+                  <div id={"project-home-ajax-"+projectName2} className="project-home-ajax">
+                    &nbsp;
+                   {/*<canvas id={"ajax-canvas-"+projectID} className="ajax-canvas"></canvas>*/}
+                  </div>
+                  <p>{projectName}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      );
+  }
 
   var windowWidth;
   var windowHeight;
@@ -68,18 +71,44 @@
 
   var percentResize = 0.2;
 
+
   $(function() {
 
     windowWidth = $(window).width();
     windowHeight= $(window).height();
 
-    projectDivWidth = windowWidth * percentResize;
-    projectDivHeight = windowHeight * percentResize;
+    
 
-    aspectRatio = projectDivWidth / windowHeight;
+    var projectsJSON;
 
-    $('.project-home').css('width', projectDivWidth);
-    $('.project-home').css('height', projectDivHeight);
+    $.getJSON({
+      url: "/JSONs/projects.json"
+    }).done(function(data) {
+      projectsJSON = data;
+      var i;
+      var cpJSON;
+      var renderArr = [];
+      for (i in projectsJSON['statuses']['done']) {
+        // console.log(i);
+        cpJSON = projectsJSON['statuses']['done'][i];
+        renderArr.push(projectBox(cpJSON['name'],cpJSON['id'],cpJSON['route']));
+      }
+      for (i in projectsJSON['statuses']['wip']) {
+        // console.log(i);
+        cpJSON = projectsJSON['statuses']['wip'][i];
+        renderArr.push(projectBox(cpJSON['name'],cpJSON['id'],cpJSON['route']));
+      }
+      ReactDOM.render(renderArr, $('.project-home-all div')[0]);
+      
+      projectDivWidth = windowWidth * percentResize;
+      projectDivHeight = windowHeight * percentResize;
+
+      aspectRatio = projectDivWidth / windowHeight;
+
+      $('.project-home').css('width', projectDivWidth);
+      $('.project-home').css('height', projectDivHeight);
+
+    });
 
     // $('.project-home').each(function(index, element) {
     //   projectRoute = '/'+$(this).data('route');

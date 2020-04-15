@@ -1,0 +1,2 @@
+module Practice::MlPracticesHelper
+end

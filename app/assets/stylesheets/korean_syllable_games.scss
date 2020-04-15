@@ -1,3 +1,40 @@
 // Place all the styles related to the korean_syllable_games controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$box-hw: 350px;
+$outer-box-h: $box-hw;
+$outer-box-w: $box-hw * 2;
+$box-border-width: 1px;
+$ksg-h: $outer-box-h + ($box-border-width * 2);
+$ksg-w: $outer-box-w + ($box-border-width * 4);
+#ksg-main-div {
+  padding: 0px;
+  margin: 0px;
+  height: $outer-box-h;
+  width: $outer-box-w;
+  border: $box-border-width solid black;
+}
+
+#syllable-table {
+  border-collapse: collapse;
+  padding: 0px;
+  margin: 0px;
+  height: $outer-box-h;
+  width: $outer-box-w;
+}
+
+#syllable-table tbody, #syllable-table tbody tr, #syllable-table tbody tr td {
+  padding: 0px;
+  margin: 0px;
+}
+
+.syllable-box {
+  padding: 0px;
+  margin: 0px;
+  height: $box-hw;
+  width: $box-hw;
+  border: 1px solid black;
+  font-size: 125px;
+  text-align: center;
+}

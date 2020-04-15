@@ -3,8 +3,15 @@
   <head>
     <title>UIUX</title>
     <script src="https://unpkg.com/@babel/standalone@7.2.5/babel.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.development.js"></script>
+    <script src="../../assets/javascripts/f.js"></script>
+
+<!--     UIUX/app/assets/javascripts/f.js
+    UIUX/app/views/layouts/application.html.erb -->
+    
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -27,82 +34,6 @@
         <% end %>
         <div class="collapse navbar-collapse" id="navbar-content">
 
-          <!-- <div class="nav-link-custom-div">
-            <%= link_to 'Home', root_path, class: 'nav-link-custom dropdown-item' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Ideas', ideas_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Calculator', calculators_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'RPS', rps_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Piano', pianos_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Thermometer', thermometers_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Checkers', checkers_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Chess', chesses_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Flip A Coin', flip_coins_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Two Up', two_ups_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Wheel', wheels_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Character Counter', character_counters_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'DC Metro', dc_metros_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Minesweeper', minesweepers_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Hexapawn', hexapawns_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Clock', clocks_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Timer', timers_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Paint', paints_path, class: 'nav-link-custom' %>
-          </div>
-          <div class="nav-divider"></div>
-          <div class="nav-link-custom-div">
-            <%= link_to 'Korean Syllable Game', korean_syllable_games_path, class: 'nav-link-custom' %>
-          </div> -->
-
           <div class="nav-link-custom-div">
             <%= link_to 'Home', root_path, class: 'nav-link-custom' %>
           </div>
@@ -112,58 +43,83 @@
           </div>
           <div class="nav-divider"></div>
 
-          
-
 
         </div>
 
           <div id="completed-projects-dropdown" class="dropdown-menu-custom">
             <button id="completed-projects-dropdown-button" class="dropdown-button-custom">Completed</button>
             <div id="completed-projects-dropdown-content" class="dropdown-content-custom">
-              <% Project.where(status: 'Done').each do |project| %>
-                <a href="<%= project.route %>" class="nav-link-custom"><%= project.name %></a>
-              <% end %>
+              
             </div>
           </div>
           <div class="nav-divider"></div>
           <div id="work-in-progress-projects-dropdown" class="dropdown-menu-custom">
             <button id="work-in-progress-projects-dropdown-button" class="dropdown-button-custom">Work In Progress</button>
             <div id="work-in-progress-projects-dropdown-content" class="dropdown-content-custom">
-              <% Project.where(status: 'WIP').each do |project| %>
-                <a href="<%= project.route %>" class="nav-link-custom"><%= project.name %></a>
-              <% end %>
+              
             </div>
           </div>
           <div class="nav-divider"></div>
           <div id="scratch-projects-dropdown" class="dropdown-menu-custom">
             <button id="scratch-projects-dropdown-button" class="dropdown-button-custom">Scratch</button>
             <div id="scratch-projects-dropdown-content" class="dropdown-content-custom">
-              <% Rails.application.eager_load! %>
-              <% ApplicationController.descendants.each do |descendant| %>
-                <% thisDescendant = descendant.to_s.gsub("Controller","").gsub(/([a-zA-Z])([A-Z])/,'\1'+"_"+'\2').gsub("/","_").downcase %>
-                <% if thisDescendant =~ /scratch::/ %>
-                <% descendantPath = thisDescendant.gsub("::","/") %>
-                  <a href="<%= descendantPath %>" class="nav-link-custom"><%= thisDescendant.gsub("scratch::","") %></a>
-                <% end %>
-              <% end %>
+              
             </div>
           </div>
 
       </nav>
-    
+    </div>
 
       <%= yield %>
   </body>
 </html>
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script>
+<script type="text/babel">
   
   $(function() {
+    
+    var doneArr = [];
+    var wipArr = [];
+    var scratchArr = [];
 
 
+    var linkHTML = function(projectName, projectRoute) {
+      return (
+        <a href={projectRoute} className="nav-link-custom">{projectName}</a>
+      );
+    }
+
+    $.getJSON({
+      url: "/JSONs/projects.json"
+    }).done(function(data) {
+      var projectsJSON = data;
+      
+      var i;
+      
+      for (i in projectsJSON['statuses']['done']) {
+        doneArr.push(linkHTML(projectsJSON['statuses']['done'][i]['name'],projectsJSON['statuses']['done'][i]['route']));
+      }
+
+      for (i in projectsJSON['statuses']['wip']) {
+        wipArr.push(linkHTML(projectsJSON['statuses']['wip'][i]['name'],projectsJSON['statuses']['wip'][i]['route']));
+      }
+
+      for (i in projectsJSON['statuses']['scratch']) {
+        scratchArr.push(linkHTML(projectsJSON['statuses']['scratch'][i]['name'],projectsJSON['statuses']['scratch'][i]['route']));
+      }
+      
+      ReactDOM.render(doneArr, $('#completed-projects-dropdown-content')[0]);
+      ReactDOM.render(wipArr, $('#work-in-progress-projects-dropdown-content')[0]);
+      ReactDOM.render(scratchArr, $('#scratch-projects-dropdown-content')[0]);
+    });
+
+    $(document).on('mouseover','.dropdown-button-custom', function() {
+
+      ReactDOM.render(doneArr, $('#completed-projects-dropdown-content')[0]);
+      ReactDOM.render(wipArr, $('#work-in-progress-projects-dropdown-content')[0]);
+      ReactDOM.render(scratchArr, $('#scratch-projects-dropdown-content')[0]);
+
+    });
   });
-
 </script>

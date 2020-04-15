@@ -1,0 +1,50 @@
+// Place all the styles related to the game2048s controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$cell-hw: 100px;
+$cell-spacing: 10px;
+$table-hw: (($cell-hw + $cell-spacing) * 4);
+
+#_2048-main-div {
+  height: $table-hw;
+  width: $table-hw;
+}
+
+#_2048-table, #_2048-table tbody {
+  border: 1px solid black;
+  border-collapse: separate;
+  border-spacing: $cell-spacing;
+  height: $table-hw;
+  width: $table-hw;
+}
+
+._2048-row {
+  height: $cell-hw;
+  width: $table-hw;
+}
+
+._2048-cell {
+  border: 1px solid black;
+  height: $cell-hw;
+  width: $cell-hw;
+  margin: 0px;
+  padding: 0px;
+}
+
+._2048-piece {
+  border: 1px solid black;
+  height: $cell-hw;
+  width: $cell-hw;
+  margin: 0px;
+  padding: 0px;
+}
+
+._2048-piece-number {
+  text-align: center;
+  font-size: 40px;
+  height: $cell-hw;
+  line-height: $cell-hw;
+  margin: 0px;
+  padding: 0px;
+}

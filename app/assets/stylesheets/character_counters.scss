@@ -1,3 +1,26 @@
 // Place all the styles related to the character_counters controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#character-counter-box {
+  height: 400px;
+  width: 800px;
+}
+
+#character-counter-div {
+  height: 400px;
+  width: 800px;
+}
+
+#character-count {
+  text-align: right;
+  height: 25px;
+  width: 800px;
+}
+
+#character-counter-input {
+  border: 1px solid black;
+  height: 375px;
+  width: 800px;
+  align: top;
+}

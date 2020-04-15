@@ -2,14 +2,57 @@
   <div class="col-10 offset-1">
     <div class="space-break"></div>
     <div class="page-title">Character Counter</div>
-  <div class="wip-watermark">Work In Progress</div>
+  <!-- <div class="wip-watermark">Work In Progress</div> -->
   </div>
 </div>
 
-<div id="page-yield" data-pagename="Character Counter" data-pagestatus="wip">
+<div id="page-yield" data-pagename="Character Counter" data-pagestatus="done">
   <div class="row">
     <div class="col-10 offset-1">
+
+      <div id="character-counter-box"></div>
       
     </div>
   </div>
 </div>
+
+<script type="text/babel">
+  
+  var characterCounterDraw = function() {
+    return (
+      <div id="character-counter-div">
+        <div id="character-count"></div>
+        <textarea id="character-counter-input"></textarea>
+      </div>
+      );
+  }
+
+  var characterCountDraw = function(inCount) {
+    return (
+      <p id="character-count-p">{inCount}</p>
+      );
+  }
+
+  function characterCount() {
+    var linesArr = $('#character-counter-input').val().split('\n');
+    var outCount = 0;
+    var i;
+    for (i in linesArr) {
+      outCount += linesArr[i].split('').length;
+    }
+    return outCount.toString();
+  }
+
+  $(function() {
+
+    ReactDOM.render(characterCounterDraw(), $('#character-counter-box')[0]);
+    ReactDOM.render(characterCountDraw(0), $('#character-count')[0]);
+
+    $(document).on('keyup','#character-counter-input', function() {
+      ReactDOM.unmountComponentAtNode($('#character-count')[0]);
+      ReactDOM.render(characterCountDraw(characterCount()), $('#character-count')[0]);
+
+    });
+  });
+  
+</script>

@@ -2,14 +2,429 @@
   <div class="col-10 offset-1">
     <div class="space-break"></div>
     <div class="page-title">Tic Tac Toe</div>
-  <div class="wip-watermark">Work In Progress</div>
+  <!-- <div class="wip-watermark">Work In Progress</div> -->
   </div>
 </div>
 
 <div id="page-yield" data-pagename="Tic Tac Toe" data-pagestatus="wip">
   <div class="row">
-    <div class="col-10 offset-1">
-      
+    <div class="col-2 offset-1">
+      <br>
+      <div id="ttt-win-record"></div>
+    </div>
+    <div class="col-8 offset-1">
+      <br>
+      <div id="ttt-div"></div>
+
     </div>
   </div>
 </div>
+
+<script type="text/babel">
+  
+
+  var turn = 'x';
+  var turnNumber = 1;
+  var currentTree;
+  var eliminatedMovesJSON = {};
+  var determinedWinner = 'n';
+  var chosenMove;
+  var worm = 0;
+
+  //---------------------------------------------------------------------------------------
+
+  function squareSN2ID(inSquareSN) {
+    return '#ttt-square-'+inSquareSN;
+  }
+  
+  var boardDraw = function() {
+    return(
+        <table id="ttt-board">
+          <tbody>
+            <tr id="ttt-top-row" className="ttt-board-row">
+              <td id="ttt-square-tl" className="ttt-square ttt-left-column" data-squaresn="tl"></td>
+              <td id="ttt-square-tm" className="ttt-square ttt-middle-column" data-squaresn="tm"></td>
+              <td id="ttt-square-tr" className="ttt-square ttt-right-column" data-squaresn="tr"></td>
+            </tr>
+            <tr id="ttt-middle-row" className="ttt-board-row">
+              <td id="ttt-square-ml" className="ttt-square ttt-left-column" data-squaresn="ml"></td>
+              <td id="ttt-square-mm" className="ttt-square ttt-middle-column" data-squaresn="mm"></td>
+              <td id="ttt-square-mr" className="ttt-square ttt-right-column" data-squaresn="mr"></td>
+            </tr>
+            <tr id="ttt-bottom-row" className="ttt-board-row">
+              <td id="ttt-square-bl" className="ttt-square ttt-left-column" data-squaresn="bl"></td>
+              <td id="ttt-square-bm" className="ttt-square ttt-middle-column" data-squaresn="bm"></td>
+              <td id="ttt-square-br" className="ttt-square ttt-right-column" data-squaresn="br"></td>
+            </tr>
+          </tbody>
+        </table>
+      );
+  }
+
+  var winRecordDraw = function() {
+    return (
+      <div id="win-record-tables-div">
+        <table id="win-record-counter">
+          <tbody>
+            <tr>
+              <th>Player</th><th>Wins</th>
+            </tr>
+            <tr>
+              <th id="win-record-counter-x-title">x</th><td id="win-record-counter-x-count">0</td>
+            </tr>
+            <tr>
+              <th id="win-record-counter-o-title">O</th><td id="win-record-counter-o-count">0</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <table id="win-record-table">
+          <tbody>
+            <tr>
+              <th>Game Number</th><th>Winner</th><th>Worm</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      );
+  }
+
+  function winRecordInsert(inWinner) {
+    var gameNumber = $('#win-record-table tr').length;
+    var wins = parseInt($('#win-record-counter-'+inWinner+'-count').text());
+    var recordRow = function(rGameNumber, rWinner,rWorm) {
+      var returnWinner;
+      if (rWinner == 'd') {returnWinner = 'Draw';} else {returnWinner = rWinner.toUpperCase();}
+      return ('<tr className="win-record-row"><td class="win-record-game-number">'+rGameNumber+'</td><td class="win-record-winner">'+returnWinner+'</td><td>'+rWorm+'</td></tr>');
+    }
+
+    if (inWinner != 'n') {
+      if (inWinner != 'd') {
+        $('#win-record-counter-'+inWinner+'-count').replaceWith('<td id="win-record-counter-'+inWinner+'-count">'+(wins+1).toString()+'</td>');
+      }
+      $('#win-record-table tbody').append(recordRow(gameNumber,inWinner,worm));
+    }
+    
+  }
+
+  function pieceGenerate(pieceType, inSquareSN) {
+
+    var drawOffset = 6;
+    var svgH = parseInt($('.ttt-square').css('height'));
+    var svgW = parseInt($('.ttt-square').css('width'));
+    var svgHW = ((svgH+svgW)/2);
+    
+    var xHTML = (
+      <div className="x-piece" data-piecesn="x">
+        <svg height={svgHW} width={svgHW}>
+          <line x1={drawOffset} y1={drawOffset} x2={(svgHW-drawOffset)} y2={(svgHW-drawOffset)} stroke="black"strokeWidth="2" />
+          <line x1={(svgHW-drawOffset)} y1={drawOffset} x2={drawOffset} y2={(svgHW-drawOffset)} stroke="black"strokeWidth="2" />
+        </svg>
+      </div>
+      );
+    var oHTML = (
+      <div className="o-piece" data-piecesn="o">
+        <svg height={svgHW} width={svgHW}>
+          <circle cx={(svgHW/2)} cy={(svgHW/2)} r={((svgHW-drawOffset)/2)}  stroke="black" strokeWidth="2" fill="white" />
+        </svg>
+      </div>
+      );
+
+    if (pieceType == 'x') {
+      ReactDOM.render(xHTML, $(squareSN2ID(inSquareSN))[0]);
+    } else if (pieceType == 'o') {
+      ReactDOM.render(oHTML, $(squareSN2ID(inSquareSN))[0]);
+    }
+  }
+
+
+  function validMove(destinationSquareSN) {
+    if ($(squareSN2ID(destinationSquareSN)+' div').length > 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function getCurrentTree() {
+    var outJSON;
+    var thisSN;
+    var thisValue;
+    var outArr = [];
+    $.each($('.ttt-square'), function(key,value) {
+      thisSN = $(value).data('squaresn');
+      thisValue = $('#'+$(value).attr('id')+' div').data('piecesn');
+      if (thisValue == undefined) {thisValue = 'n';}
+      outArr.push('"'+thisSN+'"'+':'+'"'+thisValue+'"') ;
+    });
+    outJSON = '{'+outArr.join(',')+'}';
+    return JSON.parse(outJSON);
+  }
+
+  function getPossibleMoves(inCurrentTree) {
+    var outPossibleMoves = [];
+    var i;
+    for (i in inCurrentTree) {
+      if (inCurrentTree[i] == 'n') {
+        if (Object.keys(eliminatedMovesJSON).length > 0) {
+            // if (eliminatedMovesJSON[JSON.stringify(inCurrentTree)] == undefined) {
+            //   eliminatedMovesJSON[JSON.stringify(inCurrentTree)] = [];
+            // } else 
+            if (eliminatedMovesJSON[JSON.stringify(inCurrentTree)] != undefined) {
+              // console.log({'i':i},{'eliminatedMovesJSON':eliminatedMovesJSON},{'theseEliminatedMoves':eliminatedMovesJSON[JSON.stringify(inCurrentTree)]},{'JSON.stringify(inCurrentTree)':JSON.stringify(inCurrentTree)});
+              // console.log('eliminatedMovesJSON[JSON.stringify(inCurrentTree)].includes(i)',eliminatedMovesJSON[JSON.stringify(inCurrentTree)].includes(i));
+              if (!(eliminatedMovesJSON[JSON.stringify(inCurrentTree)].includes(i))) {
+                
+                outPossibleMoves.push(i);
+              } else {
+                console.log('Removed Move',i);
+              }
+            }
+        } else {
+          outPossibleMoves.push(i);
+        }
+
+      }
+    }
+    // console.log('Possible Moves',outPossibleMoves);
+    return outPossibleMoves;
+  }
+
+  function aiMove(inCurrentTree) {
+    var possibleMoves = getPossibleMoves(inCurrentTree);
+    var randomMove;
+    
+    if (!(Object.keys(eliminatedMovesJSON).includes(JSON.stringify(inCurrentTree)))) {
+        eliminatedMovesJSON[JSON.stringify(inCurrentTree)] = [];
+      }
+    if (possibleMoves.length > 0) {
+      randomMove = Math.floor(Math.random() * (possibleMoves.length-1));
+      chosenMove = possibleMoves[randomMove];
+    } else {
+      turn = 'x';
+      boardReset();
+    }
+    
+  }
+
+  function aiFeedback(inResult, inFinalMove, inFinalTree) {
+    // console.log('inFinalMove',inFinalMove);
+    if (inFinalMove != undefined) {
+      if (inResult == 'x') {
+        if (JSON.stringify(inFinalTree) in Object.keys(eliminatedMovesJSON)) {
+          if (!(eliminatedMovesJSON[JSON.stringify(inFinalTree)].includes(inFinalMove.toString()))) {
+            eliminatedMovesJSON[JSON.stringify(inFinalTree)].push(inFinalMove.toString());
+            // console.log('Elimined Move:', JSON.stringify(inFinalTree), inFinalMove.toString());
+          }
+        } else {
+          eliminatedMovesJSON[JSON.stringify(inFinalTree)] = [inFinalMove];
+          // console.log('Elimined Move:', JSON.stringify(inFinalTree), inFinalMove.toString());
+        } 
+      }
+    }
+  }
+
+  
+  function aiTrainer(maxRuns) {
+    var runCount = 0;
+    var trainerMove;
+    var i;
+    var possibleMoves;
+    var simTree;
+    simTree = {
+      'tl':'n','tm':'n','tr':'n',
+      'ml':'n','mm':'n','mr':'n',
+      'bl':'n','bm':'n','br':'n',
+    };
+    var getSimTree = function(inChosenMove='', inPlayer='') {
+      if ((inChosenMove!='')&&(inPlayer!='')) {
+        simTree[inChosenMove.toString()] = inPlayer.toString();
+      }
+      return simTree;
+    }
+
+    var simReset = function() {
+      turn = 'x';
+      turnNumber = 1;
+      simTree = {
+        'tl':'n','tm':'n','tr':'n',
+        'ml':'n','mm':'n','mr':'n',
+        'bl':'n','bm':'n','br':'n',
+      };
+    }
+
+    var getSimMoves = function(inCurrentTree) {
+      var outPossibleMoves = [];
+      var i;
+
+      for (i in inCurrentTree) {
+        if (inCurrentTree[i] == 'n') {
+          outPossibleMoves.push(i);
+        }
+      }
+      return outPossibleMoves;
+    }
+
+
+    while (runCount < maxRuns) {
+      // console.log('Run:',runCount);
+      if (turn == 'x') {
+        currentTree = getSimTree();
+        possibleMoves = getSimMoves(currentTree);
+        trainerMove = possibleMoves[Math.floor(Math.random() * (possibleMoves.length-1))];
+        
+        if (validMove(trainerMove)) {
+          currentTree = getSimTree(trainerMove,'x');
+        }
+        turn = 'o';
+
+      } else if (turn == 'o') {
+        currentTree = getSimTree();
+        aiMove(currentTree);
+        currentTree = getSimTree(chosenMove,'o');
+
+        turn = 'x';
+        
+      }
+      currentTree = getSimTree();
+      determinedWinner = determineWinner(currentTree);
+
+      if (determinedWinner != 'n') {
+        aiFeedback(determinedWinner,chosenMove,currentTree);
+        // console.log('determinedWinner',determinedWinner);
+        winRecordInsert(determinedWinner);
+
+        
+
+        runCount += 1;
+        simReset();
+      } else {
+        turnNumber += 1;
+      }
+
+    }
+    
+    simReset();
+  }
+
+
+  function boardReset() {
+    setTimeout(function(){
+      $.each($('.ttt-square'),function(key,value) {
+        ReactDOM.unmountComponentAtNode($(value)[0]);
+      });
+    },1000);
+    turn = 'x';
+    turnNumber = 1;
+    
+  }
+
+  function determineWinner(inCurrentTree) {
+    var possibleWins = [
+        ['tl','tm','tr'],
+        ['ml','mm','mr'],
+        ['bl','bm','br'],
+        ['tl','ml','bl'],
+        ['tm','mm','bm'],
+        ['tr','mr','br'],
+        ['tl','mm','br'],
+        ['tr','mm','bl']
+      ];
+    var i;
+    
+    for (i in possibleWins) {
+      if ((inCurrentTree[possibleWins[i][0]]=='x') && (inCurrentTree[possibleWins[i][1]]=='x') && (inCurrentTree[possibleWins[i][2]]=='x')) {
+        // console.log('currentTree',inCurrentTree);
+        // console.log('determinedWinner: x',possibleWins[i]);
+        boardReset();
+        worm += 1;
+        return 'x';
+      } else if ((inCurrentTree[possibleWins[i][0]]=='o') && (inCurrentTree[possibleWins[i][1]]=='o') && (inCurrentTree[possibleWins[i][2]]=='o')) {
+        // console.log('currentTree',inCurrentTree);
+        // console.log('determinedWinner: o',possibleWins[i]);
+        boardReset();
+        worm += -1;
+        return 'o';
+      }
+    }
+    if ((inCurrentTree['tl']!='n') && (inCurrentTree['tm']!='n') && (inCurrentTree['tr']!='n') && (inCurrentTree['ml']!='n') && (inCurrentTree['mm']!='n') && (inCurrentTree['mr']!='n') && (inCurrentTree['bl']!='n') && (inCurrentTree['bm']!='n') && (inCurrentTree['br']!='n')) {
+      // console.log('currentTree',inCurrentTree);
+      // console.log('determinedWinner: draw',possibleWins[i]);
+      boardReset();
+      worm += 0;
+      return 'd';
+    }
+    return 'n';
+  }
+
+//---------------------------------------------------------------------------------------
+  
+  $(function() {
+
+    // $.getJSON({
+    //   url: "/JSONs/tic_tac_toe_learning.json"
+    // }).done(function(data) {
+    //   eliminatedMovesJSON = data;
+    // });
+
+    ReactDOM.render(boardDraw(), $('#ttt-div')[0]);
+    ReactDOM.render(winRecordDraw(), $('#ttt-win-record')[0]);
+
+    aiTrainer(1000);
+    console.log('worm',worm);
+    console.log('eliminatedMovesJSON',eliminatedMovesJSON);
+
+
+    $(document).on('click','.ttt-square', function() {
+      
+      if (turn == 'x') {
+        var thisSN = $(this).data('squaresn');
+        if (validMove(thisSN)) {
+          pieceGenerate('x',thisSN);
+          currentTree = getCurrentTree();
+          determinedWinner = determineWinner(currentTree);
+
+          if (determinedWinner != 'n') {
+            winRecordInsert(determinedWinner);
+            if (determinedWinner == 'x') {
+              eliminatedMovesJSON = aiFeedback(determinedWinner,chosenMove, currentTree,eliminatedMovesJSON);
+            }
+            
+          } else {
+            turnNumber += 1;
+            turn = 'o';
+            $(document).trigger('turnChange');
+          }
+          
+        }
+      }
+    });
+
+    $(document).on('turnChange', function() {
+      if (turn == 'o') {
+        currentTree = getCurrentTree();
+        aiMove(currentTree);
+        pieceGenerate('o',chosenMove);
+        currentTree = getCurrentTree();
+        determinedWinner = determineWinner(currentTree);
+        
+        if (determinedWinner != 'n') {
+          winRecordInsert(determinedWinner);
+          if (determinedWinner == 'x') {
+            aiFeedback(determinedWinner,chosenMove, currentTree); 
+          }
+          
+        } else {
+          turnNumber += 1;
+        }
+        turn = 'x';
+        
+        
+      }
+    });
+
+  });
+  
+
+
+</script>

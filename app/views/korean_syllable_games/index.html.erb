@@ -2,7 +2,7 @@
   <div class="col-10 offset-1">
     <div class="space-break"></div>
     <div class="page-title">Korean Syllable Game</div>
-      <div class="wip-watermark">Work In Progress</div>
+      <!-- <div class="wip-watermark">Work In Progress</div> -->
   </div>
 </div>
 
@@ -12,6 +12,136 @@
   <div class="row no-gutters">
     <div class="col-8 offset-2">
       
+      <div id="ksg-main-div"></div>
+
     </div>
   </div>
 </div>
+
+
+<script type="text/babel">
+
+  var sourceLanguage = 'en';
+  var targetLanguage = 'ko';
+  var translateInput = 'Hello';
+  var trOut;
+  var syllableUnicode;
+
+  var kConsonant = ['ㅂ','ㅈ','ㄷ','ㄱ','ㅅ','ㅁ','ㄴ','ㅇ','ㄹ','ㅎ','ㅋ','ㅌ','ㅊ','ㅍ','ㅃ','ㅉ','ㄸ','ㄲ','ㅆ'];
+  var kVowels = ['ㅛ','ㅕ','ㅑ','ㅐ','ㅔ','ㅗ','ㅓ','ㅏ','ㅣ','ㅠ','ㅜ','ㅡ','ㅒ','ㅖ'];
+
+  var keymapJSON = {
+    'en-ko':{
+      'shift-false':{
+        'q':'ㅂ','w':'ㅈ','e':'ㄷ','r':'ㄱ','t':'ㅅ','y':'ㅛ','u':'ㅕ','i':'ㅑ','o':'ㅐ','p':'ㅔ','a':'ㅁ','s':'ㄴ','d':'ㅇ','f':'ㄹ','g':'ㅎ','h':'ㅗ','j':'ㅓ','k':'ㅏ','l':'ㅣ','z':'ㅋ','x':'ㅌ','c':'ㅊ','v':'ㅍ','b':'ㅠ','n':'ㅜ','m':'ㅡ'
+      },'shift-true':{
+        'q':'ㅃ','w':'ㅉ','e':'ㄸ','r':'ㄲ','t':'ㅆ','y':'ㅛ','u':'ㅕ','i':'ㅑ','o':'ㅒ','p':'ㅖ','a':'ㅁ','s':'ㄴ','d':'ㅇ','f':'ㄹ','g':'ㅎ','h':'ㅗ','j':'ㅓ','k':'ㅏ','l':'ㅣ','z':'ㅋ','x':'ㅌ','c':'ㅊ','v':'ㅍ','b':'ㅠ','n':'ㅜ','m':'ㅡ'
+      }
+    }
+  };
+
+  var syllableJSON = {
+    "algorithm":{
+      "initial":"588","medial":"28","final":"1","constant":"44032",
+      "equation": syllableUnicode = function(inInitial,inMedial,inFinal) {
+        return (((inInitial * 588) + (inMedial * 28) + (inFinal)) + 44032);
+      }
+    },"numbers":{
+      "initial":{
+        "ㄱ":"0","ㄲ":"1","ㄴ":"2","ㄷ":"3","ㄸ":"4","ㄹ":"5","ㅁ":"6","ㅂ":"7","ㅃ":"8","ㅅ":"9","ㅆ":"10","ㅇ":"11","ㅈ":"12","ㅉ":"13","ㅊ":"14","ㅋ":"15","ㅌ":"16","ㅍ":"17","ㅎ":"18"
+      },"medial":{
+        "ㅏ":"0","ㅐ":"1","ㅑ":"2","ㅒ":"3","ㅓ":"4","ㅔ":"5","ㅕ":"6","ㅖ":"7","ㅗ":"8","ㅘ":"9","ㅙ":"10","ㅚ":"11","ㅛ":"12","ㅜ":"13","ㅝ":"14","ㅞ":"15","ㅟ":"16","ㅠ":"17","ㅡ":"18","ㅢ":"19","ㅣ":"20"
+      },"final":{
+        "none":"0","ㄱ":"1","ㄲ":"2","ㄳ":"3","ㄴ":"4","ㄵ":"5","ㄶ":"6","ㄷ":"7","ㄹ":"8","ㄺ":"9","ㄻ":"10","ㄼ":"11","ㄽ":"12","ㄾ":"13","ㄿ":"14","ㅀ":"15","ㅁ":"16","ㅂ":"17","ㅄ":"18","ㅅ":"19","ㅆ":"20","ㅇ":"21","ㅈ":"22","ㅊ":"23","ㅋ":"24","ㅌ":"25","ㅍ":"26","ㅎ":"27"
+      }
+    },"combine":{
+      "ㄱㄱ":"ㄲ","ㄱㅅ":"ㄳ","ㄴㅈ":"ㄵ","ㄴㅎ":"ㄶ","ㄹㄱ":"ㄺ","ㄹㅁ":"ㄻ","ㄹㅂ":"ㄼ","ㄹㅅ":"ㄽ","ㄹㅌ":"ㄾ","ㄹㅍ":"ㄿ","ㄹㅎ":"ㅀ","ㅂㅅ":"ㅄ","ㅅㅅ":"ㅆ","ㄷㄷ":"ㄸ","ㅂㅂ":"ㅃ","ㅈㅈ":"ㅉ","ㅏㅣ":"ㅐ","ㅑㅣ":"ㅒ","ㅓㅣ":"ㅔ","ㅕㅣ":"ㅖ","ㅗㅏ":"ㅘ","ㅗㅐ":"ㅙ","ㅗㅣ":"ㅚ","ㅜㅓ":"ㅝ","ㅜㅔ":"ㅞ","ㅜㅣ":"ㅟ","ㅡㅣ":"ㅢ"
+    },"valid next input":{
+      
+    }
+  };
+
+  var syllableTexts = function(syllableTextNumber, syllableText) {
+    return (
+      <p id={"syllable-text-"+syllableTextNumber.toString()} className="syllable-text">{syllableText}</p>
+      );
+  }
+
+  var syllableBoxes = function(syllable1,syllable2) {
+    return (
+      <table id="syllable-table">
+      <tbody>
+        <tr>
+          <td id="syllable-box-1" className="syllable-box">{syllableTexts(1,syllable1)}</td>
+          <td id="syllable-box-2" className="syllable-box">{syllableTexts(2,syllable2)}</td>
+        </tr>
+        </tbody>
+      </table>
+      );
+  }
+
+  function newTextInsert(boxNumber, inNewText) {
+    ReactDOM.unmountComponentAtNode($('#syllable-text-'+boxNumber.toString())[0]);
+    ReactDOM.render(syllableTexts(1,inNewText), $('#syllable-box-'+boxNumber.toString())[0]);
+  }
+
+
+  function validInput(inInputText, nextInput) {
+    var lastInput = inInputText[inInputText.length];
+
+  }
+
+
+
+  $(function() {
+
+    var consonant1 = kConsonant[Math.floor(Math.random() * (kConsonant.length-1))];
+    var consonant2 = kConsonant[Math.floor(Math.random() * (kConsonant.length-1))];
+    var inputCharacter;
+    var currentText1;
+    var currentText2;
+    var newText1;
+    var newText2;
+    var inputText1 = [consonant1];
+    var inputText2 = [consonant2];
+    var inputText = [[consonant1],[consonant2]];
+
+    ReactDOM.render(syllableBoxes(consonant1,consonant2), $('#ksg-main-div')[0]);
+
+    $.ajax({
+      url: "https://systran-systran-platform-for-language-processing-v1.p.rapidapi.com/translation/text/translate?source="+sourceLanguage+"&target="+targetLanguage+"&input="+translateInput,
+      dataType: 'JSON',
+      type: "Get",
+      headers: {
+        "x-rapidapi-host": "systran-systran-platform-for-language-processing-v1.p.rapidapi.com",
+        "x-rapidapi-key": "eebb8c513emshbd04cfb353f8090p1bfd36jsncf32cde4e41b"
+      }
+    }).done(function(data) {
+      trOut = data['outputs'][0]['output'];
+      console.log(trOut);
+    });
+
+    $(document).on('click','#syllable-table',function() {
+      console.log(this);
+      
+    });
+    $(document).on('keydown',function(event) {
+      console.log(event['shiftKey'],event['key']);
+      console.log(keymapJSON['en-ko']['shift-'+(event['shiftKey']).toString()][event['key'].toLowerCase()]);
+      inputCharacter = keymapJSON['en-ko']['shift-'+(event['shiftKey']).toString()][event['key'].toLowerCase()];
+      currentText1 = $('#syllable-box-1').text();
+      currentText2 = $('#syllable-box-2').text();
+      if (inputCharacter != undefined) {
+        newText1 = currentText1 + inputCharacter;
+        console.log(newText1);
+        newTextInsert(1,newText1);
+      }
+      
+    });
+  });
+
+  
+
+  
+
+</script>

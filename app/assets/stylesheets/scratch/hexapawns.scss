@@ -49,10 +49,6 @@ $pawn-hw: $board-square-hw - 5;
   border: 2px solid black;
 }
 
-#debug-table, #debug-table tbody, #debug-table tbody tr, #debug-table tbody tr th, #debug-table tbody tr td {
-  border: 1px solid black;
-}
-
 #winner-table, #winner-table tr, #winner-table tr th, #winner-table tr td {
   border: 1px solid black;
 }

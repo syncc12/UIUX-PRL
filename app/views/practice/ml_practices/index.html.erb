@@ -1,0 +1,99 @@
+<div class="row">
+  <div class="col-10 offset-1">
+    <div class="space-break"></div>
+    <div class="page-title">Machine Learning Practice</div>
+  </div>
+</div>
+
+<div id="page-yield" data-pagename="Machine Learning Practice" data-pagestatus="practice">
+  <div class="row">
+    <div class="col-10 offset-1">
+
+      <div id="ml-main-div"></div>
+      
+    </div>
+  </div>
+</div>
+
+<script src="opencv.js"></script>
+<script type="text/babel">
+  
+  var mazeDraw = function() {
+    return (
+      <canvas id="maze">
+
+      </canvas>
+      );
+  }
+
+  function recursiveDivision(chambers=[]) {
+    var mazeCanvas = document.getElementById('maze');
+    var ctx = mazeCanvas.getContext("2d");
+    var newChamber1,newChamber2,newChamber3,newChamber4,chamber,wRandom,hRandom,thisChamber;
+    var cellSize = 5;
+    var newChambers = [];
+    var newLines = [];
+    var xwLine,yhLine;
+
+    // ctx.fillRect(20,20,cellSize,cellSize);
+
+    for (chamber in chambers) {
+      thisChamber = chambers[chamber];
+      wRandom = Math.floor(Math.random()*((thisChamber['w']-thisChamber['x'])+(cellSize*2))+(thisChamber['x'])-(cellSize*2));
+      hRandom = Math.floor(Math.random()*((thisChamber['h']-thisChamber['y'])+(cellSize*2))+(thisChamber['y'])-(cellSize*2));
+      xwLine = {'x':thisChamber['x'],'y':hRandom,'w':thisChamber['w'],'h':cellSize}
+      yhLine = {'x':wRandom,'y':thisChamber['y'],'w':cellSize,'h':thisChamber['h']}
+      ctx.fillStyle = "#000000";
+      ctx.fillRect(xwLine['x'],xwLine['y'],xwLine['w'],xwLine['h']);
+      ctx.fillRect(yhLine['x'],yhLine['y'],yhLine['w'],yhLine['h']);
+      newChamber1 = {'x':thisChamber['x'],'y':thisChamber['y'],'w':wRandom,'h':hRandom};
+      newChamber2 = {'x':wRandom+cellSize,'y':thisChamber['y'],'w':thisChamber['w']-wRandom,'h':hRandom};
+      newChamber3 = {'x':thisChamber['x'],'y':hRandom+cellSize,'w':wRandom,'h':thisChamber['h']};
+      newChamber4 = {'x':wRandom+cellSize,'y':hRandom+cellSize,'w':thisChamber['w'],'h':thisChamber['h']};
+
+      newChambers.push(newChamber1);
+      newChambers.push(newChamber2);
+      newChambers.push(newChamber3);
+      newChambers.push(newChamber4);
+      newLines.push([xwLine,yhLine]);  
+    }
+
+    var line,subLine,thisLine,xwGap,yhGap;
+    for (line in newLines) {
+      thisLine = newLines[line];
+      wRandom = Math.floor(Math.random()*(thisLine[0]['w']-thisLine[0]['x']+(cellSize*2)))+((thisLine[0]['x'])-(cellSize*2));
+      hRandom = Math.floor(Math.random()*(thisLine[1]['h']-thisLine[1]['y']+(cellSize*2)))+((thisLine[1]['y'])-(cellSize*2));
+      xwGap = {'x':thisLine[0]['x'],'y':hRandom,'w':(cellSize),'h':(cellSize*2)};
+      yhGap = {'x':wRandom,'y':thisLine[1]['y'],'w':(cellSize*2),'h':(cellSize)};
+
+      ctx.fillStyle = "#0000FF";
+      ctx.fillRect(xwGap['x'],xwGap['y'],xwGap['w'],xwGap['h']);
+      ctx.fillRect(yhGap['x'],yhGap['y'],yhGap['w'],yhGap['h']);
+    }
+
+
+    return newChambers;
+  }
+
+  $(function() {
+    var sypse = new Synapse;
+    sypse.process('');
+
+
+
+    ReactDOM.render(mazeDraw(), $('#ml-main-div')[0]);
+    // ReactDOM.unmountComponentAtNode($('#ml-main-div')[0]);
+    $('canvas#maze').attr('width', $('canvas#maze').width());
+    $('canvas#maze').attr('height', $('canvas#maze').height());
+    
+    var i;
+    var recursions = 2;
+    var chambers;
+    chambers = recursiveDivision([{'x':0,'y':0,'w':parseInt($('#maze').css('width')),'h':parseInt($('#maze').css('height'))}]);
+    for (i=0;i<recursions-1;i++) {
+      chambers = recursiveDivision(chambers);
+    }
+
+  });
+  
+</script>

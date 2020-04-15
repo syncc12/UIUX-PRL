@@ -1,3 +1,60 @@
 // Place all the styles related to the tic_tac_toes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$board-hw:500px;
+#ttt-board {
+  border-collapse: collapse;
+}
+
+.ttt-square, .ttt-square div {
+  height: $board-hw/3;
+  width: $board-hw/3;
+  padding: 0px;
+  margin: 0px;
+}
+
+#ttt-top-row {
+  border-bottom: 1px solid black;
+}
+
+#ttt-middle-row {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+#ttt-bottom-row {
+  border-top: 1px solid black;
+}
+
+.ttt-left-column {
+  border-right: 1px solid black;
+}
+
+.ttt-middle-column {
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.ttt-right-column {
+  border-left: 1px solid black;
+}
+
+#ttt-board, #ttt-board tbody, #ttt-board tbody tr, #ttt-board tbody tr td {
+  padding: 0px;
+  margin: 0px;
+}
+
+#win-record-counter, #win-record-counter tbody, #win-record-counter tbody tr, #win-record-counter tbody tr th, #win-record-counter tbody tr td {
+  border-collapse: collapse;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 2px;
+}
+
+#win-record-table, #win-record-table tbody, #win-record-table tbody tr, #win-record-table tbody tr th, #win-record-table tbody tr td {
+  border-collapse: collapse;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 2px;
+}

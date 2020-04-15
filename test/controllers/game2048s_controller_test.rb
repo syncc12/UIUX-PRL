@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ReactPracticesControllerTest < ActionDispatch::IntegrationTest
+class Game2048sControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
